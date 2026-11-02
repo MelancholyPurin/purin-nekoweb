@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <base href="../">
+    <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.4/build/98.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>body { margin: 0; background: transparent; }</style>
+    <script src="assets/js/typewriter.js" defer></script>
+</head>
+<body>
+    <section class="minecraft-page mc-gallery-bg">
+        <div>
+            <div id="mcGallery">
+                <div class="mc-city-carousel">
+                    <button class="mc-button" id="mc-city-prev">Prev</button>
+                    <span class="mc-city-name"></span>
+                    <button class="mc-button" id="mc-city-next">Next</button>
+                </div>
+                <div class="mc-city-desc"></div>
+                <div class="mc-img-carousel">
+                    <img class="mc-img" src="" alt="">
+                    <div class="mc-img-caption"></div>
+                    <div class="mc-img-carousel-buttons">
+                        <button class="mc-button" id="mc-img-prev">Prev</button>
+                        <button class="mc-button" id="mc-img-next">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="minecraft-page">
+        <div class="fake-screen">
+            <h4 class="typeWriter">>_ the story behind the world :3</h4>
+            <p>
+                I've been playing Minecraft since 2011. No other game has had such a profound impact in my life.
+                I love playing it alone and with friends.
+            </p>
+            <p>
+                Interestingly, despite having played for so long, I had yet to commit to a single world for more than a few months.
+                This didn't bother me, though. It kept the game feeling fresh and made it easy to experience new updates' content; this was best exemplified by a series of yearly SMPs from 2017 to 2023.
+                Many of my warmest memories in the game come from these worlds; at its peak (Seasons 4-5) we had around 15 active members, most of which were my closest friends in real life.
+                There was beauty in starting over each time, but eventually we tired of it.
+            </p>
+            <p>
+                Season 7 would be the last SMP.
+                Given the lack of motivation to play survival, and having noticed that the 1.20 update seemed to cater more towards building, we decided to restart the world in creative mode. We hadn't played creative mode together in years.
+                Thus, the CMP was born, to great success. In a couple months we'd created an agglomeration of builds larger than anything we'd ever done: <b>Grug City.</b>
+            </p>
+            <p>
+                The server has closed and re-opened several times since June 2023, primarily during summer/winter breaks, when we're all free and on the same time zone.
+                During off-seasons, I've continued to play on the world very regularly, since I own the world save.
+                I've developed quite an attachment to this world; it's become somewhat of a "third place" for me, a place where I log in to relax and unwind, no matter where I may be in real life.
+                I have no plans on quitting.
+            </p>
+            <p>
+                This page contains a gallery of images from various cities and locations around the world.
+            </p>
+        </div>
+    </section>
+
+    <script type="module">
+        import { mcGalleryGroups } from './assets/js/data/minecraft-data.js';
+
+
+        let currentMCGroup = 0;
+        let currentMCImage = 0;
+
+        function renderMCImgGroup() {
+            document.querySelector('.mc-city-name').textContent = mcGalleryGroups[currentMCGroup].name;
+            document.querySelector('.mc-city-desc').textContent = mcGalleryGroups[currentMCGroup].description;
+            currentMCImage = 0;
+            renderMCImage();
+        }
+
+        function renderMCImage() {
+            const imgData = mcGalleryGroups[currentMCGroup].images[currentMCImage];
+            document.querySelector('.mc-img').src = imgData.src;
+            document.querySelector('.mc-img-caption').textContent = imgData.caption;
+        }
+
+        document.getElementById('mc-city-prev').addEventListener('click', function() {
+            currentMCGroup = (currentMCGroup - 1 + mcGalleryGroups.length) % mcGalleryGroups.length;
+            renderMCImgGroup();
+        });
+
+        document.getElementById('mc-city-next').addEventListener('click', function() {
+            currentMCGroup = (currentMCGroup + 1) % mcGalleryGroups.length;
+            renderMCImgGroup();
+        });
+
+        document.getElementById('mc-img-prev').addEventListener('click', function() {
+            const images = mcGalleryGroups[currentMCGroup].images;
+            currentMCImage = (currentMCImage - 1 + images.length) % images.length;
+            renderMCImage();
+        });
+
+        document.getElementById('mc-img-next').addEventListener('click', function() {
+            const images = mcGalleryGroups[currentMCGroup].images;
+            currentMCImage = (currentMCImage + 1) % images.length;
+            renderMCImage();
+        });
+
+        renderMCImgGroup();
+    </script>
+</body>
+</html>

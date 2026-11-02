@@ -3,26 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mercutio's Dream</title>
+        <title>Purin's Dream</title>
         <meta name="description" content="Mercutio's Personal Website">
         <meta name="keywords" content="personal website, blog, travel, cookbook, minecraft">
         <meta name="author" content="Mercutio">
         <meta property="og:title" content="Mercutio's Dream">
         <meta property="og:description" content="Mercutio's Personal Website">
-        <meta property="og:image" content="favicon.png">
-        <link rel="icon" type="image/x-icon" href="favicon.png">
+        <meta property="og:image" content="https://mercutio.nekoweb.org/favicon.png">
+        <link rel="icon" type="image/png" href="favicon.png">
         <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.4/build/98.css">
         <link rel="stylesheet" href="assets/css/main.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script type="module" src="assets/js/index.js"></script>
     </head>
-    <body onload="generateCalendar('calendar-div')">
-        <div id="bg-fade-overlay"></div>
+    <body>
+        <div class="bg-fade-overlay"></div>
         <header>
-            <h1 class="crt" id="main-title"> - mercutio. - </h1>
+            <h1 class="crt main-title"> - melancholy.Purin - </h1>
         </header>
-        <div id="button-carousel-container">
-            <div id="button-carousel-track"></div>
+        <div class="button-carousel-container">
+            <div class="button-carousel-track"></div>
         </div>
         <div class="layout-container">
             <aside class="column left">
@@ -76,9 +75,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-section="cookbook">
-                                            <img src="assets/images/icons/navbar/cookbook.png" width="20" height="20" alt="Cookbook Icon" class="nav-icon"/>
-                                            Cookbook
+                                        <a href="#" data-section="photofeed">
+                                            <img src="assets/images/icons/navbar/photofeed.png" width="20" height="20" alt="Photo Feed Icon" class="nav-icon"/>
+                                            Photo Feed
                                         </a>
                                     </li>
                                     <li>
@@ -104,24 +103,7 @@
                         </div>
                     </div>
                 </section>  
-                <section id="visitor-count">
-                    <div class="window">
-                        <div class="title-bar">
-                            <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/visitoricon.png" width="14" height="14" alt="Visitor Icon"/></sub> Visitor Counts</div>
-                            <div class="title-bar-controls">
-                            <button aria-label="Minimize"></button>
-                            <button aria-label="Maximize"></button>
-                            <button aria-label="Close"></button>
-                            </div>
-                        </div>
-                        <div id="visitor-count" class="window-body">
-                            <p><u>Total:</u></p>
-                            <script type="text/javascript" src="https://counter1.fc2.com/counter.php?id=40574890&main=1"></script><noscript><img style="max-width: 100%; height: auto; display: block;" src="https://counter1.fc2.com/counter_img.php?id=40574890&main=1" /></noscript>
-                            <p><u>Now:</u></p>
-                            <script type="text/javascript" src="https://counter1.fc2.com/views.php?id=40574890&main=1"></script><noscript><img src="https://counter1.fc2.com/counter_now.php?id=40574890&main=1" /></noscript>
-                        </div>
-                    </div>
-                </section>
+                
                 <section id="status">
                     <div class="window">
                         <div class="title-bar">
@@ -133,8 +115,10 @@
                             </div>
                         </div>
                         <div class="window-body">
-                            <img class="ic" src="assets/images/celeste-madeline.gif">
-                            <p>Once my status.cafe account gets approved, I'll put it here. it's taking forever omg.</p>
+                            <div class="madeline-icon">
+                                <img class="ic" src="assets/images/celeste-madeline.gif">
+                            </div>
+                            <div class="statuscafe" id="statuscafe"><div class="statuscafe-username" id="statuscafe-username"></div><div class="statuscafe-content" id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=mercutio" defer></script>
                         </div>
                     </div>
                 </section>
@@ -188,875 +172,20 @@
                         </div>
                     </div>
                 </section>
-                <section id="communities">
-                    <div class="window">
-                        <div class="title-bar">
-                            <div class="title-bar-text">Communities</div>
-                            <div class="title-bar-controls">
-                            <button aria-label="Minimize"></button>
-                            <button aria-label="Maximize"></button>
-                            <button aria-label="Close"></button>
-                            </div>
-                        </div>
-                        <div class="window-body">
-                            <p>peepee poopoo</p>
-                        </div>
-                    </div>
-                </section>
             </aside>
             
             <div class="column middle">
                 <main>
                     <section style="display: flex; justify-content: center;">
-                        <div id="section-title-bar">
+                        <div class="section-title-bar">
                             <div style="align-items: center; justify-content: center; display: flex; gap: 30px;">
                                 <img id="section-door-img" class="door-img" src="assets/images/titles/door-home.webp" alt="Home"/>
-                                <h2 id="section-title-text" class="crt">Home</h2>
+                                <h2 class="crt section-title-text">Home</h2>
                                 <img id="section-madotsuki-img" src="assets/images/titles/madot-triangle.webp" height="80px" alt="Madotsuki"/>
                             </div>
                         </div>
                     </section>
-                    <section class="home-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 30;">>_ welcome to my website!</h4>
-                            <img id="bio-pic" src="assets/images/square.jpg" width="125" height="125" alt="Home Picture"/>
-                            <p>Hello all, I’m Mercutio! Also known online as Sanster, Andromeda, or Madeline.
-                                This website is a place where I can write or post about myself, things that I like, and things happening in my life.
-                                My “little corner of the Internet”, as people say.</p>
-                            <div style="text-align: center;">
-                                <img src="assets/images/strawberry.gif" style="margin: 0 auto;" alt="Strawberry", width="35" height="35"/>
-                                <img src="assets/images/strawberry.gif" style="margin: 0 auto;" alt="Strawberry", width="35" height="35"/>
-                                <img src="assets/images/strawberry.gif" style="margin: 0 auto;" alt="Strawberry", width="35" height="35"/>
-                                <img src="assets/images/strawberry.gif" style="margin: 0 auto;" alt="Strawberry", width="35" height="35"/>
-                                <img src="assets/images/strawberry.gif" style="margin: 0 auto;" alt="Strawberry", width="35" height="35"/>
-                            </div>
-                            <p>The sheer amount of ads and stupid AI features being forced onto my social media finally made me step away from them.
-                                Coincidentally, I've always wanted to create a geocities-inspired personal webpage since I mostly missed out on that era of the internet.</p>
-                            <p>So I decided to make good use of my unemployment license (CS Degree) to make this wish of mine a reality. Feel free to look around, and thank you for stopping by!</p>
-                            <div style="text-align: center;">
-                                <img src="assets/images/welcom.gif" alt="Welcome"/>
-                            </div>
-                            <iframe src="https://nekoweb.org/frame/follow" frameborder="0" width="170" height="28"></iframe>
-                        </div>
-                    </section>
-                    <section class="home-page">
-                        <div class="split-screen">
-                            <div class="abt-col">
-                                <div class="fake-screen">
-                                    <h4 class="typeWriter" style="--characters: 17;">>_ new content</h4>
-                                </div>
-                            </div>
-                            <div class="abt-col">
-                                <div class="fake-screen">
-                                    <h4 class="typeWriter" style="--characters: 20;">>_ what i'm up to</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="home-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 15;">>_ WEBRINGS!</h4>
-                        </div>
-                    </section>
-                    <section class="home-page">
-                        <div class="fake-screen" style="height: 200px; overflow: auto;">
-                            <h4 class="typeWriter" style="--characters: 15;">>_ changelog</h4>
-                            <p><strong><u>21/10/2025:</u></strong> Performance improvements, bug fixes, JS refactoring.</p>
-                            <p><strong><u>18/10/2025 - 19/10/2025:</u></strong> Added quizzes and questionnaire to the about section, moon widget to the right column.</p>
-                            <p><strong><u>09/10/2025:</u></strong> Added guestbook and cookbook sections.</p>
-                            <p><strong><u>08/10/2025:</u></strong> Reworked navigation.</p>
-                            <p><strong><u>04/10/2025 - 07/10/2025:</u></strong> Travel log section.</p>
-                            <p><strong><u>03/10/2025:</u></strong> Added more Pompompurin images, stamp carousel, and visitor counters. Rewrote resources section, scaffolded Blog section, </p>
-                            <p><strong><u>02/10/2025:</u></strong> Added button carousel.</p>
-                            <p><strong><u>30/09/2025:</u></strong> Added backgrounds for each section (with transitions) and Tamanotchi. Also created an animation for a future Nekolink.</p>
-                            <p><strong><u>29/09/2025:</u></strong> Back from a very long hiatus! Scaffolded a new Minecraft World section.</p>
-                            <p><strong><u>06/06/2025:</u></strong> Added a bunch of buttons.</p>
-                            <p><strong><u>05/06/2025:</u></strong> Created GitHub repo. Greatly expanded the about section.</p>
-                            <p><strong><u>02/06/2025:</u></strong> Changelog moved over to the actual website.</p>
-                            <p><strong><u>01/06/2025:</u></strong> Implemented music player! Also added small icons to some side sections and custom cursors, as well as fixing the CRT screen door effect. Most importantly, added Pompompurin.</p>
-                            <p><strong><u>31/05/2025:</u></strong> Intro section for home page written and added. Middle sections given a terminal-inspired CSS look. Header flicker effect added. Tentative side section layout added.</p>
-                            <p><strong><u>30/05/2025:</u></strong> Planning out general layout and content of the website on a Google Doc (lol). Changed clock to an embed iframe clock, keeping both for now.</p>
-                            <p><strong><u>28/05/2025:</u></strong> New icon. Windows-98 styling for side sections. JavaScript for yellow-border hover effect and clock experiment.</p>
-                            <p><strong><u>27/05/2025:</u></strong> Website created.</p>
-                        </div>
-                    </section>
-
-                    <section class="about-page">
-                        <div class="fake-screen">
-                            <img id="bio-pic" src="assets/images/fami.png" width="125" height="125" alt="Bio Picture" title="She is me and I am her."/>
-                            <p><em>"An <strong>entire</strong> website dedicated to talking about herself??"</em></p>
-                            <p>Yeah! :3 Believe me, I'm surprised too. I didn't think I'd have more than a few paragraph's worth of content to share, but this website has been a very fun hobby-project so far. I'd really encourage you to do the same! Learning the HTML/CSS for websites like this is quite easy; there's a reason everyone was doing it 25 years ago! </p>
-                            <p>If you'd like me to check out your website, feel free to leave it in the guestbook. I promise, I'll take my time and hear you talk about yourself just as much as you've heard me talk about myself!</p>
-                            <p>Here you'll find general, basic information about me as well as a few fun quizzes and questionnaires that don't really fit in any other section. At the very bottom is a longer bio text. Didn't wanna put it all the way up here.</p>
-                            <div style="text-align: center;">
-                                <img width="600" src="assets/images/catline.gif" alt="Cat Line"/>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="about-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 16;">>_ the basics !</h4>
-                            <div class="split-screen">
-                                <div class="abt-col">
-                                    <p><strong>Quick Facts:</strong></p>
-                                    <ul>
-                                        <li>Name: Anja</li>
-                                        <li>Nickname: Mercutio</li>
-                                        <li>Age: 22</li>
-                                        <li>Gender: Girl 🏳️‍⚧️</li>
-                                        <li>Height: 1.68m (5'6" in freedom units)</li>
-                                        <li>Weight: About 6 watermelons</li>
-                                        <li>Birthday: January 11th</li>
-                                        <li>Nationality: MEX</li>
-                                        <li>Languages: Spanish, English, and German</li>
-                                        <li>Blood Type: O+</li>
-                                        <li>Zodiac: Capricorn ☼, Taurus ☾, Aquarius ↑</li>
-                                        <li>MBTI: INTP</li>
-                                        <li>Passtimes: Guitar, daydreaming, Minecraft, coding, and writing</li>
-                                    </ul>
-                                </div>
-                                <div class="abt-col">
-                                    <img id="mc-skin" src="assets/images/mcskin.gif" alt="Minecraft Skin"/>
-                                    <p style="text-align: center;">This is my Minecraft skin, which kinda looks like what I look like IRL. Just imagine longer hair, earrings, and a nostril piercing.</p>
-                                </div>
-                            </div>
-                            <div>
-                                <img class="small-id-button" src="assets/images/id_buttons/sheher.png" alt="She/Her"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/mexican.png" alt="Mexican"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/intp.png" alt="INTP"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/pompompurin.png" alt="Pompompurin"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/introvert.png" alt="Introvert"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/dogowner.png" alt="Dog Owner"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/capricorn.png" alt="Capricorn"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/horse.png" alt="Horse"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/esp.png" alt="Español"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/eng.png" alt="English"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/deu.png" alt="Deutsch"/>
-                                <img class="small-id-button" src="assets/images/id_buttons/righthanded.png" alt="Right-Handed"/>
-                            </div>
-                            <div class="split-screen">
-                                <div class="abt-col">
-                                    <p><strong>Likes:</strong></p>
-                                        <ul>
-                                            <li>Public transport</li>
-                                            <li>Cloudy weather</li>
-                                            <li>Pompompurin</li>
-                                            <li>Beer</li>
-                                            <li>Cats, Dogs, & Bunnies</li>
-                                        </ul>
-                                </div>
-                                <div class="abt-col">
-                                    <p><strong>Dislikes:</strong></p>
-                                    <ul>
-                                        <li>Crowds</li>
-                                        <li>Sticky things</li>
-                                        <li>Belgium</li>
-                                        <li>Clubbing</li>
-                                        <li>Cold Showers</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="split-screen">
-                                <div class="abt-col">
-                                    <div class="fun-fact-container">
-                                        <div class="fun-fact-box">
-                                            <p id="fun-fact">
-                                                Click on the Gangnam-Styling Rei Chiquita to see fun facts about me!
-                                                <br>
-                                                ->
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="abt-col">
-                                    <img id="rei-chiquita" src="assets/images/reichiquita.gif" alt="Rei Chiquita"/>
-                                </div>
-                            </div>
-                            <div style="text-align: center;">
-                                <img src="assets/images/purin.gif" alt="Purin"/>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="about-page">
-                        <div class="split-screen abt-interests-quizzes">
-                            <div class="abt-col" id="abt-interests-col-left">
-                                <div class="fake-screen">
-                                    <h4 class="typeWriter" style="--characters: 18;">>_ my interests</h4>
-                                    <p><b><strong>Videogames:</strong></b> Minecraft, Terraria, OMORI, Celeste, Stardew Valley, Yume Nikki, Undertale, TF2, Half-Life Franchise, FNAF, Super Mario Galaxy</p>
-                                    <div>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/minecraft.png" alt="Minecraft"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/terraria.png" alt="Terraria"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/sdv.png" alt="Stardew Valley"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/undertale.png" alt="Undertale"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/hl.png" alt="Half-Life"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/portal.png" alt="Portal"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/fnaf.png" alt="FNAF"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/mario.png" alt="Super Mario Galaxy"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/dontstarve.png" alt="Don't Starve"/>
-
-                                    </div>
-                                    <p><b><strong>Animanga:</strong></b> Evangelion, Serial Experiments Lain, Chainsaw Man, Cowboy Bebop, Madoka Magica, Sailor Moon, Princess Mononoke, Code Geass, Nana, Horimiya, anything by Tatsuki Fujimoto</p>
-                                    <p><b><strong>Music (Genres):</strong></b> Rock (Classic, Alternative, Latin American), City Pop, J-Pop, Dreampop, Breakcore, Video Game Soundtracks, Vocaloid, Electronic</p>
-                                    <div>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/rock.png" alt="Rock"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/electronic.png" alt="Electronic"/>
-                                        <img class="small-leftcol-button" src="assets/images/id_buttons/classical.png" alt="Classical"/>
-                                    </div>
-                                    <p><b><strong>Music (Artists):</strong></b> The Beatles, Daft Punk, Ado, Arctic Monkeys, ABBA, Mitski, Invisible, Fleetwood Mac, Casiopea, Soda Stereo, Pink Floyd, Lena Raine, Caifanes, Lamp, Ichiko Aoba</p>
-                                    <p><b><strong>Books:</strong></b> One Hundred Years of Solitude, The Grapes of Wrath, Hamlet, Don Quixote, 1984, Wuthering Heights</p>
-                                </div>
-                            </div>
-                            <div class="abt-col">
-                                <div class="fake-screen">
-                                    <h4 class="typeWriter" style="--characters: 21">>_ quiz results :3</h4>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="https://www.theotaku.com/quizzes/view/3096/which_madoka_magica_girl_are_you%3F"><img src="http://www.theotaku.com/guru_results/3096_Homura_Akemi.jpg" alt="Which Madoka Magica Girl Are You?" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="https://theotaku.com/quizzes/view/1915/what_sailor_scout_are_you%3F"><img src="http://www.theotaku.com/guru_results/1915_Mercury.jpg" alt="What Sailor Scout Are You?" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="https://theotaku.com/quizzes/view/1899/what_higurashi_character_are_you%3F"><img src="http://www.theotaku.com/guru_results/1899_Mion_Sonozaki.jpg" alt="What Higurashi Character Are You?" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="https://cadnomori.neocities.org/quizzes/nen"><img src="https://cadnomori.neocities.org/quizzes/conjurer.png" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="http://rice.place/quiz.html"><img src="https://rice.place/quiz/sweetrice.png" alt="pure" title="you are sweet rice" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="https://neuro.nya.pub/fun/ostan"><img src="https://neuro.nya.pub/fun/ostan/98.jpg" /></a><p> You are Windows 98. You are the second oldest of the windows girls. You're neither beloved nor despised, but many people still use you. You also have a box you keep with you at all times, for reasons known only to you.</p>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="http://www.springhole.net"><img src="http://i213.photobucket.com/albums/cc224/SyeraMiktayee/QuizPics/whatfairy_flowerfairy.gif" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="http://www.nerdtests.com/ft_loser.php?im"><img src="http://www.nerdtests.com/images/ft/lsr.php?val=1704" alt="I am 71% loser. What about you? Click here to find out!" /></a>
-                                    <a class="abt-quiz" target="_blank" rel="noopener noreferrer" href="http://www.springhole.net"><img src="http://i213.photobucket.com/albums/cc224/SyeraMiktayee/QuizPics/tag_werewolf.gif" /></a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="about-page">
-                        <div class="fake-screen" style="height: 275px; overflow: auto;">
-                            <h4 class="typeWriter" style="--characters: 29;">>_ a silly questionnaire</h4>
-                            <p>I've seen several Neocities/Nekoweb users answer <a class="resource-link" href="https://burypink.neocities.org/gifts">this</a> questionaire. I quite like it tbh so I'll include it as well. If you'd like to see/answer questions I've written, you can find those in my blog page!</p>
-                            <div id="questionnaire">
-                            <span>1) time and date u started this?</span>
-                            <p>Sunday, October 19th 2025 at 01:02.</p>
-                            <span>2) asl?</span>
-                            <p>already mentioned them above.</p>
-                            <span>3) opinions on musicals?</span>
-                            <p>i like them! but I don't really seek them out, all of the ones I know have been shown to me.</p>
-                            <span>4) favorite snack?</span>
-                            <p>every day i make myself a bowl of müsli with yogurt, half an apple sliced into small pieces, and honey. might be a bit larger than your average snack? but it's definitely a lot closer to a snack than a meal.</p>
-                            <span>5) have u ever been in love?</span>
-                            <p>yeah.</p>
-                            <span>6) favorite pokemon?</span>
-                            <p>Gengar. he looks so huggable.</p>
-                            <span>7) mario kart main?</span>
-                            <p>Rosalina my beloved</p>
-                            <span>8) tf2 main?</span>
-                            <p>Soldier</p>
-                            <span>9) do you laugh at youtube poops?</span>
-                            <p>yes. if you are a spanish speaker and somehow haven't stumbled on YTPH <b>please</b> check them out, they're like a relic of a bygone era.</p>
-                            <span>10) are you listening to music right now?</span>
-                            <p>yes.</p>
-                            <span>11) favorite shape?</span>
-                            <p>a right triangle.</p>
-                            <span>12) do you believe in astrology?</span>
-                            <p>i know my signs, i know what they mean, and i think it's a fun conversation topic! i won't make any decisions based on it, though.</p>
-                            <span>13) do you believe in the occult?</span>
-                            <p>not really. i just find it unbelievably cool conceptually.</p>
-                            <span>14) opinions on vocaloid?</span>
-                            <p>not among my most listened genres but i like it a lot. i genuinely believe this is where the intersection of music and technology peaked and we should've stopped there.</p>
-                            <span>15) would you ever want to be a rockstar?</span>
-                            <p>sure! maybe not a frontman though. </p>
-                            <span>16) do you easily get stressed?</span>
-                            <p>yeah. it's not something i like about myself.</p>
-                            <span>17) what is/was your favorite class in high school?</span>
-                            <p>history, by far</p>
-                            <span>18) what pokemon type would you be? dual types are allowed lol</span>
-                            <p>ghost types all have such cool designs</p>
-                            <span>19) rei or asuka?</span>
-                            <p>Rei.</p>
-                            <span>20) favorite html tag?</span>
-                            <p>&lt;section&gt;. it's elegant and a fantastic semantic enhancement.</p>
-                            <span>21) are you religious?</span>
-                            <p>oof not at all. i was raised catholic but renounced my faith pretty much as soon as i learned it was possible</p>
-                            <span>22) opinions on nightcore?</span>
-                            <p>nightcore's immeasurable contributions to not just music but humanity will sadly never be recognized, let alone appreciated. but those who know, those who were there, those who lived it and continue living it, understand this is for the best.</p>
-                            <span>23) did you go through any major phase? (emo, goth, weeaboo, etc)</span>
-                            <p>i've had many "special interest" phases so i guess that counts?</p>
-                            <span>24) are you good at drawing?</span>
-                            <p>nope. but that's on me because i've never really set aside the time to practice.</p>
-                            <span>25) do you crack your joints?</span>
-                            <p>i crack my fingers and wrists very regularly. every few hours i can crack my left and right jaws once each respectively. it's loud.</p>
-                            <span>26) do you read visual novels?</span>
-                            <p>not really. there's some i want to check out but it's not high on the priority list.</p>
-                            <span>27) can you sew?</span>
-                            <p>my mom taught me once and i could do it well. however this was four years ago and i have never had to sew anything since so i don't wanna say i know how to.</p>
-                            <span>28) can you cook?</span>
-                            <p>yes. i quite enjoy it. see the cookbook section for more.</p>
-                            <span>29) most expensive thing you've bought?</span>
-                            <p>my current laptop</p>
-                            <span>30) opinions on cosplay?</span>
-                            <p>i admire cosplayers a lot and would love to cosplay someday !</p>
-                            <span>31) what's your most hated band/musician?</span>
-                            <p>common answer maybe but i don't like Imagine Dragons. like i don't even think their music is that bad (i just find it bland), it has more to do with shitty people i've met who like them. it's a dislike by association.</p>
-                            <span>32) are you a dramatic person?</span>
-                            <p>if i'm comfortable around you i <i>WILL</i> exaggerate any inconvenience i face.</p>
-                            <span>33) what emoticon do you use most?</span>
-                            <p>:3 (this shouldn't surprise you)</p>
-                            <span>34) can a miracle certainly occur?</span>
-                            <p>no, not certainly.</p>
-                            <span>35) would you let a vampire suck ur blood?</span>
-                            <p>please and thank you.</p>
-                            <span>36) do you have a celebrity crush?</span>
-                            <p>nah.</p>
-                            <span>37) do you like snow?</span>
-                            <p>yes!! i grew up in a tropical coast city so i never got to see snow until i moved to Germany when i was 19. i find its presence very beautiful and relaxing.</p>
-                            <span>38) were you really into greek mythology as a kid?</span>
-                            <p>nah, though i got really into it in high school when reading The Odyssey and playing Hades</p>
-                            <span>39) what are some things you could competently deliver a speech on?</span>
-                            <p>evangelion lore. yeah. </p>
-                            <span>40) are you good at spelling?</span>
-                            <p>yes :3</p>
-                            <span>41) which touhou wud u fuk?</span>
-                            <p>i dont know much about touhou. i shall undertake some research and report back.</p>
-                            <span>42) do you think there's going to be a robot takeover?</span>
-                            <p>yeah. i tend to be pretty pessimistic about this particular topic.</p>
-                            <span>43) HAS SCIENCE GONE TOO FAR??!?!??!?!</span>
-                            <p><a class="resource-link" target="_blank" href="https://images3.memedroid.com/images/UPLOADED484/638c27b72a1e0.webp">IS THIS IMAGE REAL OR FAKE?</a></p>
-                            <span>44) would you be an angel or devil?</span>
-                            <p>a beautiful angel.</p>
-                            <span>45) sine, cosine, or tangent?</span>
-                            <p>i kinda fw cosine the heaviest</p>
-                            <span>46) do you like licorice?</span>
-                            <p>i have no opinions on it.</p>
-                            <span>47) whats one thing you cant stand that everyone else loves?</span>
-                            <p>spicy food. especially an issue growing up in Mexico, where most candy and snacks are made to be spicy.</p>
-                            <span>48) what books did you like as a kid?</span>
-                            <p>the wimpy kid & captain underpants series, as well as the hunger games books.</p>
-                            <span>49) can you play any instruments?</span>
-                            <p>electric & acoustic guitar, electric bass, saxophone, drums, keyboards, and harmonica.</p>
-                            <span>50) what song would you want to play at your wedding?</span>
-                            <p>Bach's Suite No. 3 in D major, BWV 1068, 2nd movement: "Air". you probably have heard this song somewhere.</p>
-                            <span>51) do you believe in reincarnation?</span>
-                            <p>no. but much like the occult question i find it super cool conceptually.</p>
-                            <span>52) finish the sentence: I'm just a guy who ______</span>
-                            <p>always wanted to be a girl lol. glad i got around to it.</p>
-                            <span>53) have you been to another continent?</span>
-                            <p>besides North America, only Europe; i have also<em>technically</em> been to Asia (Ankara in Türkiye) but like, barely.</p>
-                            <span>54) whats your worst habit?</span>
-                            <p>a somewhat avoidant conflict resolution style.</p>
-                            <span>55) favorite vegetable?</span>
-                            <p>POTATOES, with BROCCOLI as a very close 2nd place</p>
-                            <span>56) whats something stupid that scared the shit outta you as a kid?</span>
-                            <p>the song "A Dios Le Pido" by Juanes. i can't put into words the mental image this song put in my head but it made me very uneasy. i'm also not sure when i stopped fearing this song, it's a banger !</p>
-                            <span>57) whats one of your guilty pleasures?</span>
-                            <p>i have none. i am not ashamed of what i like.</p>
-                            <span>58) would you rather be a ghost or a vampire?</span>
-                            <p>a vampire,, always dressed up as them for halloween as a kid</p>
-                            <span>59) what do you fear most?</span>
-                            <p>not having anyone in my life besides myself who understands me or wants to understand me.</p>
-                            <span>60) do you sleep with any plushies?</span>
-                            <p>several around the bed, but only one in the bed: Cinnamoroll</p>
-                            <span>61) what hobby do you just not understand?</span>
-                            <p>fishing. i've given it several good tries but it's just so mind-numbingly boring, i'm sorry.</p>
-                            <span>62) do you like the taste of alcohol?</span>
-                            <p>i don't mind it. i'll always choose a cocktail over a shot, though. and beer over a cocktail.</p>
-                            <span>63) are you a hopeless romantic?</span>
-                            <p>...ye</p>
-                            <span>64) which deadly sin best fits you?</span>
-                            <p>envy...</p>
-                            <span>65) which of your physical features do you like the most?</span>
-                            <p>my eyes, probably. they're so dark and glossy you can see yourself reflected in them.</p>
-                            <span>66) are your ears pierced?</span>
-                            <p>yes ! two on each earlobe and a helix piercing on my right ear</p>
-                            <span>67) have you ever been in a physical fight?</span>
-                            <p>yeah, the one or two times it occurred to me to fight back against my bullies, only to end up punished the same way they were.</p>
-                            <span>68) where do you buy your clothes?</span>
-                            <p>any mall, retail store, or thrift shop, but never online unless i am 1000% sure of the size.</p>
-                            <span>69) where would you live if you could live anywhere?</span>
-                            <p>Hamburg, Germany. oh wait, i already live here !</p>
-                            <span>70) do believe in magic? or is it all a trick?</span>
-                            <p>magic is so cool <i>because</i> it is a trick.</p>
-                            <span>71) have you read umineko when they cry? you should!</span>
-                            <p>not yet, so ok i will !</p>
-                            <span>72) what is the worst chore to do?</span>
-                            <p>taking out the trash.</p>
-                            <span>73) what did your parents almost name you?</span>
-                            <p><i>Sebastian</i>. nothing against the name i just don't really think it fits me</p>
-                            <span>74) what would you want your name to be if you were not your current gender?</span>
-                            <p>well, before transitioning i always like the name Anja. that's why i chose it lol.</p>
-                            <span>75) what were your first words?</span>
-                            <p>"natí"</p>
-                            <span>76) what do you want your last words to be?</span>
-                            <p>"natí"</p>
-                            <span>77) when did you first regularly start going online?</span>
-                            <p>if Flipnote Studio on the DS counts, around 6 years old</p>
-                            <span>78) what year do you miss the most?</span>
-                            <p>pandemic year was kinda peak ngl.</p>
-                            <span>79) are you psychic?</span>
-                            <p>nope, but i'm glad i'm not because i already struggle to get people to listen to me so it would stress me out.</p>
-                            <span>80) would you <s>fuck</s> a clone of yourself? you're not allowed to kill yourself.</span>
-                            <p>mhm.</p>
-                            <span>81) what do you use to listen to music?</span>
-                            <p>until recently, spotify. now i use my MP3 player which i love very much !!</p>
-                            <span>82) whats the biggest city you've been to?</span>
-                            <p>Mexico City. Istanbul is a close 2nd i believe</p>
-                            <span>83) favorite animal?</span>
-                            <p>at the moment i like seals and pandas!</p>
-                            <span>84) what web browser do you use?</span>
-                            <p>firefox</p>
-                            <span>85) are you allergic to kitty cats???????????</span>
-                            <p>no, thankfully :3 if i was i would understand why some lactose intolerant people still drink milk.</p>
-                            <span>86) do you like energy drinks?</span>
-                            <p>not really. i get my caffeine from coffee.</p>
-                            <span>87) would ever spend money on tf2 unusuals/csgo skins/gacha pulls/etc</span>
-                            <p>csgo? gacha? NEVER! tf2 though...</p>
-                            <span>88) when do you usually go to bed?</span>
-                            <p>2AM, waking up at 9:30AM. i like my sleep. this will probably change once i get employed.</p>
-                            <span>89) how often do you wash your hair?</span>
-                            <p>every four days exactly.</p>
-                            <span>90) would you download a car?</span>
-                            <p>i would download a car.</p>
-                            <span>91) what was your favorite show as a kid?</span>
-                            <p>i never really watched a lot of TV as a kid, when i did it was mostly re-airs of 90s shows. i really liked Dexter's Lab and Ed, Edd n Eddy.</p>
-                            <span>92) whats the silliest hat you own?</span>
-                            <p>my "baltic beanie": an estonian wool beanie, to which i added the flags of estonia, latvia, and lithuania.</p>
-                            <span>93) what album/song do you're feeling angsty</span>
-                            <p>appetite for destruction by guns n' roses.</p>
-                            <span>94) do you make OCs?</span>
-                            <p>nope.</p>
-                            <span>95) whats the goofiest thing you do when completely alone?</span>
-                            <p>lay on the floor. i like my floor time. </p>
-                            <span>96) do you like fireworks?</span>
-                            <p>yeah! they feel kinda dangerous but soso pretty icl.</p>
-                            <span>97) favorite painter?</span>
-                            <p>Rembrandt my goat</p>
-                            <span>98) favorite numbers?</span>
-                            <p>11, my birthday, and 9, cus it sounds pretty</p>
-                            <span>99) what genre of vidya gaems are you really good at? (fps, fightan, danmaku, racing, whatever)</span>
-                            <p>sandboxes and platformers</p>
-                            <span>100) time and date you finished this?</span>
-                            <p>Sunday, October 19th 2025, 15:46.</p>
-                            </div>
-                        </div>
-                    </section>
-                    
-
-                    <section class="minecraft-page mc-gallery-bg">
-                        <div style="height: 375px;">
-                            <div id="mcGallery">
-                                <div id="mc-city-carousel">
-                                    <button id="mc-city-prev">Prev</button>
-                                    <span id="mc-city-name"></span>
-                                    <button id="mc-city-next">Next</button>
-                                </div>
-                                <div id="mc-city-desc"></div>
-                                <div id="mc-img-carousel">
-                                    <div class="mc-img-carousel-left">
-                                        <img id="mc-img" src="" alt="">
-                                        <div class="mc-img-carousel-buttons">
-                                            <button id="mc-img-prev">Prev</button>
-                                            <button id="mc-img-next">Next</button>
-                                        </div>
-                                    </div>
-                                    <div class="mc-img-carousel-right">
-                                        <div id="mc-img-caption"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="minecraft-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 39;">>_ the story behind the world :3</h4>
-                            <p>
-                                I've been playing Minecraft since 2011. No other game has had such a profound impact in my life.
-                                I love playing it alone and with friends. 
-                            </p>
-                            <p>
-                                Interestingly, despite having played for so long, I had yet to commit to a single world for more than a few months.
-                                This didn't bother me, though. It kept the game feeling fresh and made it easy to experience new updates' content; this was best exemplified by a series of yearly SMPs from 2017 to 2023.
-                                Many of my warmest memories in the game come from these worlds; at its peak (Seasons 4-5) we had around 15 active members, most of which were my closest friends in real life.
-                                There was beauty in starting over each time, but eventually we tired of it.
-                            </p>
-                            <p>
-                                Season 7 would be the last SMP.
-                                Given the lack of motivation to play survival, and having noticed that the 1.20 update seemed to cater more towards building, we decided to restart the world in creative mode. We hadn't played creative mode together in years.
-                                Thus, the CMP was born, to great success. In a couple months we'd created an agglomeration of builds larger than anything we'd ever done: <b>Grug City.</b>
-                            </p>
-                            <p>
-                                The server has closed and re-opened several times since June 2023, primarily during summer/winter breaks, when we're all free and on the same time zone.
-                                During off-seasons, I've continued to play on the world very regularly, since I own the world save.
-                                I've developed quite an attachment to this world; it's become somewhat of a "third place" for me, a place where I log in to relax and unwind, no matter where I may be in real life.
-                                I have no plans on quitting.
-                            </p>
-                            <p>
-                                This page contains a gallery of images from various cities and locations around the world.
-                            </p>
-                        </div>
-                    </section>           
-
-                    <section class="travel-page">
-                        <div id="travel-log-window" class="window">
-                            <div id="travel-log-title-bar" class="title-bar">
-                                <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/travel-log/log-icon.png" alt=""/></sub> Mercutio's Travel Log</div>
-                                <div class="title-bar-controls">
-                                <button aria-label="Minimize"></button>
-                                <button aria-label="Maximize"></button>
-                                <button aria-label="Close"></button>
-                                </div>
-                            </div>
-                            <div id="travel-log-edit-bar" class="window-body">
-                                <div class="travel-log-line"></div>
-                                <p>File</p>
-                                <p>Edit</p>
-                                <p>View</p>
-                                <p>Tools</p>
-                                <p>Help</p>
-                            </div>
-                            <div id="travel-log-explorer-icons" class="window-body">
-                                <div class="travel-log-line2"></div>
-                                <div class="explorer-w-title" data-section="tlHome">
-                                    <img src="assets/images/travel-log/home-page.png" width="48" height="48"/>
-                                    <p>Home</p>
-                                </div>
-                                <div class="explorer-w-title" data-section="tlCountryList">
-                                    <img src="assets/images/travel-log/country-list.png" width="48" height="48"/>
-                                    <p>Country List</p>
-                                </div>
-                                <div class="explorer-w-title" data-section="tlCalendar">
-                                    <img src="assets/images/travel-log/calendar-icon.png" width="48" height="48"/>
-                                    <p>Calendar</p>
-                                </div>
-                                <div class="explorer-w-title" data-section="tlStats">
-                                    <img src="assets/images/travel-log/stats.png" width="48" height="48"/>
-                                    <p>Stats</p>
-                                </div>
-                                <div class="explorer-w-title" data-section="tlMap">
-                                    <img src="assets/images/travel-log/map.png" width="48" height="48"/>
-                                    <p>Map</p>
-                                </div>
-                                <div class="explorer-w-title" data-section="tlFuturePlans">
-                                    <img src="assets/images/travel-log/future-plans.png" width="48" height="48"/>
-                                    <p>Future Plans</p>
-                                </div>
-                                <div class="travel-log-line4"></div>
-                                <div class="explorer-w-title" data-section="tlSpecialThanks">
-                                    <img src="assets/images/travel-log/special-thanks.png" width="48" height="48"/>
-                                    <p>Special Thanks</p>
-                                </div>
-                                <div class="travel-log-line4"></div>
-                                <div class="explorer-w-title" data-section="tlExplorer">
-                                    <img src="assets/images/travel-log/show-directory.png" width="48" height="48"/>
-                                    <p>Show Explorer</p>
-                                </div>
-                            </div>
-                            <div id="travel-log-address-bar" class="field-row">
-                                <div class="travel-log-line3"></div>
-                                <label for="travel-log-address">Address</label>
-                            </div>
-                            <div class="window-body">
-                                <div id="travel-log-main-view" style="display: flex; flex-direction: row;">
-                                    <!-- Tree tab sidebar using 98.css tree-view -->
-                                    <div id="travel-log-tree-tab" class="tree-tab">
-                                        <div class="tree-tab-title">Explorer</div>
-                                        <ul class="tree-view">
-                                            <li>Table of Contents</li>
-                                            <li>Home</li>
-                                            <li>
-                                                <details>
-                                                    <summary>Country List</summary>
-                                                        <ul>
-                                                            <li>Austria</li>
-                                                            <li>Belgium</li>
-                                                            <li>Canada</li>
-                                                            <li>Cuba</li>
-                                                            <li>Czechia</li>
-                                                            <li>Estonia</li>
-                                                            <li>Finland</li>
-                                                            <li>France</li>
-                                                            <li>Germany</li>
-                                                            <li>Latvia</li>
-                                                            <li>Lithuania</li>
-                                                            <li>Luxembourg</li>
-                                                            <li>Mexico</li>
-                                                            <li>Netherlands</li>
-                                                            <li>Slovakia</li>
-                                                            <li>Turkey</li>
-                                                            <li>United States</li>
-                                                        </ul>
-                                                </details>
-                                            </li>
-                                            <li>Calendar</li>
-                                            <li>Map</li>
-                                            <li>Stats</li>
-                                            <li>Future Plans</li>
-                                            <li>Special Thanks</li>
-                                        </ul>
-                                    </div>
-                                    <!-- Main content area -->
-                                    <div id="travel-log-main-content" style="flex: 1; padding: 12px 8px;">
-                                        <!-- Main travel log content goes here -->
-                                         <h2 style="text-align: center;">Special Thanks</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="status-bar">
-                                <p class="status-bar-field">Press F1 for help</p>
-                                <p class="status-bar-field">Slide 1</p>
-                                <p class="status-bar-field">CPU Usage: 14%</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="blog-page">
-                        <div id="blog-book-bg">
-                            <div class="blog-book">
-                                <div class="blog-toc">
-                                    <ul id="blog-toc-list">
-                                        <li><a href="#" data-entry="welcome">back to welcome</a></li>
-                                    </ul>
-                                    <h4>2025</h4>
-                                    <h5>November</h5>
-                                    <h5>October</h5>
-                                    <ul id="blog-toc-list">
-                                        <li><a href="#" data-entry="entry1">Entry 1</a></li>
-                                        <li><a href="#" data-entry="entry2">{8.} A Beer For Germany</a></li>
-                                    </ul>
-                                    <h5>September</h5>
-                                    <ul id="blog-toc-list">
-                                        <li><a href="#" data-entry="entry3">{21.} Very Obvious Signs I Was Trans That I Missed with Great Silliness</a></li>
-                                    </ul>
-                                </div>
-                                <div class="blog-entry" id="blog-entry-content">
-                                    <h4 style="text-align: center;">Welcome to my Blog!</h4>
-                                    <p>For someone who doesn't speak much, I do have a lot to say sometimes.</p>
-                                    <p>This section is a space for me to write longer thinkpieces about whatever is on my mind or whatever's been going on in my life lately. Not really a diary, since one entry won't correspond to one day, and it might take me mutiple days or weeks to finish an entry.</p>
-                                    <p>Use the table of contents on the left page to browse through my entries.</p>
-                                    <p>As always, thank you for reading! —Anja ♪</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </section>
-
-                    <section class="cookbook-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 19;">>_ coming soon !</h4>
-                            <div style="text-align: center; justify-content: center;">
-                                <img src="assets/images/madot-spin.gif" width="150" height="150" loading="lazy" alt="Madot Spinning"/>
-                            </div>
-                            <p>I don't think this is something most people would assume about me, but I really like to cook!
-                                I'm not bad at it by any means, but my problem is that once I find a recipe that I like, I tend to stick to it and not try new things.
-                            </p>
-                            <p>
-                                Thankfully, I tend to find myself living with people with a lot more recipes in their arsenal.
-                                To keep track of them, I thought it would be a good idea to add a cookbook section to my website!
-                                That way they are safely stored somewhere where I can easily access them; I hope they can help other people discover new things and experiment as well.
-                            </p>
-                            <p><em>"Panza llena, corazón contento."</em>, as we say in Mexico.</p>
-                            <p>Stay tuned for updates on this!</p>
-                        </div>
-                    </section>
-
-                    <section class="guestbook-page">
-                        <iframe id="guestbook-iframe"
-                            src="https://mercutio.atabook.org/"
-                            width="100%"
-                            height="1000"
-                            style="border:none;"
-                            title="Guestbook"
-                        ></iframe>
-                    </section>
-
-                    <section class="dream-diary-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 19;">>_ coming soon !</h4>
-                            <div style="text-align: center; justify-content: center;">
-                                <img src="assets/images/madot-spin.gif" width="150" height="150" loading="lazy" alt="Madot Spinning"/>
-                            </div>
-                            <p>Adding a Dream Diary to my website really sounds like a good idea to me.
-                                I've been keeping a dream diary in my notes app since March 2023, so there's definitely material to work with!
-                            </p>
-                            <p>Problem is, I haven't quite figured out how I want to present it yet. I don't imagine a huge list of dreams would be very engaging, right?
-                                Plus, because I write the diary entries as soon as I wake up, a lot of entries aren't exactly very logical and I'd have to spend a lot of time making sense of them.
-                                I'd also have to proofread all entries entries to make sure I'm not namedropping people without their consent or describing NSFW scenarios.
-                                Alas! Stay tuned :3
-                            </p>
-                        </div>
-                    </section>
-
-                    <section class="shrines-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 19;">>_ coming soon !</h4>
-                            <div style="text-align: center; justify-content: center;">
-                                <img src="assets/images/madot-spin.gif" width="150" height="150" loading="lazy" alt="Madot Spinning"/>
-                            </div>
-                            <p>Adding a Dream Diary to my website really sounds like a good idea to me.
-                                I've been keeping a dream diary in my notes app since March 2023, so there's definitely material to work with!
-                            </p>
-                        </div>
-                    </section>
-
-                    <section class="resources-page">
-                        <div class="fake-screen">
-                            <p style="text-align: center; font-size: 1rem;"><strong>~ Sharing is caring! ~</strong></p>
-                            <p>Because good things are even better when shared. Here is a list of resources I used to create this website.</p>
-                        </div>
-                    </section>
-                    <section class="resources-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 14;">>_ graphics</h4>
-                            <p></p>
-                            <img src="assets/images/resource_buttons/bongraphic.png" loading="lazy" alt="Bon Graphic"/>
-                            <ul>
-                                <li>Backgrounds
-                                    <ul>
-                                        <li><strong><a class="resource-link" href="https://minecraft.wiki/images/End_gateway_portal_inside.png?cb859" target="_blank" rel="noopener noreferrer">Home:</a></strong> the end gateway block texture from Minecraft.</li>
-                                        <li><strong><a class="resource-link" href="https://yume.wiki/images/thumb/9/9f/Vending_Machine_DW.png/600px-Vending_Machine_DW.png" target="_blank" rel="noopener noreferrer">About:</a></strong> a screenshot of the Dense Woods from Yume Nikki.</li>
-                                        <li><strong>Minecraft World:</strong> a panorama of my Minecraft world.</li>
-                                        <li><strong>Travel Log:</strong> a picture of downtown Toronto.</li>
-                                        <li><strong>Blog:</strong> scenery from Sailor Moon.</li>
-                                        <li><strong><a class="resource-link" href="https://www.youtube.com/watch?v=gXuFxfNRa70" target="_blank" rel="noopener noreferrer">Dream Diary:</a></strong> a screenshot of the Snow World from Yume Nikki.</li>
-                                        <li><strong>Shrines:</strong> a screenshot of Neon Genesis Evangelion episode 24.</li>
-                                        <li><strong><a class="resource-link" href="https://cdna.artstation.com/p/assets/images/images/038/972/908/large/lapper-bggreenhill1.jpg?1624572253" target="_blank" rel="noopener noreferrer">Resources:</a></strong> the background of Green Hill Zone from Sonic the Hedgehog.</li>
-                                    </ul>
-                                </li>
-                                <li>Buttons
-                                    <ul>
-                                        <li><a class="resource-link" href="https://anlucas.neocities.org/88x31Buttons" target="_blank" rel="noopener noreferrer">Anlucas's Button Collection</a></li>
-                                        <li><a class="resource-link" href="https://cyber.dabamos.de/88x31/index.html" target="_blank" rel="noopener noreferrer">The 88x31 GIF Collection</a></li>
-                                        <li><a class="resource-link" href="https://capstasher.neocities.org/88x31collection" target="_blank" rel="noopener noreferrer">The Largest 88x31 GIF Collection on the Internet</a></li>
-                                        <li>Most of the websites listed under "Inspiration".</li>
-                                        <li><a class="resource-link" href="https://www1.flightrising.com/forums/cc/3078623/1#post_49629562" target="_blank" rel="noopener noreferrer">Free Tiny Identity Buttons</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://drive.google.com/file/d/1wTSDI_ttuJ_eglvGjxTi94S7IKiQ-SX-/view" target="_blank" rel="noopener noreferrer">Cursors</a>
-                                    <ul>
-                                        <li>From the game Needy Streamer Overload.</li>
-                                    </ul>
-                                </li>
-                                <li>Fonts
-                                    <ul>
-                                        <li><strong>TrixieCyrG-Plain:</strong> Contrary to popular belief, this is the actual font used in the “Serial Experiments Lain” title card, not LoveLetter TW.</li>
-                                        <li><strong>LoveLetter TW:</strong> used for central section titles.</li>
-                                        <li><strong>Minecraftia:</strong> used for the Blog.</li>
-                                    </ul>
-                                </li>
-                                <li>Stamps
-                                    <ul>
-                                        <li><a class="resource-link" href="https://gligar.neocities.org/" target="_blank" rel="noopener noreferrer">Gligar's Stamp Collection</a></li>
-                                        <li>Most of the websites listed under "Inspiration".</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://win98icons.alexmeub.com/" target="_blank" rel="noopener noreferrer">W98 Icons</a>
-                                    <ul>
-                                        <li>PNG collection of all windows 98 icons in different sizes!</li>
-                                        <li>Used for the little icons on the side sections.</li>
-                                    </ul>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="resources-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 23;">>_ coding & features</h4>
-                            <p>There's no point in re-inventing the wheel, especially in programming.
-                                Here are some tools, libraries, and tutorials that greatly helped me in the creation of this website and its features.
-                            </p>
-                            <img src="assets/images/resource_buttons/loveberry.gif" loading="lazy" alt="Loveberry"/>
-                            <a href="https://tamanotchi.world/" target="_blank" rel="noopener noreferrer"><img src="https://tamanotchi.world/includes/img/tamanotchi.gif" loading="lazy" alt="Tamanotchi"/></a>
-                            <ul>
-                                <li><a class="resource-link" href="https://jdan.github.io/98.css/" target="_blank" rel="noopener noreferrer">98.css</a>
-                                    <ul>
-                                        <li>CSS library to easily recreate windows-98-styled windows!</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://aleclownes.com/2017/02/01/crt-display.html" target="_blank" rel="noopener noreferrer">Aleclownes</a>
-                                    <ul>
-                                        <li>Used for the CRT screen door effect in the center sections and the color separation effect in the main header.</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://catbox.moe/" target="_blank" rel="noopener noreferrer">Catbox</a>
-                                    <ul>
-                                        <li>Image and file hosting service.</li>
-                                        <li>I used this to store the music player songs, as well as really large files like the home page background GIF.</li>
-                                    </ul>
-                                <li>CSS-Tricks
-                                    <ul>
-                                        <li>"A website about making websites."</li>
-                                        <li>This is where I got the <a class="resource-link" href="https://css-tricks.com/snippets/css/typewriter-effect/" target="_blank" rel="noopener noreferrer">Typewriter animation</a> and the <a class="resource-link" href="https://css-tricks.com/old-timey-terminal-styling/" target="_blank" rel="noopener noreferrer"> old-timey terminal window styling</a>.</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://ezgif.com/" target="_blank" rel="noopener noreferrer">Ezgif</a>
-                                    <ul>
-                                        <li>Online GIF editor. Lots of useful tools like cropping, flipping, compressing, and converting to/from MP4.</li>
-                                        <li>Used for Ame-Chan's icon in the music player and the Minecraft skin gif.</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://counter.fc2.com/en/" target="_blank" rel="noopener noreferrer">FC2 Counter</a>
-                                    <ul>
-                                        <li>Visitor counters compatible with statically-hosted websites.</li>
-                                        <li>I used both the total visitors as well as the concurrent visitors.</li>
-                                    </ul>
-                                </li>
-                                <li>HTML, CSS, JavaScript
-                                    <ul>
-                                        <li>Pretty self explanatory.</li>
-                                    </ul>
-                                </li>
-                                <li>JQuery
-                                    <ul>
-                                        <li>Streamlines JS event handling. For websites like this, I find it cleaner than vanilla JS.</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://loveberry.nekoweb.org/resources/snippets" target="_blank" rel="noopener noreferrer">LoveBerry</a>
-                                    <ul>
-                                        <li>Template used for the Music Player, which I modified to fit my site's structure.</li>
-                                        <li>This website also has other useful code snippets and is super-cool overall!!</li>
-                                    </ul>
-                                </li>
-                                <li><a class="resource-link" href="https://tamanotchi.world/" target="_blank" rel="noopener noreferrer">Tamanotchi</a>
-                                    <ul>
-                                        <li>Free and easily embeddable Tamagotchi virtual pets.</li>
-                                    </ul>
-                                </li>
-                                <li>VSCode + LiveServer
-                                    <ul>
-                                        <li>My text editor of choice. Open-source and cross-platform. Does the job.</li>
-                                        <li>LiveServer is a VSCode extension that allows you to host a local server and see your changes in real-time. Not essential but saves time.</li>
-                                    </ul>
-                                </li>
-                                <li>W3Schools
-                                    <ul>
-                                        <li>Tons of useful tutorials for learning or refreshing your knowledge of HTML/CSS/JS.</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="resources-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 17;">>_ inspiration</h4>
-                            <p>Before beginning work on this website, I had never really taken the time to browse the Indie Web.
-                                Since then, I have visited so many cool websites that have definitely influenced the content and aesthetics of my own.
-                                You should definitely check them out!</p>
-                            <a href="https://reigen.moe/home" target="_blank" rel="noopener noreferrer"><img src="assets/images/resource_buttons/reigenmoe-badge.gif" loading="lazy" alt="ReigenMoe"/></a>
-                            <a href="https://chocolatehexer.nekoweb.org/" target="_blank" rel="noopener noreferrer"><img src="https://chocolatehexer.nekoweb.org/pics/mybutton.gif" loading="lazy" alt="button"/></a>
-                            <a href="https://cloverbell.neocities.org/" target="_blank" rel="noopener noreferrer"><img src="https://cloverbell.neocities.org/n_n/cloverbell.gif" loading="lazy" alt="Cloverbell"/></a>
-                            <a href="https://electric-tenshi.nekoweb.org/top" target="_blank" rel="noopener noreferrer"><img src="assets/images/resource_buttons/electric-tenshi.gif" loading="lazy" alt="Electric Tenshi"/></a>
-                            <a href="https://layercake.moe/home" target="_blank" rel="noopener noreferrer"><img src="assets/images/resource_buttons/layercake.gif" loading="lazy" alt="LayerCake"/></a>
-                            <a href="https://maddoxxing.neocities.org/" target="_blank" rel="noopener noreferrer"><img src="assets/images/resource_buttons/maddoxxing.png" loading="lazy" alt="Maddoxxing"/></a>
-                            <a href="https://onthequiet.nekoweb.org" target="_blank" rel="noopener noreferrer"><img src="https://onthequiet.nekoweb.org/gattonero.gif" loading="lazy" alt="Gattonero"/></a>
-                            <a href="https://sadgrlonline.github.io/archived-sadgrl.online/" target="_blank" rel="noopener noreferrer"><img src="assets/images/resource_buttons/sadgrlonline.gif" loading="lazy" alt="SadgrlOnline"/></a>
-                            <a href="https://nekoweb.org/" target="_blank" rel="noopener noreferrer"><img src="https://nekoweb.org/assets/buttons/button11.gif" loading="lazy" alt="NekoWeb"/></a>
-                            <a href="https://kafu.ovh" target="_blank" rel="noopener noreferrer"><img src="https://kafu.ovh/static/imgs/buttons/junko.png" loading="lazy" alt="Junko"/></a>
-                            <a href="https://hal.nekoweb.org/" target="_blank" rel="noopener noreferrer"><img src="https://hal.nekoweb.org/sitebutton.png" loading="lazy" alt="HAL"/></a>
-                        </div>
-                    </section>
-                    <section class="resources-page">
-                        <div class="fake-screen">
-                            <h4 class="typeWriter" style="--characters: 21;">>_ special thanks</h4>
-                            <ul>
-                                <li>My friend <strong>Cinnabunny</strong>, for the background picture of downtown Toronto and designing my Minecraft skin.</li>
-                                <li><strong>Professor Elhajj</strong>, for teaching me JQuery (sorry for skipping most of your lectures!).</li>
-                                <li><strong>LuvstarKei</strong>, for her super cool videos about the indie web and Minecraft!</li>
-                                <li><strong>Kikiyama</strong>, for developing Yume Nikki!</li>
-                            </ul>
-                        </div>
-                    </section>
+                    <iframe class="content-frame" src="sections/home.html" frameborder="0" scrolling="auto"></iframe>
                 </main>
             </div>
 
@@ -1073,7 +202,7 @@
                         </div>
                         <div class="window-body">
                             <div class="flex">
-                                <div id="imagestyle"><img class="ic" src="assets/images/musicplayer/amechan.gif" alt=""></div>
+                                <div class="imagestyle"><img class="ic" src="assets/images/musicplayer/amechan.gif" alt=""></div>
                                 <div id="musicplayer">
                                     <div class="songtitlewindow">
                                         <div class="flex" style="display: flex;"><marquee scrollamount="4" class="songtitle"></marquee><div class="songtitlearrow"></div></div>
@@ -1081,7 +210,7 @@
                         
                                 <div class="seeking">
                                     <div class="current-time">00:00</div>
-                                    <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+                                    <input type="range" min="1" max="100" value="0" class="seek_slider">
                                     <div class="total-duration">0:00</div>
                                 </div>
                         
@@ -1104,6 +233,21 @@
                         </div>
                     </div>
                 </section>
+                <section class="visitor-count">
+                    <div class="window">
+                        <div class="title-bar">
+                            <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/visitoricon.png" width="14" height="14" alt="Visitor Icon"/></sub> Visitor Count</div>
+                            <div class="title-bar-controls">
+                            <button aria-label="Minimize"></button>
+                            <button aria-label="Maximize"></button>
+                            <button aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <script type="text/javascript" src="https://counter1.fc2.com/counter.php?id=40574890&main=1"></script><noscript><img style="max-width: 100%; height: auto; display: block;" src="https://counter1.fc2.com/counter_img.php?id=40574890&main=1" /></noscript>
+                        </div>
+                    </div>
+                </section>
                 <section id="language-switcher">
                     <div class="window">
                         <div class="title-bar">
@@ -1122,7 +266,7 @@
                         </div>
                     </div>
                 </section>
-                <section id="clock-calendar">
+                <section class="clock-calendar">
                     <div class="window">
                         <div class="title-bar">
                             <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/timedateicon.png" width="14" height="14" alt="Time and Date Icon"/></sub> My Time</div>
@@ -1135,7 +279,7 @@
                         <div class="window-body">
                             <!--<p id="clockText">Testing right section :3</p>-->
                             <iframe id="clock-iframe" src="https://free.timeanddate.com/clock/i9x1w5ps/n308/tlde/fn8/tct/pct/ta1" frameborder="0" width="111" height="19" allowtransparency="true"></iframe>
-                            <div id="calendar-div"></div>
+                            <div class="calendar"></div>
                         </div>
                     </div>
                 </section>
@@ -1155,22 +299,7 @@
                         </div>
                     </div>
                 </section>
-                <section id="comment-box">
-                    <div class="window">
-                        <div class="title-bar">
-                            <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/commentboxicon.png" width="14" height="14" alt="Comment Box Icon"/></sub>Comment Box</div>
-                            <div class="title-bar-controls">
-                            <button aria-label="Minimize"></button>
-                            <button aria-label="Maximize"></button>
-                            <button aria-label="Close"></button>
-                            </div>
-                        </div>
-                        <div class="window-body">
-                            <p id="clockText">Coming soon</p>
-                        </div>
-                    </div>
-                </section>
-                <section id="moon-monitor">
+                <section class="moon-monitor">
                     <div class="window">
                         <div class="title-bar">
                             <div class="title-bar-text">Moon Monitor</div>
@@ -1187,15 +316,15 @@
                 </section>
             </aside>
         </div>
-        <div id="stamp-carousel-container">
-            <div id="stamp-carousel-track"></div>
+        <div class="stamp-carousel-container">
+            <div class="stamp-carousel-track"></div>
         </div>
         
         <footer>
-            <h3 id="quote" class="crt">"What isn't remembered never happened."</h3>
+            <h3 class="crt quote">"What isn't remembered never happened."</h3>
             <p>v0.4</p>
             <p>This website is a personal <strong>non-profit</strong> project!</p>
-            <p>&copy2025 Mercutio. Made with love :3</p>
+            <p>&copy;2025 Mercutio. Made with love :3</p>
         </footer>
     </body>
 </html>

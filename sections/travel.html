@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <base href="../">
+    <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.4/build/98.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        body { margin: 0; background: transparent; }
+        .travel-page { height: 100%; }
+        .travel-log-window { height: 100%; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <section class="travel-page">
+        <div class="window travel-log-window">
+            <div class="title-bar travel-log-title-bar">
+                <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/travel-log/log-icon.png" alt=""/></sub> Mercutio's Travel Log</div>
+                <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body travel-log-edit-bar">
+                <div class="travel-log-line"></div>
+                <p>File</p>
+                <p>Edit</p>
+                <p>View</p>
+                <p>Tools</p>
+                <p>Help</p>
+            </div>
+            <div class="window-body travel-log-explorer-icons">
+                <div class="travel-log-line2"></div>
+                <div class="explorer-w-title" data-section="tlHome">
+                    <img src="assets/images/travel-log/home-page.png" width="48" height="48"/>
+                    <p>Home</p>
+                </div>
+                <div class="explorer-w-title" data-section="tlCountryList">
+                    <img src="assets/images/travel-log/country-list.png" width="48" height="48"/>
+                    <p>Country List</p>
+                </div>
+                <div class="explorer-w-title" data-section="tlCalendar">
+                    <img src="assets/images/travel-log/calendar-icon.png" width="48" height="48"/>
+                    <p>Calendar</p>
+                </div>
+                <div class="explorer-w-title" data-section="tlStats">
+                    <img src="assets/images/travel-log/stats.png" width="48" height="48"/>
+                    <p>Stats</p>
+                </div>
+                <div class="explorer-w-title" data-section="tlMap">
+                    <img src="assets/images/travel-log/map.png" width="48" height="48"/>
+                    <p>Map</p>
+                </div>
+                <div class="explorer-w-title" data-section="tlFuturePlans">
+                    <img src="assets/images/travel-log/future-plans.png" width="48" height="48"/>
+                    <p>Future Plans</p>
+                </div>
+                <div class="travel-log-line4"></div>
+                <div class="explorer-w-title" data-section="tlSpecialThanks">
+                    <img src="assets/images/travel-log/special-thanks.png" width="48" height="48"/>
+                    <p>Special Thanks</p>
+                </div>
+                <div class="travel-log-line4"></div>
+                <div class="explorer-w-title" data-section="tlExplorer">
+                    <img src="assets/images/travel-log/show-directory.png" width="48" height="48"/>
+                    <p>Show Explorer</p>
+                </div>
+            </div>
+            <div class="field-row travel-log-address-bar">
+                <div class="travel-log-line3"></div>
+                <label for="travel-log-address">Address</label>
+            </div>
+            <div class="window-body">
+                <div class="travel-log-main-view" style="display: flex; flex-direction: row;">
+                    <div class="tree-tab travel-log-tree-tab">
+                        <div class="tree-tab-title">Explorer</div>
+                        <ul class="tree-view">
+                            <li>Table of Contents</li>
+                            <li>Home</li>
+                            <li>
+                                <details>
+                                    <summary>Country List</summary>
+                                        <ul>
+                                            <li>Austria</li>
+                                            <li>Belgium</li>
+                                            <li>Canada</li>
+                                            <li>Cuba</li>
+                                            <li>Czechia</li>
+                                            <li>Estonia</li>
+                                            <li>Finland</li>
+                                            <li>France</li>
+                                            <li>Germany</li>
+                                            <li>Latvia</li>
+                                            <li>Lithuania</li>
+                                            <li>Luxembourg</li>
+                                            <li>Mexico</li>
+                                            <li>Netherlands</li>
+                                            <li>Slovakia</li>
+                                            <li>Turkey</li>
+                                            <li>United States</li>
+                                        </ul>
+                                </details>
+                            </li>
+                            <li>Calendar</li>
+                            <li>Map</li>
+                            <li>Stats</li>
+                            <li>Future Plans</li>
+                            <li>Special Thanks</li>
+                        </ul>
+                    </div>
+                    <div class="travel-log-main-content" style="flex: 1; padding: 12px 8px;">
+                    </div>
+                </div>
+            </div>
+            <div class="status-bar">
+                <p class="status-bar-field">Press F1 for help</p>
+                <p class="status-bar-field">Slide 1</p>
+                <p class="status-bar-field">CPU Usage: 14%</p>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        import { travelLogSections, travelCountries } from './assets/js/data/travel-data.js';
+
+        let explorerIsOpen = false;
+        let currentCountryKey = null;
+        let currentCityIdx = 0;
+
+        const mainContent = document.querySelector('.travel-log-main-content');
+        const treeTab = document.querySelector('.travel-log-tree-tab');
+
+        // load home on startup
+        mainContent.innerHTML = travelLogSections['tlHome'];
+
+        function syncCountryGrid() {
+            const countryGrid = document.querySelector('.country-list-grid');
+            if(countryGrid) countryGrid.classList.toggle('explorer-open', explorerIsOpen);
+        }
+
+        // --- toolbar icon navigation ---
+        document.querySelectorAll('.travel-log-explorer-icons .explorer-w-title').forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                const section = icon.dataset.section;
+                if(section === 'tlExplorer') {
+                    toggleTravelLogTreeTab();
+                    syncCountryGrid();
+                    return;
+                }
+                mainContent.innerHTML = travelLogSections[section] || '<p>Section not found.</p>';
+                if(section === 'tlCountryList') syncCountryGrid();
+            });
+        });
+
+        function toggleTravelLogTreeTab() {
+            explorerIsOpen = !explorerIsOpen;
+            treeTab.style.display = explorerIsOpen ? 'block' : 'none';
+        }
+
+        // --- country card click (delegated: cards are injected dynamically) ---
+        document.addEventListener('click', function(e) {
+            const card = e.target.closest('.country-card');
+            if(!card) return;
+            const key = card.dataset.country;
+            if(key && travelCountries[key]) renderCountryDetail(key);
+        });
+
+        // --- country detail view ---
+        function renderCountryDetail(key) {
+            currentCountryKey = key;
+            currentCityIdx = 0;
+            const country = travelCountries[key];
+            const multiCity = country.cities.length > 1;
+
+            mainContent.innerHTML = `
+                <button class="back-to-countries">← Country List</button>
+                <div class="country-detail-header">
+                    <img src="${country.flag}" alt="${country.name} Flag" class="country-flag">
+                    <h2>${country.name}</h2>
+                </div>
+                <p class="country-detail-desc">${country.description}</p>
+                <hr>
+                <div class="city-selector">
+                    <button class="city-prev" ${multiCity ? '' : 'style="visibility:hidden"'}>◄ Prev</button>
+                    <span class="city-name"></span>
+                    <button class="city-next" ${multiCity ? '' : 'style="visibility:hidden"'}>Next ►</button>
+                </div>
+                <div class="city-content">
+                    <img class="city-img" src="" alt="" style="display:none;">
+                    <p class="city-caption"></p>
+                </div>
+            `;
+
+            renderCity();
+
+            mainContent.querySelector('.back-to-countries').addEventListener('click', function() {
+                mainContent.innerHTML = travelLogSections['tlCountryList'];
+                syncCountryGrid();
+            });
+
+            mainContent.querySelector('.city-prev').addEventListener('click', function() {
+                const len = travelCountries[currentCountryKey].cities.length;
+                currentCityIdx = (currentCityIdx - 1 + len) % len;
+                renderCity();
+            });
+
+            mainContent.querySelector('.city-next').addEventListener('click', function() {
+                const len = travelCountries[currentCountryKey].cities.length;
+                currentCityIdx = (currentCityIdx + 1) % len;
+                renderCity();
+            });
+        }
+
+        function renderCity() {
+            const city = travelCountries[currentCountryKey].cities[currentCityIdx];
+            const img = mainContent.querySelector('.city-img');
+            mainContent.querySelector('.city-name').textContent = city.name;
+            if(city.image) {
+                img.src = city.image;
+                img.alt = city.name;
+                img.style.display = '';
+            } else {
+                img.style.display = 'none';
+            }
+            mainContent.querySelector('.city-caption').textContent = city.caption || '';
+        }
+    </script>
+</body>
+</html>

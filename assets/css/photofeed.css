@@ -1,5 +1,6 @@
 .photofeed-intro {
     margin-bottom: 1.5rem;
+    max-width: fit-content;
 }
 
 /* Auto-filling grid — adds a new row automatically as photos are added */

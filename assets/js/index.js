@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function(){
             blog:      { text: "Blog",            img: "assets/images/titles/door-blog.webp",      img2: "assets/images/titles/madot-yuki.webp" },
             photofeed: { text: "Photo Feed",      img: "assets/images/titles/door-photofeed.webp", img2: "assets/images/titles/madot-witch.webp" },
             guestbook: { text: "Guestbook",       img: "assets/images/titles/door-guestbook.png",  img2: "assets/images/titles/madot-hand.webp" },
-            dream:     { text: "Dream Diary",     img: "assets/images/titles/door-dream.webp",     img2: "assets/images/titles/madot-hat.webp" },
+            music:     { text: "Vinyl Collection",     img: "assets/images/titles/door-dream.webp",     img2: "assets/images/titles/madot-hat.webp" },
             shrines:   { text: "Shrines",         img: "assets/images/titles/door-shrines.webp",   img2: "assets/images/titles/madot-knife.webp" },
             resources: { text: "Resources",       img: "assets/images/titles/door-resources.webp", img2: "assets/images/titles/madot-noface.webp" },
         };
@@ -269,7 +269,7 @@ function setSectionBackground(section) {
         blog:      "url('assets/images/backgrounds/blog-bg.jpg')",
         photofeed: "url('assets/images/backgrounds/photofeed-bg.jpg')",
         guestbook: "url('assets/images/backgrounds/guestbook-bg.webp')",
-        dream:     "url('assets/images/backgrounds/dream-bg.jpg')",
+        music:     "url('assets/images/backgrounds/dream-bg.jpg')",
         shrines:   "url('assets/images/backgrounds/shrines-bg.webp')",
         resources: "url('assets/images/backgrounds/resources-bg.webp')",
     };

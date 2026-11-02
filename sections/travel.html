@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.4/build/98.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <style>
+        html, body { height: 100%; }
         body { margin: 0; background: transparent; }
-        .travel-page { height: 100%; }
+        .travel-page { height: 100%; margin: 0; }
         .travel-log-window { height: 100%; box-sizing: border-box; }
     </style>
 </head>
@@ -71,45 +72,27 @@
                 <div class="travel-log-line3"></div>
                 <label for="travel-log-address">Address</label>
             </div>
-            <div class="window-body">
-                <div class="travel-log-main-view" style="display: flex; flex-direction: row;">
+            <div class="window-body travel-log-view">
+                <div class="travel-log-main-view">
                     <div class="tree-tab travel-log-tree-tab">
                         <div class="tree-tab-title">Explorer</div>
                         <ul class="tree-view">
-                            <li>Table of Contents</li>
-                            <li>Home</li>
+                            <li class="tree-heading">Table of Contents</li>
+                            <li><a href="#" data-section="tlHome">Home</a></li>
                             <li>
                                 <details>
                                     <summary>Country List</summary>
-                                        <ul>
-                                            <li>Austria</li>
-                                            <li>Belgium</li>
-                                            <li>Canada</li>
-                                            <li>Cuba</li>
-                                            <li>Czechia</li>
-                                            <li>Estonia</li>
-                                            <li>Finland</li>
-                                            <li>France</li>
-                                            <li>Germany</li>
-                                            <li>Latvia</li>
-                                            <li>Lithuania</li>
-                                            <li>Luxembourg</li>
-                                            <li>Mexico</li>
-                                            <li>Netherlands</li>
-                                            <li>Slovakia</li>
-                                            <li>Turkey</li>
-                                            <li>United States</li>
-                                        </ul>
+                                    <ul class="travel-log-tree-countries"></ul>
                                 </details>
                             </li>
-                            <li>Calendar</li>
-                            <li>Map</li>
-                            <li>Stats</li>
-                            <li>Future Plans</li>
-                            <li>Special Thanks</li>
+                            <li><a href="#" data-section="tlCalendar">Calendar</a></li>
+                            <li><a href="#" data-section="tlMap">Map</a></li>
+                            <li><a href="#" data-section="tlStats">Stats</a></li>
+                            <li><a href="#" data-section="tlFuturePlans">Future Plans</a></li>
+                            <li><a href="#" data-section="tlSpecialThanks">Special Thanks</a></li>
                         </ul>
                     </div>
-                    <div class="travel-log-main-content" style="flex: 1; padding: 12px 8px;">
+                    <div class="travel-log-main-content">
                     </div>
                 </div>
             </div>
@@ -121,23 +104,64 @@
         </div>
     </section>
 
+    <!-- Expanded picture -->
+    <div class="travel-viewer-overlay">
+        <div class="window travel-viewer">
+            <div class="title-bar">
+                <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/travel-log/log-icon.png" alt=""/></sub> <span class="travel-viewer-title"></span></div>
+                <div class="title-bar-controls">
+                    <button class="travel-viewer-close" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <img class="travel-viewer-img" src="" alt="">
+            </div>
+            <div class="status-bar">
+                <p class="status-bar-field travel-viewer-caption"></p>
+                <p class="status-bar-field travel-viewer-count"></p>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         import { travelLogSections, travelCountries } from './assets/js/data/travel-data.js';
 
         let explorerIsOpen = false;
-        let currentCountryKey = null;
-        let currentCityIdx = 0;
 
         const mainContent = document.querySelector('.travel-log-main-content');
         const treeTab = document.querySelector('.travel-log-tree-tab');
+        const viewer = document.querySelector('.travel-viewer-overlay');
 
-        // load home on startup
-        mainContent.innerHTML = travelLogSections['tlHome'];
+        // --- explorer tree: one link per country, built from the data ---
+        document.querySelector('.travel-log-tree-countries').innerHTML = Object.entries(travelCountries)
+            .map(([key, country]) => `<li><a href="#" data-country="${key}">${country.name}</a></li>`)
+            .join('');
+
+        function setActiveTreeLink(selector) {
+            treeTab.querySelectorAll('a.active').forEach(a => a.classList.remove('active'));
+            const link = selector && treeTab.querySelector(selector);
+            if(link) {
+                link.classList.add('active');
+                // make sure a selected country is visible
+                const details = link.closest('details');
+                if(details) details.open = true;
+            }
+        }
 
         function syncCountryGrid() {
             const countryGrid = document.querySelector('.country-list-grid');
             if(countryGrid) countryGrid.classList.toggle('explorer-open', explorerIsOpen);
         }
+
+        function showSection(section) {
+            mainContent.innerHTML = travelLogSections[section] || '<p>Section not found.</p>';
+            mainContent.scrollTop = 0;
+            if(section === 'tlCountryList') syncCountryGrid();
+            setActiveTreeLink(`a[data-section="${section}"]`);
+        }
+
+        // load home on startup
+        showSection('tlHome');
 
         // --- toolbar icon navigation ---
         document.querySelectorAll('.travel-log-explorer-icons .explorer-w-title').forEach(function(icon) {
@@ -148,15 +172,23 @@
                     syncCountryGrid();
                     return;
                 }
-                mainContent.innerHTML = travelLogSections[section] || '<p>Section not found.</p>';
-                if(section === 'tlCountryList') syncCountryGrid();
+                showSection(section);
             });
         });
 
         function toggleTravelLogTreeTab() {
             explorerIsOpen = !explorerIsOpen;
-            treeTab.style.display = explorerIsOpen ? 'block' : 'none';
+            treeTab.style.display = explorerIsOpen ? 'flex' : 'none';
         }
+
+        // --- explorer tree links ---
+        treeTab.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if(!link) return;
+            e.preventDefault();
+            if(link.dataset.section) showSection(link.dataset.section);
+            else if(link.dataset.country) renderCountryDetail(link.dataset.country);
+        });
 
         // --- country card click (delegated: cards are injected dynamically) ---
         document.addEventListener('click', function(e) {
@@ -168,10 +200,15 @@
 
         // --- country detail view ---
         function renderCountryDetail(key) {
-            currentCountryKey = key;
-            currentCityIdx = 0;
             const country = travelCountries[key];
-            const multiCity = country.cities.length > 1;
+            if(!country) return;
+
+            const fileName = photo => photo.src.split('/').pop();
+            const photos = country.photos.map((photo, i) => `
+                <a class="travel-photo" href="${photo.src}" data-index="${i}">
+                    <span class="travel-photo-thumb"><img src="${photo.src}" alt="${fileName(photo)}" loading="lazy"></span>
+                    <span class="travel-photo-name">${fileName(photo)}</span>
+                </a>`).join('');
 
             mainContent.innerHTML = `
                 <button class="back-to-countries">← Country List</button>
@@ -181,50 +218,49 @@
                 </div>
                 <p class="country-detail-desc">${country.description}</p>
                 <hr>
-                <div class="city-selector">
-                    <button class="city-prev" ${multiCity ? '' : 'style="visibility:hidden"'}>◄ Prev</button>
-                    <span class="city-name"></span>
-                    <button class="city-next" ${multiCity ? '' : 'style="visibility:hidden"'}>Next ►</button>
+                <div class="travel-photo-folder">
+                    ${photos || '<p class="travel-photo-empty">This folder is empty.</p>'}
                 </div>
-                <div class="city-content">
-                    <img class="city-img" src="" alt="" style="display:none;">
-                    <p class="city-caption"></p>
-                </div>
+                <p class="travel-photo-count">${country.photos.length} object(s)</p>
             `;
-
-            renderCity();
+            mainContent.scrollTop = 0;
+            setActiveTreeLink(`a[data-country="${key}"]`);
 
             mainContent.querySelector('.back-to-countries').addEventListener('click', function() {
-                mainContent.innerHTML = travelLogSections['tlCountryList'];
-                syncCountryGrid();
+                showSection('tlCountryList');
             });
 
-            mainContent.querySelector('.city-prev').addEventListener('click', function() {
-                const len = travelCountries[currentCountryKey].cities.length;
-                currentCityIdx = (currentCityIdx - 1 + len) % len;
-                renderCity();
-            });
-
-            mainContent.querySelector('.city-next').addEventListener('click', function() {
-                const len = travelCountries[currentCountryKey].cities.length;
-                currentCityIdx = (currentCityIdx + 1) % len;
-                renderCity();
+            mainContent.querySelectorAll('.travel-photo').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openViewer(country, Number(link.dataset.index));
+                });
             });
         }
 
-        function renderCity() {
-            const city = travelCountries[currentCountryKey].cities[currentCityIdx];
-            const img = mainContent.querySelector('.city-img');
-            mainContent.querySelector('.city-name').textContent = city.name;
-            if(city.image) {
-                img.src = city.image;
-                img.alt = city.name;
-                img.style.display = '';
-            } else {
-                img.style.display = 'none';
-            }
-            mainContent.querySelector('.city-caption').textContent = city.caption || '';
+        // --- expanded picture ---
+        function openViewer(country, index) {
+            const photo = country.photos[index];
+            const img = viewer.querySelector('.travel-viewer-img');
+            img.src = photo.src;
+            img.alt = photo.src.split('/').pop();
+            viewer.querySelector('.travel-viewer-title').textContent = photo.src.split('/').pop();
+            viewer.querySelector('.travel-viewer-caption').textContent = photo.caption || '';
+            viewer.querySelector('.travel-viewer-count').textContent = `${index + 1} of ${country.photos.length}`;
+            viewer.classList.add('active');
         }
+
+        function closeViewer() {
+            viewer.classList.remove('active');
+        }
+
+        viewer.querySelector('.travel-viewer-close').addEventListener('click', closeViewer);
+        viewer.addEventListener('click', function(e) {
+            if(e.target === viewer) closeViewer();
+        });
+        document.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape') closeViewer();
+        });
     </script>
 </body>
 </html>

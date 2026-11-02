@@ -89,9 +89,9 @@ export const travelLogSections = {
                                             </div>
 
                                         </div>`,
-    tlCalendar: `<h2>Calendar</h2><div class="calendar"></div>`,
-    tlMap: `<h2>Map</h2><p>Map content goes here.</p>`,
-    tlStats: `<h2>Stats</h2><p>Stats content goes here.</p>`,
+    tlCalendar: `<div class="travel-coming-soon"><p>Coming soon!</p></div>`,
+    tlMap: `<div class="travel-coming-soon"><p>Coming soon!</p></div>`,
+    tlStats: `<div class="travel-coming-soon"><p>Coming soon!</p></div>`,
     tlFuturePlans: `<div style="align-items: center; justify-content: center; display: flex; margin-top: 32px;">
                                                 <img src="assets/images/travel-log/clock.gif">
                                                 <h2 style="text-align: center; margin: 0px 10px;">Future Plans</h2>
@@ -165,161 +165,127 @@ export const travelLogSections = {
 
 // ---------------------------------------------------------------------------
 // Country detail data
-// Each entry: flag (path), description text, and cities array.
-// cities: [ { name, image, caption } ]
-// Add photos to assets/images/travel-log/photos/{country}/ and fill in the
-// image paths and captions below. Leave image as "" until the photo is ready.
+// Each entry: name, flag (path), description text, and a photos array.
+// photos: [ { src, caption } ]
+// Drop photos into assets/images/travel-log/photos/{country}/ and add an entry
+// for each one. The filename under each thumbnail is taken from src; caption
+// is optional and shows in the status bar of the expanded picture.
 // ---------------------------------------------------------------------------
 export const travelCountries = {
     austria: {
         name: "Austria",
         flag: "assets/images/travel-log/flags/austria.webp",
         description: "Austria has an incredible density of history, art, and architecture packed into its cities. My visit was a family trip with my brother — it was the kind of place that makes you want to slow down and just look.",
-        cities: [
-            { name: "Vienna", image: "", caption: "" },
-        ],
+        photos: [],
     },
     belgium: {
         name: "Belgium",
         flag: "assets/images/travel-log/flags/belgium.webp",
         description: "Belgium surprised me. I expected it to be a quiet transit country, but Brussels had far more personality than I anticipated, and the food — waffles, fries, chocolate, beer — is unironically some of the best in Europe.",
-        cities: [
-            { name: "Brussels", image: "", caption: "" },
-        ],
+        photos: [],
     },
     canada: {
         name: "Canada",
         flag: "assets/images/travel-log/flags/canada.png",
         description: "Canada was a mixed experience for me as a destination, but visiting a dear friend made the whole trip worth it. I got to see a very local, non-touristy side of the country that I wouldn't have found on my own.",
-        cities: [
-            { name: "Hamilton", image: "", caption: "" },
-            { name: "Toronto", image: "", caption: "" },
-        ],
+        photos: [],
     },
     cuba: {
         name: "Cuba",
         flag: "assets/images/travel-log/flags/cuba.webp",
         description: "Cuba is one of the most unique places I've ever been. Life there feels completely separate from the rest of the world — the contrasts between crumbling colonial grandeur and everyday reality are unlike anything I'd seen before.",
-        cities: [
-            { name: "Havana", image: "", caption: "" },
-        ],
+        photos: [],
     },
     czechia: {
         name: "Czechia",
         flag: "assets/images/travel-log/flags/czechia.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "Prague", image: "", caption: "" },
-        ],
+        photos: [],
     },
     estonia: {
         name: "Estonia",
         flag: "assets/images/travel-log/flags/estonia.webp",
         description: "Estonia was a spontaneous trip that became one of my favorites. Tallinn's old town is one of the best-preserved medieval city centers in all of Europe, and despite every museum being closed the day I visited, it was still magical.",
-        cities: [
-            { name: "Tallinn", image: "", caption: "" },
-        ],
+        photos: [],
     },
     finland: {
         name: "Finland",
         flag: "assets/images/travel-log/flags/finland.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "Helsinki", image: "", caption: "" },
-        ],
+        photos: [],
     },
     france: {
         name: "France",
         flag: "assets/images/travel-log/flags/france.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "Paris", image: "", caption: "" },
-        ],
+        photos: [],
     },
     germany: {
         name: "Germany",
         flag: "assets/images/travel-log/flags/germany.webp",
         description: "Germany is where I live, and over the years I've had the privilege of exploring much of it. No two cities feel the same here — each has its own identity, history, and dialect. I still have a lot left to see.",
-        cities: [
-            { name: "Bremen", image: "", caption: "" },
-            { name: "Hamburg", image: "", caption: "" },
-            { name: "Berlin", image: "", caption: "" },
-            { name: "Cologne", image: "", caption: "" },
-            { name: "Frankfurt", image: "", caption: "" },
+        photos: [
+            // MOCK PHOTOS: placeholders to preview the styling. Replace with real ones.
+            { src: "assets/images/backgrounds/blog-bg.jpg", caption: "This is a mock caption for the expanded picture." },
+            { src: "assets/images/backgrounds/dream-bg.jpg", caption: "" },
+            { src: "assets/images/backgrounds/photofeed-bg.jpg", caption: "" },
+            { src: "assets/images/backgrounds/about-bg.webp", caption: "" },
+            { src: "assets/images/backgrounds/shrines-bg.webp", caption: "" },
+            { src: "assets/images/backgrounds/travel-bg.webp", caption: "" },
         ],
     },
     latvia: {
         name: "Latvia",
         flag: "assets/images/travel-log/flags/latvia.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "Riga", image: "", caption: "" },
-        ],
+        photos: [],
     },
     lithuania: {
         name: "Lithuania",
         flag: "assets/images/travel-log/flags/lithuania.webp",
         description: "Vilnius was a surprisingly pleasant visit. The old town has a distinct Baroque character you don't really expect from a Baltic capital, and the local food scene is genuinely underrated.",
-        cities: [
-            { name: "Vilnius", image: "", caption: "" },
-        ],
+        photos: [],
     },
     luxembourg: {
         name: "Luxembourg",
         flag: "assets/images/travel-log/flags/luxembourg.webp",
         description: "Luxembourg is tiny, but don't let that fool you — the gorge, the old fortifications, and the surprisingly cosmopolitan atmosphere make it well worth the detour.",
-        cities: [
-            { name: "Luxembourg City", image: "", caption: "" },
-        ],
+        photos: [],
     },
     mexico: {
         name: "Mexico",
         flag: "assets/images/travel-log/flags/mexico.webp",
         description: "My homeland. I spent nineteen years in Mexico before moving to Europe and it shaped who I am more than anywhere else. No matter how many countries I visit, Mexico will always feel like home in a way nowhere else can fully replicate.",
-        cities: [
-            { name: "Mexico City", image: "", caption: "" },
-            { name: "Monterrey", image: "", caption: "" },
-            { name: "Guadalajara", image: "", caption: "" },
-        ],
+        photos: [],
     },
     netherlands: {
         name: "Netherlands",
         flag: "assets/images/travel-log/flags/netherlands.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "Amsterdam", image: "", caption: "" },
-        ],
+        photos: [],
     },
     portugal: {
         name: "Portugal",
         flag: "assets/images/travel-log/flags/portugal.webp",
         description: "Portugal completely stole my heart. The light, the tiles, the food, the people — everything about it felt warm and lived-in. Lisbon in particular is a city I could see myself living in without hesitation.",
-        cities: [
-            { name: "Lisbon", image: "", caption: "" },
-        ],
+        photos: [],
     },
     slovakia: {
         name: "Slovakia",
         flag: "assets/images/travel-log/flags/slovakia.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "Bratislava", image: "", caption: "" },
-        ],
+        photos: [],
     },
     turkey: {
         name: "Turkey",
         flag: "assets/images/travel-log/flags/turkey.webp",
         description: "Istanbul is one of the most fascinating cities on Earth — the crossroads of East and West, ancient and modern, all existing at once. I was lucky enough to experience it with locals who showed me a side of the city no guidebook would find.",
-        cities: [
-            { name: "Istanbul", image: "", caption: "" },
-        ],
+        photos: [],
     },
     usa: {
         name: "United States",
         flag: "assets/images/travel-log/flags/usa.webp",
         description: "Entry coming soon.",
-        cities: [
-            { name: "New York", image: "", caption: "" },
-        ],
+        photos: [],
     },
 };

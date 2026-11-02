@@ -957,9 +957,36 @@ input[type=range]::-moz-range-track {
 }
 
 .travel-log-window {
-  height: auto;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   transition: 0.3s all;
+}
+
+.travel-log-window > * {
+  flex-shrink: 0;
+}
+
+/* 98.css@0.1.4 predates the status bar, so it's defined here */
+.status-bar {
+  display: flex;
+  gap: 1px;
+  margin: 0 1px;
+}
+
+.status-bar-field {
+  flex-grow: 1;
+  margin: 0;
+  padding: 2px 3px;
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px grey;
+}
+
+/* the explorer body takes up whatever space the toolbars leave */
+.travel-log-window > .travel-log-view {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .travel-log-title-bar {
@@ -1027,50 +1054,78 @@ input[type=range]::-moz-range-track {
 }
 
 .travel-log-main-view {
-  display: block;
   background: #fff;
   box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
+  flex: 1;
+  min-height: 0;
+  margin: 0;
   padding: 0;
-  min-height: 300px;
-  height: 100%;
 }
 
 .travel-log-main-content {
   font-size: 1rem;
+  flex: 1;
+  min-width: 0;
+  padding: 12px 8px;
+  overflow-y: auto;
 }
 
-  .travel-log-tree-tab {
-    display: none;
-    background: #f3f3f3;
-    border-right: 2px solid #c0c0c0;
-    padding: 12px 8px;
-    min-width: 180px;
-    max-width: 260px;
-    display: none;
-    flex-shrink: 0;
-    height: 100%;
-  }
+.travel-log-tree-tab {
+  display: none;
+  background: #f3f3f3;
+  border-right: 2px solid #c0c0c0;
+  padding: 12px 8px;
+  min-width: 180px;
+  max-width: 260px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  flex-direction: column;
+}
 
-  .tree-tab-title {
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
+.tree-tab-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
 
-  .travel-log-tree-tab .tree-view {
-    font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', Arial, sans-serif;
-    font-size: 15px;
-    margin-left: 0;
-  }
-  
+.travel-log-tree-tab .tree-view {
+  font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', Arial, sans-serif;
+  font-size: 15px;
+  margin-left: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
 
-  .travel-log-main-content {
-    flex: 1;
-    padding: 12px 8px;
-  }
+.tree-view .tree-heading {
+  font-weight: bold;
+}
 
+.tree-view a {
+  color: #000;
+  text-decoration: none;
+  padding: 1px 3px;
+}
+
+.tree-view a:hover {
+  text-decoration: underline;
+}
+
+.tree-view a.active {
+  background: #000080;
+  color: #fff;
+}
+
+.travel-coming-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  font-size: 1.5rem;
+  text-align: center;
+}
 
 .travel-log-bottom-info {
   display: flex;
@@ -1113,6 +1168,7 @@ input[type=range]::-moz-range-track {
 .country-detail-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   margin: 10px 0 8px 0;
 }
@@ -1125,42 +1181,120 @@ input[type=range]::-moz-range-track {
   margin-bottom: 10px;
 }
 
-.city-selector {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 10px 0;
-}
-
-.city-name {
-  min-width: 130px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.05rem;
-}
-
-.city-content {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  margin-top: 8px;
-}
-
-.city-img {
-  max-width: 55%;
-  height: auto;
-  display: block;
-  border: 2px solid #888;
-}
-
-.city-caption {
-  flex: 1;
-  margin: 0;
-  font-size: 0.9rem;
-}
-
 .back-to-countries {
   margin-bottom: 8px;
+}
+
+/* ---- country photos: look like a Windows 98 folder in "thumbnails" view ---- */
+.travel-photo-folder {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 12px 8px;
+  align-content: start;
+  min-height: fit-content;
+  padding: 10px;
+  background: #fff;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+}
+
+.travel-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 4px;
+  color: #000;
+  text-decoration: none;
+  outline: none;
+}
+
+.travel-photo-thumb {
+  width: 96px;
+  height: 72px;
+  box-sizing: border-box;
+  padding: 3px;
+  background: #c0c0c0;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+}
+
+.travel-photo-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.travel-photo-name {
+  max-width: 100%;
+  margin-top: 5px;
+  padding: 1px 3px;
+  font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* selected look: navy label with a dotted focus box */
+.travel-photo:hover .travel-photo-name,
+.travel-photo:focus-visible .travel-photo-name {
+  background: #000080;
+  color: #fff;
+  outline: 1px dotted #ff0;
+  outline-offset: -1px;
+}
+
+.travel-photo-empty {
+  grid-column: 1 / -1;
+  align-self: center;
+  margin: 0;
+  color: #808080;
+  text-align: center;
+}
+
+.travel-photo-count {
+  margin: 6px 0 0;
+  font-size: 13px;
+}
+
+/* ---- expanded picture, shown as a 98.css window ---- */
+.travel-viewer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.travel-viewer-overlay.active {
+  display: flex;
+}
+
+.travel-viewer {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.travel-viewer .window-body {
+  min-height: 0;
+  overflow: auto;
+}
+
+.travel-viewer-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 130px);
+  margin: 0 auto;
+  object-fit: contain;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+  padding: 2px;
+  background: #fff;
 }
 
 .country-flag {

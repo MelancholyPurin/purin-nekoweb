@@ -1,0 +1,130 @@
+.photofeed-intro {
+    margin-bottom: 1.5rem;
+}
+
+/* Auto-filling grid — adds a new row automatically as photos are added */
+.polaroid-grid {
+    margin: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2.5rem 2rem;
+    padding: 0.5rem 0.25rem;
+}
+
+/* Each card holds a CSS variable --rot for its resting tilt */
+.polaroid {
+    --rot: 0deg;
+    transform: rotate(var(--rot));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.polaroid:hover {
+    transform: rotate(var(--rot)) scale(1.07);
+    z-index: 10;
+    position: relative;
+}
+
+/* CSS polaroid frame — white card with thick bottom strip */
+.polaroid-inner {
+    background: #fff;
+    padding: 8px 8px 38px 8px;
+    box-shadow: 3px 4px 14px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    line-height: 0;
+}
+
+/* Photo fills the inner square, stretched to fit any aspect ratio */
+.polaroid-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: fill;
+    display: block;
+}
+
+/* Title sits in the white bottom strip */
+.polaroid-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #2a2a2a;
+    padding: 0 6px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+}
+
+/* =====================
+   Lightbox
+   ===================== */
+
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+/* Close button: top-right of the entire overlay */
+.lightbox-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    z-index: 1;
+}
+
+.lightbox-close:hover {
+    color: yellow;
+}
+
+/* Upper section: image + date, vertically + horizontally centered */
+.lightbox-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+    padding: 2.5rem 1rem 0.5rem 1rem;
+    box-sizing: border-box;
+}
+
+.lightbox-img {
+    max-width: 88%;
+    max-height: 55vh;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+}
+
+.lightbox-date {
+    color: #aaa;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    margin: 0.5rem 0 0 0;
+}

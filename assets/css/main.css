@@ -38,7 +38,7 @@ body {
     cursor: url('../images/cursors/nso_cursor.png'), auto;
 }
 
-#bg-fade-overlay {
+.bg-fade-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -74,9 +74,15 @@ h4 {
     font-family: lainFont2;
 }
 
-#main-title {
+.main-title {
     color: white;
     text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.fake-screen:hover {
+    border-color: yellow;
 }
 
 .fake-screen {
@@ -119,10 +125,9 @@ h4 {
 
 .layout-container {
     display: flex;
-    width: calc(225px + 775px + 225px);
     gap: 1rem;
-    margin: 0 auto 2rem auto;
-    justify-content: center;
+    margin: 0 1rem 2rem;
+    justify-content: space-between;
 }
 
 .column {
@@ -132,7 +137,9 @@ h4 {
 
 .left, .right { width: 225px; }
 
-.middle { width: 775px; }
+.middle {
+  width: 100%;
+}
 
 footer {
     text-align: center;
@@ -140,10 +147,10 @@ footer {
     color: white;
 }
 
-#visitor-count .window-body {
+.visitor-count .window-body {
   text-align: center;
 }
-#visitor-count .window-body img {
+.visitor-count .window-body img {
   max-width: 100%;
   height: auto;
   display: inline-block;
@@ -153,19 +160,20 @@ footer {
   color: white;
 }
 
-#clock-calendar {
+.clock-calendar {
     text-align: center;
 }
 
 .typeWriter {
     --characters: 30;
+    box-sizing: content-box;
     overflow: hidden;
     border-right: .15em solid white;
     white-space: nowrap;
     margin: 0;
     letter-spacing: .15em;
     animation: 
-        typing 2.5s steps(var(--characters), end) forwards,
+        typing calc(var(--characters) * 70ms) steps(var(--characters), end) forwards,
         blink-caret .75s step-end infinite;
     animation-play-state: paused;
 }
@@ -176,7 +184,7 @@ footer {
 
 @keyframes typing {
   from { width: 0 }
-  to { width: calc(var(--characters) * 1ch); }
+  to { width: calc(var(--characters) * (1ch + .15em)); }
 }
 
 /* The typewriter cursor effect */
@@ -324,12 +332,24 @@ footer {
   to { opacity: 1; filter: blur(0); }
 }
 
+.statuscafe {
+    padding: .5em;
+    background-color: azure;
+    border: 1px solid midnightblue;
+}
+.statuscafe-username {
+    margin-bottom: .5em;
+}
+.statuscafe-content {
+    margin: 0 1em 0.5em 1em;
+}
+
 .songtitlewindow {
     background-color:#fff;
     box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
 }
 
-#imagestyle {
+.imagestyle {
     background:silver; /* background color of player */
     border:2px solid silver; /* border around player */
     margin: 10px auto;
@@ -338,14 +358,20 @@ footer {
     box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
 }
 
+.madeline-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .ic {
     width:91px;
     position:relative;
     bottom:1px;
     right:1px;
     overflow:hidden;
-    padding:2px;
-    border:2px solid transparent;
+    padding:1px;
+    border:2px solid black;
 }
 
 .songtitlearrow {
@@ -576,7 +602,7 @@ input[type=range]::-moz-range-track {
   height: 76px;
 }
 
-#section-title-bar {
+.section-title-bar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -587,7 +613,7 @@ input[type=range]::-moz-range-track {
   opacity: 1;
 }
 
-#section-title-text {
+.section-title-text {
   color: white;
   text-align: center;
   margin: 0;
@@ -627,7 +653,7 @@ input[type=range]::-moz-range-track {
   min-height: 0;
 }
 
-#mc-skin {
+.mc-skin {
   border: 1px dotted white;
   border-radius: 5px;
   width: 150px;
@@ -635,7 +661,7 @@ input[type=range]::-moz-range-track {
   display: block;
 }
 
-#calendar-div {
+.calendar {
   margin-top: 8px;
   padding: 8px;
   background-color: #FFF;
@@ -686,7 +712,7 @@ input[type=range]::-moz-range-track {
   border-radius: 5px;
 }
 
-#fun-fact {
+.fun-fact {
   font-size: 18px;
   margin: auto;
   font-weight: bold;
@@ -694,7 +720,7 @@ input[type=range]::-moz-range-track {
   color: black;
 }
 
-#rei-chiquita {
+.rei-chiquita {
   width: 250px;
   margin: 10px auto;
   display: block;
@@ -707,7 +733,7 @@ input[type=range]::-moz-range-track {
   justify-content: center;
 }
 
-#mc-city-carousel {
+.mc-city-carousel {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -715,41 +741,43 @@ input[type=range]::-moz-range-track {
   margin-bottom: 1rem;
 }
 
-#mc-city-name {
+.mc-city-name {
   min-width: 160px;
   text-align: center;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.4rem;
 }
 
-#mc-city-desc {
+.mc-city-desc {
   text-align: center;
   font-size: 0.8rem;
   margin-bottom: 16px;
 }
 
-#mc-img-carousel {
+.mc-img-carousel {
   display: flex;
-  align-items: flex-start;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
-.mc-img-carousel-left {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 350px;
-}
-
-#mc-img {
+.mc-img {
   display: block;
-  width: 350px;
-  height: 250px;
-  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1280 / 803;
   object-fit: cover;
   border: 2px solid #bbb;
   border-radius: 5px;
+}
+
+.mc-img-caption {
+  max-width: 600px;
+  min-height: 1.2em;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.75rem;
+  text-align: center;
+  word-break: break-word;
 }
 
 .mc-img-carousel-buttons {
@@ -757,29 +785,41 @@ input[type=range]::-moz-range-track {
   gap: 1rem;
 }
 
-.mc-img-carousel-right {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  min-width: 0;
+.mc-button {
+  overflow: hidden;
+  color: #DDD;
+  text-shadow: 2px 2px #000A;
+  font-family: minecraftFont;
+  box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7;
+  padding-bottom: 0.3rem;
+  white-space: nowrap;
+  user-select: none;
+  background: #999 url('../images/minecraft/bgbtn.png') center / cover;
+  image-rendering: pixelated;
+  border: 2px solid #000;
+  font-size: 12px;
 }
 
-#mc-img-caption {
-  font-size: 1rem;
-  padding: 1rem;
-  word-break: break-word;
+.mc-button:hover {
+  background-color: rgba(100, 100, 255, 0.45);
+  text-shadow: 2px 2px #202013CC;
+  color: #FFFFA0;
 }
 
-#button-carousel-container {
-  width: calc(225px + 775px + 225px);
+.mc-button:active {
+  box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
+}
+
+.button-carousel-container {
+  /* width: calc(225px + 775px + 225px); */
   overflow: hidden;
   background: transparent;
-  margin: 0 auto 1rem auto;
+  margin: 0 4rem 1rem 4rem;
   height: 48px;
   position: relative;
 }
 
-#button-carousel-track {
+.button-carousel-track {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -787,24 +827,26 @@ input[type=range]::-moz-range-track {
   will-change: transform;
 }
 
-#button-carousel-track img {
+.button-carousel-track img {
   height: 40px;
   width: auto;
   display: block;
 }
 
-#button-carousel-container {
+.button-carousel-container {
   margin-bottom: 0;
 }
 
-#blog-book-bg {
-  background: url("../images/bookandquill.png");
+.blog-book-bg {
+  background: url("../images/bookandquill.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; /* or 'cover' for full coverage */
   min-height: 487px;
   border-radius: 12px;
   width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -869,25 +911,24 @@ input[type=range]::-moz-range-track {
   margin-top: 0;
 }
 
-#stamp-carousel-container {
-  width: calc(225px + 775px + 225px);
+.stamp-carousel-container {
   overflow: hidden;
   background: transparent;
   height: 56px;
   display: flex;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
-  margin: 0 auto 1rem auto;
+  margin: 0 4rem 1rem 4rem;
   position: relative;
 }
 
-#stamp-carousel-track {
+.stamp-carousel-track {
   display: flex;
   gap: 12px;
   align-items: center;
   height: 56px;
 }
 
-#stamp-carousel-track img {
+.stamp-carousel-track img {
   height: 56px;
   width: auto;
   display: block;
@@ -895,20 +936,37 @@ input[type=range]::-moz-range-track {
 
 .column.middle {
     height: calc(100vh - 200px);
-    overflow-y: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-#travel-log-window {
+.column.middle > main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.content-frame {
+    flex: 1;
+    border: none;
+    display: block;
+    width: 100%;
+    min-height: 0;
+}
+
+.travel-log-window {
   height: auto;
   overflow-y: auto;
   transition: 0.3s all;
 }
 
-#travel-log-title-bar {
+.travel-log-title-bar {
   background: linear-gradient(90deg, #636B2F, #FCDA8B);
 }
 
-#travel-log-edit-bar {
+.travel-log-edit-bar {
   display: flex;
   height: 30px;
   margin: 0;
@@ -917,7 +975,7 @@ input[type=range]::-moz-range-track {
   box-shadow: inset 1px 1px #fff, inset -1px -1px grey;
 }
 
-#travel-log-edit-bar p {
+.travel-log-edit-bar p {
   padding: 5px;
 }
 
@@ -953,14 +1011,14 @@ input[type=range]::-moz-range-track {
   margin-bottom: 0;
 }
 
-#travel-log-explorer-icons {
+.travel-log-explorer-icons {
   display: flex;
   padding: 5px;
   margin: 0;
   box-shadow: inset 1px 1px #fff, inset -1px -1px grey;
 }
 
-#travel-log-address-bar {
+.travel-log-address-bar {
   padding-left: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -968,7 +1026,7 @@ input[type=range]::-moz-range-track {
   border-bottom: 1px inset white;
 }
 
-#travel-log-main-view {
+.travel-log-main-view {
   display: block;
   background: #fff;
   box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
@@ -980,11 +1038,11 @@ input[type=range]::-moz-range-track {
   height: 100%;
 }
 
-#travel-log-main-content {
+.travel-log-main-content {
   font-size: 1rem;
 }
 
-  #travel-log-tree-tab {
+  .travel-log-tree-tab {
     display: none;
     background: #f3f3f3;
     border-right: 2px solid #c0c0c0;
@@ -1001,27 +1059,27 @@ input[type=range]::-moz-range-track {
     margin-bottom: 8px;
   }
 
-  #travel-log-tree-tab .tree-view {
+  .travel-log-tree-tab .tree-view {
     font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', Arial, sans-serif;
     font-size: 15px;
     margin-left: 0;
   }
   
 
-  #travel-log-main-content {
+  .travel-log-main-content {
     flex: 1;
     padding: 12px 8px;
   }
 
 
-#travel-log-bottom-info {
+.travel-log-bottom-info {
   display: flex;
   align-items: center;
   height: 23px;
   margin-left: 7px;
 }
 
-#yume-walk {
+.yume-walk {
   border: 3px solid black;
   border-radius: 5px;
   margin: 0 auto;
@@ -1045,6 +1103,64 @@ input[type=range]::-moz-range-track {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+}
+
+.country-card:hover .country-flag {
+  border-color: #0078d7;
+}
+
+.country-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 8px 0;
+}
+
+.country-detail-header h2 {
+  margin: 0;
+}
+
+.country-detail-desc {
+  margin-bottom: 10px;
+}
+
+.city-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.city-name {
+  min-width: 130px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+.city-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+
+.city-img {
+  max-width: 55%;
+  height: auto;
+  display: block;
+  border: 2px solid #888;
+}
+
+.city-caption {
+  flex: 1;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.back-to-countries {
+  margin-bottom: 8px;
 }
 
 .country-flag {
@@ -1088,11 +1204,11 @@ input[type=range]::-moz-range-track {
   margin: 16px auto;
 }
 
-#questionnaire span {
+.questionnaire span {
   font-weight: bold;
 }
 
-#questionnaire p {
+.questionnaire p {
   border-left: 1px dotted #BBBBBB;
   margin: 5px 0 10px 15px;
   padding: 0 0 0 10px;
@@ -1125,7 +1241,7 @@ body, * {
 }
 
 .mc-gallery-bg {
-  background: url('../images/sign.jpg') center center/cover no-repeat;
+  background: url('../images/sign.webp') center center/cover no-repeat;
   font-family: minecraftFont;
     font-size: 16px;
     color: white;
@@ -1135,7 +1251,7 @@ body, * {
   border: 2px solid #3d2b0a;
 }
 
-#moon-monitor .window-body{
+.moon-monitor .window-body{
   display:flex;
   justify-content: center;
   align-items: center;
@@ -1153,7 +1269,7 @@ body, * {
   background-color: #3a273b;
 }
 
-#bio-pic {
+.bio-pic {
   float: left;
   height: auto;
   max-width: 125px;
@@ -1163,11 +1279,11 @@ body, * {
   border-radius: 10px;
 }
 
-#bio-pic:hover {
+.bio-pic:hover {
   filter: grayscale(0);
 }
 
-#quote {
+.quote {
   color: white;
   text-align: center;
 }

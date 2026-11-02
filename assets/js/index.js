@@ -10,7 +10,19 @@ document.addEventListener("DOMContentLoaded", function(){
         return validSections.includes(hash) ? hash : 'home';
     }
 
+    // The section being shown; the nav highlight, title bar, background and frame all follow it
+    let currentSection = sectionFromHash();
+
+    function setActiveNavLink(section) {
+        document.querySelectorAll(".main-navbar a").forEach(function(link) {
+            if(link.dataset.section === section) link.setAttribute("aria-current", "page");
+            else link.removeAttribute("aria-current");
+        });
+    }
+
     function loadSection(section) {
+        currentSection = section;
+        setActiveNavLink(section);
         setSectionBackground(section);
         updateSectionTitleBar(section);
         // replace() so the frame doesn't add its own history entries; only the URL hash should
@@ -18,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     // Restore section from URL hash on load, defaulting to home
-    const initialSection = sectionFromHash();
+    const initialSection = currentSection;
+    setActiveNavLink(initialSection);
     setSectionBackground(initialSection);
     if(initialSection !== 'home') {
         document.querySelector('.content-frame').src = `sections/${initialSection}.html`;
@@ -27,7 +40,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // Back/forward buttons
     window.addEventListener('popstate', function() {
-        loadSection(sectionFromHash());
+        const section = sectionFromHash();
+        loadSection(section);
+        // the nav highlight is the link's :focus style, so move focus to the page now shown
+        document.querySelector(`.main-navbar a[data-section="${section}"]`).focus({ preventScroll: true });
     });
 
     // Randomly swap button carousel (top) and stamp carousel (bottom)
@@ -124,8 +140,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     loadTrack(track_index);
 
-    let isNavTransitioning = false;
-
     function updateSectionTitleBar(section) {
         const sectionTitles = {
             home:      { text: "Home",           img: "assets/images/titles/door-home.webp",      img2: "assets/images/titles/madot-triangle.webp" },
@@ -155,15 +169,11 @@ document.addEventListener("DOMContentLoaded", function(){
     document.querySelectorAll(".main-navbar a").forEach(function(link){
         link.addEventListener("click", function(e){
             e.preventDefault();
-            if(isNavTransitioning) return;
-            isNavTransitioning = true;
             const section = link.dataset.section;
+            if(section === currentSection) return;
             loadSection(section);
             // Update URL hash for deep linking
             history.pushState(null, '', `#${section}`);
-            setTimeout(function() {
-                isNavTransitioning = false;
-            }, 2000);
         });
     });
 
@@ -255,12 +265,10 @@ document.addEventListener("DOMContentLoaded", function(){
     window.addEventListener("resize", debouncedSync);
 })
 
+let bgFadeTimer;
+
 function setSectionBackground(section) {
     // Called both inside and outside the DOMContentLoaded handler, so kept at module scope
-    const isBgTransitioningRef = setSectionBackground;
-    if(isBgTransitioningRef._transitioning) return;
-    isBgTransitioningRef._transitioning = true;
-
     const backgrounds = {
         home:      "url('assets/images/backgrounds/home-bg.gif')",
         about:     "url('assets/images/backgrounds/about-bg.webp')",
@@ -280,10 +288,11 @@ function setSectionBackground(section) {
     overlay.style.backgroundImage = newBg;
     overlay.style.opacity = 1;
 
-    setTimeout(function() {
+    // Restart the fade on every call so the most recent section always wins
+    clearTimeout(bgFadeTimer);
+    bgFadeTimer = setTimeout(function() {
         document.body.style.backgroundImage = newBg;
         overlay.style.opacity = 0;
-        isBgTransitioningRef._transitioning = false;
     }, 2000);
 }
 

@@ -188,7 +188,7 @@
                             </div>
                         </div>
                     </section>
-                    <iframe class="content-frame" src="sections/home.html" frameborder="0" scrolling="auto"></iframe>
+                    <iframe class="content-frame" title="Page content"></iframe>
                 </main>
             </div>
 
@@ -208,25 +208,25 @@
                                 <div class="imagestyle"><img class="ic" src="assets/images/musicplayer/amechan.gif" alt=""></div>
                                 <div id="musicplayer">
                                     <div class="songtitlewindow">
-                                        <div class="flex" style="display: flex;"><marquee scrollamount="4" class="songtitle"></marquee><div class="songtitlearrow"></div></div>
+                                        <div class="flex" style="display: flex;"><div class="songtitle"><span class="songtitle-text"></span></div><div class="songtitlearrow"></div></div>
                                     </div>
                         
                                 <div class="seeking">
                                     <div class="current-time">00:00</div>
-                                    <input type="range" min="1" max="100" value="0" class="seek_slider">
+                                    <input type="range" min="0" max="100" step="any" value="0" class="seek_slider" aria-label="Seek">
                                     <div class="total-duration">0:00</div>
                                 </div>
                         
                                 <table class="controls">
                                     <tr>
                                         <td>
-                                            <div class="prev-track"><button class="player-button"><img src="assets/images/musicplayer/prevtrack.png" class="controlimg"></button></div>
+                                            <div class="prev-track"><button class="player-button" aria-label="Previous track"><img src="assets/images/musicplayer/prevtrack.png" class="controlimg" alt=""></button></div>
                                         </td>
                                         <td>
-                                            <div class="playpause-track"><button class="player-button"><img src="assets/images/musicplayer/playpause.png" class="controlimg"></button></div>
+                                            <div class="playpause-track"><button class="player-button" aria-label="Play"><img src="assets/images/musicplayer/playpause.png" class="controlimg" alt=""></button></div>
                                         </td>
                                         <td>
-                                            <div class="next-track"><button class="player-button"><img src="assets/images/musicplayer/nexttrack.png" class="controlimg"></button></div>
+                                            <div class="next-track"><button class="player-button" aria-label="Next track"><img src="assets/images/musicplayer/nexttrack.png" class="controlimg" alt=""></button></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -327,7 +327,7 @@
             <h3 class="crt quote">"What isn't remembered never happened."</h3>
             <p>v0.4</p>
             <p>This website is a personal <strong>non-profit</strong> project!</p>
-            <p>&copy;2025 Mercutio. Made with love :3</p>
+            <p>&copy;2026 Mercutio. Made with love :3</p>
         </footer>
     </body>
 </html>

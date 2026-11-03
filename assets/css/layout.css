@@ -220,11 +220,7 @@ footer {
 }
 
 .button-carousel-track {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
   height: 3rem;
-  will-change: transform;
 }
 
 .button-carousel-track img {
@@ -248,10 +244,35 @@ footer {
 }
 
 .stamp-carousel-track {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
   height: 3.5rem;
+}
+
+.button-carousel-track,
+.stamp-carousel-track {
+  display: flex;
+  flex: none;
+  width: max-content;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+  align-items: center;
+  will-change: transform;
+  animation: carousel-scroll 60s linear infinite;
+}
+
+@keyframes carousel-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.button-carousel-container:hover .button-carousel-track,
+.stamp-carousel-container:hover .stamp-carousel-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-carousel-track,
+  .stamp-carousel-track {
+    animation: none;
+  }
 }
 
 .stamp-carousel-track img {

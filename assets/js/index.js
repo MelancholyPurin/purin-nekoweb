@@ -29,14 +29,13 @@ document.addEventListener("DOMContentLoaded", function(){
         document.querySelector('.content-frame').contentWindow.location.replace(`sections/${section}.html`);
     }
 
-    // Restore section from URL hash on load, defaulting to home
+    // Restore section from URL hash on load, defaulting to home. The frame starts empty
+    // (no src in the HTML) so the page isn't fetched twice when the hash isn't home.
     const initialSection = currentSection;
     setActiveNavLink(initialSection);
     setSectionBackground(initialSection);
-    if(initialSection !== 'home') {
-        document.querySelector('.content-frame').src = `sections/${initialSection}.html`;
-        updateSectionTitleBar(initialSection);
-    }
+    if(initialSection !== 'home') updateSectionTitleBar(initialSection);
+    document.querySelector('.content-frame').contentWindow.location.replace(`sections/${initialSection}.html`);
 
     // Back/forward buttons
     window.addEventListener('popstate', function() {
@@ -61,16 +60,22 @@ document.addEventListener("DOMContentLoaded", function(){
     const randomInt = Math.floor(Math.random() * quoteList.length);
     document.querySelector(".quote").textContent = quoteList[randomInt];
 
-    let track_name = document.querySelector(".songtitle");
-    let playpause_btn = document.querySelector(".playpause-track");
-    let seek_slider = document.querySelector(".seek_slider");
-    let curr_time = document.querySelector(".current-time");
-    let total_duration = document.querySelector(".total-duration");
+    const track_name = document.querySelector(".songtitle-text");
+    const playpause_btn = document.querySelector(".playpause-track button");
+    const playpause_img = playpause_btn.querySelector("img");
+    const seek_slider = document.querySelector(".seek_slider");
+    const curr_time = document.querySelector(".current-time");
+    const total_duration = document.querySelector(".total-duration");
+    const curr_track = document.getElementById("music");
+
+    const MARQUEE_PX_PER_SECOND = 47;
 
     let track_index = 0;
-    let isPlaying = false;
-    let updateTimer;
-    let curr_track = document.getElementById("music");
+
+    function formatTime(seconds) {
+        const whole = Math.floor(seconds);
+        return Math.floor(whole / 60) + ":" + String(whole % 60).padStart(2, "0");
+    }
 
     function resetValues() {
         curr_time.textContent = "0:00";
@@ -78,33 +83,34 @@ document.addEventListener("DOMContentLoaded", function(){
         seek_slider.value = 0;
     }
 
-    function loadTrack(track_index) {
-        clearInterval(updateTimer);
-        resetValues();
-        curr_track.src = trackList[track_index].path;
-        curr_track.load();
-        track_name.textContent = "Track " + (track_index + 1) + "/" + trackList.length + ": " + trackList[track_index].name;
-        updateTimer = setInterval(seekUpdate, 1000);
-        curr_track.onended = nextTrack;
+    function setTitle(text) {
+        track_name.textContent = text;
+        // the text starts at the right edge and leaves at the left; scale the duration to that distance
+        track_name.style.animationDuration = (track_name.offsetWidth / MARQUEE_PX_PER_SECOND) + "s";
     }
 
-    playpause_btn.addEventListener('click', function(){
-        if(isPlaying){ pauseTrack(); } else { playTrack(); }
-    })
-    document.querySelector(".prev-track").addEventListener('click', prevTrack);
-    document.querySelector(".next-track").addEventListener('click', nextTrack);
-    seek_slider.addEventListener('change', seekTo);
+    function loadTrack(index) {
+        resetValues();
+        curr_track.src = trackList[index].path;
+        curr_track.load();
+        setTitle("Track " + (index + 1) + "/" + trackList.length + ": " + trackList[index].name);
+    }
+
+    function showPlaying(playing) {
+        playpause_img.src = playing ? "assets/images/musicplayer/pausebutton.png" : "assets/images/musicplayer/playpause.png";
+        playpause_btn.setAttribute("aria-label", playing ? "Pause" : "Play");
+    }
 
     function playTrack() {
-        curr_track.play();
-        isPlaying = true;
-        playpause_btn.innerHTML = '<button class="player-button"><img src="assets/images/musicplayer/pausebutton.png" class="controlimg"></button>';
+        const attempt = curr_track.play();
+        if(attempt) attempt.catch(function(err) {
+            // AbortError = another load/pause interrupted this play(), which is expected on quick skips
+            if(err.name !== "AbortError") setTitle("Couldn't play: " + trackList[track_index].name);
+        });
     }
 
     function pauseTrack() {
         curr_track.pause();
-        isPlaying = false;
-        playpause_btn.innerHTML = '<button class="player-button"><img src="assets/images/musicplayer/playpause.png" class="controlimg"></button>';
     }
 
     function nextTrack() {
@@ -120,23 +126,32 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function seekTo() {
-        const seekto = curr_track.duration * (seek_slider.value / 100);
-        curr_track.currentTime = seekto;
+        if(!isFinite(curr_track.duration)) return;
+        curr_track.currentTime = curr_track.duration * (seek_slider.value / 100);
     }
 
     function seekUpdate() {
-        if(!curr_track || isNaN(curr_track.duration)) return;
-        let seekPosition = curr_track.currentTime * (100 / curr_track.duration);
-        seek_slider.value = seekPosition;
-        let currentMinutes = Math.floor(curr_track.currentTime / 60);
-        let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
-        let durationMinutes = Math.floor(curr_track.duration / 60);
-        let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
-        if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
-        if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
-        curr_time.textContent = currentMinutes + ":" + currentSeconds;
-        total_duration.textContent = durationMinutes + ":" + durationSeconds;
+        if(!isFinite(curr_track.duration)) return;
+        seek_slider.value = curr_track.currentTime * (100 / curr_track.duration);
+        curr_time.textContent = formatTime(curr_track.currentTime);
+        total_duration.textContent = formatTime(curr_track.duration);
     }
+
+    playpause_btn.addEventListener("click", function() {
+        if(curr_track.paused) playTrack(); else pauseTrack();
+    });
+    document.querySelector(".prev-track").addEventListener("click", prevTrack);
+    document.querySelector(".next-track").addEventListener("click", nextTrack);
+    seek_slider.addEventListener("change", seekTo);
+    curr_track.addEventListener("play", function() { showPlaying(true); });
+    curr_track.addEventListener("pause", function() { showPlaying(false); });
+    curr_track.addEventListener("timeupdate", seekUpdate);
+    curr_track.addEventListener("loadedmetadata", seekUpdate);
+    curr_track.addEventListener("ended", nextTrack);
+    curr_track.addEventListener("error", function() {
+        showPlaying(false);
+        setTitle("Couldn't load: " + trackList[track_index].name);
+    });
 
     loadTrack(track_index);
 
@@ -213,14 +228,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const track = document.querySelector(".button-carousel-track");
     fillCarousel(track, "assets/images/buttons/", buttonImages, 88, 31);
 
-    let scrollPos = 0;
-    function autoScrollCarousel() {
-        scrollPos += 1;
-        if (scrollPos >= track.scrollWidth / 2) scrollPos = 0;
-        track.style.transform = `translate3d(-${scrollPos}px, 0, 0)`;
-        requestAnimationFrame(autoScrollCarousel);
-    }
-    autoScrollCarousel();
+    setCarouselSpeed(track);
 
     const stampImages = [
         "aperture.webp", "backrooms.webp", "badapple.gif", "blacklagoon.webp", "bliss.webp",
@@ -239,14 +247,12 @@ document.addEventListener("DOMContentLoaded", function(){
     const stampTrack = document.querySelector(".stamp-carousel-track");
     fillCarousel(stampTrack, "assets/images/stamps/", stampImages, 99, 56);
 
-    let stampScrollPos = 0;
-    function autoScrollStampCarousel() {
-        stampScrollPos += 1;
-        if (stampScrollPos >= stampTrack.scrollWidth / 2) stampScrollPos = 0;
-        stampTrack.style.transform = `translate3d(-${stampScrollPos}px, 0, 0)`;
-        requestAnimationFrame(autoScrollStampCarousel);
-    }
-    autoScrollStampCarousel();
+    setCarouselSpeed(stampTrack);
+
+    window.addEventListener("load", function() {
+        setCarouselSpeed(track);
+        setCarouselSpeed(stampTrack);
+    });
 
     function syncMiddleHeight() {
         const leftHeight = document.querySelector(".column.left").offsetHeight;
@@ -334,6 +340,12 @@ function generateCalendar(selector) {
 
 generateCalendar(".calendar");
 
+const CAROUSEL_PX_PER_SECOND = 60;
+
+function setCarouselSpeed(track) {
+    track.style.animationDuration = (track.offsetWidth / 2 / CAROUSEL_PX_PER_SECOND) + "s";
+}
+
 // Appends the images twice so the track can loop seamlessly
 function fillCarousel(track, dir, images, width, height) {
     [...images, ...images].forEach(img => {
@@ -341,7 +353,7 @@ function fillCarousel(track, dir, images, width, height) {
         el.src = dir + img;
         el.width = width;
         el.height = height;
-        el.alt = img;
+        el.alt = ""; // decorative
         track.appendChild(el);
     });
 }

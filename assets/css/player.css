@@ -1,6 +1,10 @@
 /* index.html music player, including the 98.css-style range slider. */
 
-.controlimg:hover, input[type="range"]::-webkit-slider-runnable-track, input[type="range"]::-moz-range-track {
+.controlimg:hover, input[type="range"]::-webkit-slider-runnable-track {
+    cursor: url('../images/cursors/nso_helpselect.png'), auto;
+}
+
+input[type="range"]::-moz-range-track {
     cursor: url('../images/cursors/nso_helpselect.png'), auto;
 }
 
@@ -19,6 +23,7 @@
 }
 
 .songtitlearrow {
+    flex:none;
     background-size:100%;
     background-repeat: no-repeat;
     background-image: url('../images/musicplayer/songtitlearrow.png');
@@ -34,9 +39,28 @@
 .songtitle {
     border-bottom:0px; /* border under song title */
     display:block;
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    white-space:nowrap;
     font-family:Pixelated MS Sans Serif;
     padding: 0.3125rem;
     /*font-size: 12px;*/
+}
+
+.songtitle-text {
+    display:inline-block;
+    padding-left:100%;
+    animation: songtitle-scroll 10s linear infinite;
+}
+
+@keyframes songtitle-scroll {
+    to { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .songtitle-text { animation:none; padding-left:0; }
+    .songtitle { text-overflow:ellipsis; }
 }
 
 .player-button {
@@ -82,92 +106,50 @@ input[type="range"] {
     appearance: none;
     width: 100%;
     background: transparent;
-  }
+}
 
 input[type="range"]:focus {
     outline: none;
-  }
+}
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 21px;
     width: 11px;
-    background: svg-load("https://raw.githubusercontent.com/jdan/98.css/main/icon/indicator-horizontal.svg");
+    background: url("../images/musicplayer/indicator-horizontal.svg");
     transform: translateY(-8px);
     box-shadow: none;
     border: none;
-  }
-
-input[type="range"].has-box-indicator::-webkit-slider-thumb {
-    background: svg-load("https://raw.githubusercontent.com/jdan/98.css/main/icon/indicator-rectangle-horizontal.svg");
-    transform: translateY(-10px);
-  }
+}
 
 input[type="range"]::-moz-range-thumb {
     height: 21px;
     width: 11px;
+    background: url("../images/musicplayer/indicator-horizontal.svg");
     border: 0;
     border-radius: 0;
-    background: svg-load("https://raw.githubusercontent.com/jdan/98.css/main/icon/indicator-horizontal.svg");
     transform: translateY(2px);
-  }
+}
 
-input[type="range"]::-moz-range-thumb {
-    background: url("https://raw.githubusercontent.com/jdan/98.css/main/icon/indicator-horizontal.svg");
-    border: 0;
-    border-radius: 0;
-    height: 21px;
-    transform: translateY(2px);
-    width: 11px;
-  }
-
-input[type="range"].has-box-indicator::-moz-range-thumb {
-    background: svg-load("https://raw.githubusercontent.com/jdan/98.css/main/icon/indicator-rectangle-horizontal.svg");
-    transform: translateY(0px);
-  }
-
+/* separate rules on purpose: one unknown pseudo-element in a selector list drops the whole rule */
 input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 2px;
+    height: 2px; /* thickness of seeking track */
     box-sizing: border-box;
     background: black;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
     box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 darkgrey,
-    -1px -1px 0 darkgrey, 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
-  }
+        -1px -1px 0 darkgrey, 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
+}
 
 input[type="range"]::-moz-range-track {
     width: 100%;
-    height: 2px;
+    height: 2px; /* thickness of seeking track */
     box-sizing: border-box;
     background: black;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
     box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 darkgrey,
-    -1px -1px 0 darkgrey, 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
-  }
-
-input[type=range] {
-    -webkit-appearance: none;
-    appearance:none;
-    width: 100%;
-  }
-
-input[type=range]:focus {
-    outline: none;
-  }
-
-/* settings for chrome browsers */
-
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 2px; /* thickness of seeking track */
-  }
-
-/* settings for firefox browsers */
-
-input[type=range]::-moz-range-track {
-    width: 100%;
-    height: 2px; /* thickness of seeking track */
+        -1px -1px 0 darkgrey, 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
 }

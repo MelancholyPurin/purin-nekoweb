@@ -207,7 +207,7 @@
             const fileName = photo => photo.src.split('/').pop();
             const photos = country.photos.map((photo, i) => `
                 <a class="travel-photo" href="${photo.src}" data-index="${i}">
-                    <span class="travel-photo-thumb"><img src="${photo.src}" alt="${fileName(photo)}" loading="lazy"></span>
+                    <span class="travel-photo-thumb"><img src="${photo.thumb || photo.src}" alt="${fileName(photo)}" loading="lazy"></span>
                     <span class="travel-photo-name">${fileName(photo)}</span>
                 </a>`).join('');
 

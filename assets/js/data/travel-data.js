@@ -27,6 +27,10 @@ export const travelLogSections = {
                                                 <img src="assets/images/travel-log/flags/canada.png" alt="Canada Flag" class="country-flag">
                                                 <p>Canada</p>
                                             </div>
+                                            <div class="country-card" data-country="croatia">
+                                                <img src="assets/images/travel-log/flags/croatia.webp" alt="Croatia Flag" class="country-flag">
+                                                <p>Croatia</p>
+                                            </div>
                                             <div class="country-card" data-country="cuba">
                                                 <img src="assets/images/travel-log/flags/cuba.webp" alt="Cuba Flag" class="country-flag">
                                                 <p>Cuba</p>
@@ -34,6 +38,10 @@ export const travelLogSections = {
                                             <div class="country-card" data-country="czechia">
                                                 <img src="assets/images/travel-log/flags/czechia.webp" alt="Czechia Flag" class="country-flag">
                                                 <p>Czechia</p>
+                                            </div>
+                                            <div class="country-card" data-country="denmark">
+                                                <img src="assets/images/travel-log/flags/denmark.webp" alt="Denmark Flag" class="country-flag">
+                                                <p>Denmark</p>
                                             </div>
                                             <div class="country-card" data-country="estonia">
                                                 <img src="assets/images/travel-log/flags/estonia.webp" alt="Estonia Flag" class="country-flag">
@@ -79,6 +87,10 @@ export const travelLogSections = {
                                                 <img src="assets/images/travel-log/flags/slovakia.webp" alt="Slovakia Flag" class="country-flag">
                                                 <p>Slovakia</p>
                                             </div>
+                                            <div class="country-card" data-country="slovenia">
+                                                <img src="assets/images/travel-log/flags/slovenia.webp" alt="Slovenia Flag" class="country-flag">
+                                                <p>Slovenia</p>
+                                            </div>
                                             <div class="country-card" data-country="turkey">
                                                 <img src="assets/images/travel-log/flags/turkey.webp" alt="Turkey Flag" class="country-flag">
                                                 <p>Turkey</p>
@@ -111,12 +123,6 @@ export const travelLogSections = {
                                                 <img src="assets/images/travel-log/flags/poland.webp" alt="Poland" class="future-plan-flag">
                                                 <div class="future-plan-text">
                                                     <p><strong><u>Poland:</u></strong> For having lived in Germany for so long, I'm surprised I haven't been to neighboring Poland yet. I KNOW i'll love it, just have to set aside the time for it. I would love to see the architecture of cities like Gdansk, Wroclaw, and Krakow with my own eyes; I also have friends in the capital Warsaw so that's a guaranteed good time.</p>
-                                                </div>
-                                             </div>
-                                             <div class="future-plan-row">
-                                                <img src="assets/images/travel-log/flags/denmark.webp" alt="Denmark" class="future-plan-flag">
-                                                <div class="future-plan-text">
-                                                    <p><strong><u>Denmark:</u></strong> Copenhagen seems like a very cute city, and it's only a 4-hour train ride from Hamburg! I've never actually been to Scandinavia, so this is definitely a good place to start. It's quite a small country, so I could definitely visit other cities like Aarhus or even Malmö in Sweden in the same trip.</p>
                                                 </div>
                                              </div>
                                              <div class="future-plan-row">
@@ -166,10 +172,13 @@ export const travelLogSections = {
 // ---------------------------------------------------------------------------
 // Country detail data
 // Each entry: name, flag (path), description text, and a photos array.
-// photos: [ { src, caption } ]
-// Drop photos into assets/images/travel-log/photos/{country}/ and add an entry
-// for each one. The filename under each thumbnail is taken from src; caption
-// is optional and shows in the status bar of the expanded picture.
+// photos: [ { src, thumb, caption } ]
+//   src     full-size image, shown in the expanded picture; its filename is the label under the thumbnail
+//   thumb   small image for the folder grid (falls back to src if left out)
+//   caption optional; shows in the status bar of the expanded picture
+// Don't copy photos in by hand: run tools/optimize-travel-photos.sh <country> <folder-of-originals>.
+// It compresses them into assets/images/travel-log/photos/{country}/ (full size) and .../thumbs/
+// and prints the lines to paste into the country's photos array.
 // ---------------------------------------------------------------------------
 export const travelCountries = {
     austria: {
@@ -182,12 +191,34 @@ export const travelCountries = {
         name: "Belgium",
         flag: "assets/images/travel-log/flags/belgium.webp",
         description: "Belgium surprised me. I expected it to be a quiet transit country, but Brussels had far more personality than I anticipated, and the food — waffles, fries, chocolate, beer — is unironically some of the best in Europe.",
-        photos: [],
+        photos: [
+            { src: "assets/images/travel-log/photos/belgium/antwerp.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/antwerp.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/arch.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/arch.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/atom.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/atom.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/boat.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/boat.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/canal_corner.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/canal_corner.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/canal.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/canal.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/churchthing.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/churchthing.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/flowers.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/flowers.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/park.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/park.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/parliament.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/parliament.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/piss.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/piss.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/reflection.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/reflection.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/street.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/street.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/trains.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/trains.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/belgium/waffle.webp", thumb: "assets/images/travel-log/photos/belgium/thumbs/waffle.webp", caption: "" },
+        ],
     },
     canada: {
         name: "Canada",
         flag: "assets/images/travel-log/flags/canada.png",
         description: "Canada was a mixed experience for me as a destination, but visiting a dear friend made the whole trip worth it. I got to see a very local, non-touristy side of the country that I wouldn't have found on my own.",
+        photos: [],
+    },
+    croatia: {
+        name: "Croatia",
+        flag: "assets/images/travel-log/flags/croatia.webp",
+        description: "",
         photos: [],
     },
     cuba: {
@@ -202,17 +233,43 @@ export const travelCountries = {
         description: "Entry coming soon.",
         photos: [],
     },
+    czechia: {
+        name: "Denmark",
+        flag: "assets/images/travel-log/flags/denmark.webp",
+        description: "Danemark!!!",
+        photos: [],
+    },
     estonia: {
         name: "Estonia",
         flag: "assets/images/travel-log/flags/estonia.webp",
         description: "Estonia was a spontaneous trip that became one of my favorites. Tallinn's old town is one of the best-preserved medieval city centers in all of Europe, and despite every museum being closed the day I visited, it was still magical.",
-        photos: [],
+        photos: [
+            { src: "assets/images/travel-log/photos/estonia/banquet.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/banquet.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/church.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/church.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/flag.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/flag.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/kachow.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/kachow.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/nett_hier.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/nett_hier.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/questionable.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/questionable.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/square.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/square.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/estonia/view.webp", thumb: "assets/images/travel-log/photos/estonia/thumbs/view.webp", caption: "" },
+        ],
     },
     finland: {
         name: "Finland",
         flag: "assets/images/travel-log/flags/finland.webp",
         description: "Entry coming soon.",
-        photos: [],
+        photos: [
+            { src: "assets/images/travel-log/photos/finland/beer.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/beer.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/bun.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/bun.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/cathedral.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/cathedral.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/horhorhor.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/horhorhor.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/potato_thing.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/potato_thing.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/sauna.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/sauna.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/sky.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/sky.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/soup.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/soup.webp", caption: "" },
+             { src: "assets/images/travel-log/photos/finland/freeze.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/freeze.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/finland/gun.webp", thumb: "assets/images/travel-log/photos/finland/thumbs/gun.webp", caption: "" },
+        ],
     },
     france: {
         name: "France",
@@ -275,6 +332,25 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/slovakia.webp",
         description: "Entry coming soon.",
         photos: [],
+    },
+    slovenia: {
+        name: "Slovenia",
+        flag: "assets/images/travel-log/flags/slovenia.webp",
+        description: "SLOVEnia",
+        photos: [
+            { src: "assets/images/travel-log/photos/slovenia/awkward_stand.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/awkward_stand.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/airport.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/airport.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/beer_call.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/beer_call.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/beer_chart.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/beer_chart.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/bled.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/bled.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/city.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/city.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/dragon.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/dragon.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/flags.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/flags.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/island.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/island.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/mountain.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/mountain.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/river_day.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/river_day.webp", caption: "" },
+            { src: "assets/images/travel-log/photos/slovenia/river_night.webp", thumb: "assets/images/travel-log/photos/slovenia/thumbs/river_night.webp", caption: "" },
+        ]
     },
     turkey: {
         name: "Turkey",

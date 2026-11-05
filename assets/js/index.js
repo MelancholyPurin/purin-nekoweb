@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const total_duration = document.querySelector(".total-duration");
     const curr_track = document.getElementById("music");
 
+    // ~47px/s, what the old <marquee scrollamount="4"> moved at
     const MARQUEE_PX_PER_SECOND = 47;
 
     let track_index = 0;

@@ -97,27 +97,20 @@ h4 {
   color: white;
 }
 
+/* Terminal typing effect. typewriter.js animates the width character by character.
+   The box stays collapsed until it starts. */
 .typeWriter {
-    --characters: 30;
     box-sizing: content-box;
     overflow: hidden;
     border-right: .15em solid white;
     white-space: nowrap;
     margin: 0;
     letter-spacing: .15em;
-    animation: 
-        typing calc(var(--characters) * 70ms) steps(var(--characters), end) forwards,
-        blink-caret .75s step-end infinite;
-    animation-play-state: paused;
+    animation: blink-caret .75s step-end infinite;
 }
 
-.typeWriter.play {
-    animation-play-state: running;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: calc(var(--characters) * (1ch + .15em)); }
+.typeWriter:not(.play) {
+    width: 0;
 }
 
 /* The typewriter cursor effect */

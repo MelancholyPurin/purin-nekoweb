@@ -1,66 +1,85 @@
 /* index.html music player, including the 98.css-style range slider. */
 
-.controlimg:hover, input[type="range"]::-webkit-slider-runnable-track {
-    cursor: url('../images/cursors/nso_helpselect.png'), auto;
+.controlimg:hover,
+input[type="range"]::-webkit-slider-runnable-track {
+    cursor: url("../images/cursors/nso_helpselect.png"), auto;
 }
 
+/* separate rule: one unknown pseudo-element in a selector list drops the whole rule */
 input[type="range"]::-moz-range-track {
-    cursor: url('../images/cursors/nso_helpselect.png'), auto;
+    cursor: url("../images/cursors/nso_helpselect.png"), auto;
 }
 
 .songtitlewindow {
-    background-color:#fff;
-    box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
+    background-color: #fff;
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px grey,
+        inset -2px -2px #dfdfdf,
+        inset 2px 2px #0a0a0a;
 }
 
 .imagestyle {
-    background:silver; /* background color of player */
-    border:2px solid silver; /* border around player */
+    background: silver; /* background color of player */
+    border: 2px solid silver; /* border around player */
     margin: 0.625rem auto;
-    width:5.9375rem; /* width of the player */
-    height:5.9375rem;
-    box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
+    width: 5.9375rem; /* width of the player */
+    height: 5.9375rem;
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px grey,
+        inset -2px -2px #dfdfdf,
+        inset 2px 2px #0a0a0a;
 }
 
 .songtitlearrow {
-    flex:none;
-    background-size:100%;
+    flex: none;
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('../images/musicplayer/songtitlearrow.png');
-    height:1.3125rem;
-    width:1.3125rem;
-    position:relative;
+    background-image: url("../images/musicplayer/songtitlearrow.png");
+    height: 1.3125rem;
+    width: 1.3125rem;
+    position: relative;
     top: 2px;
-    left:-2px;
-    border:0px solid transparent;
-    border-width:0px 0px 0px 0px;
+    left: -2px;
+    border: 0px solid transparent;
+    border-width: 0px 0px 0px 0px;
 }
 
 .songtitle {
-    border-bottom:0px; /* border under song title */
-    display:block;
-    flex:1;
-    min-width:0;
-    overflow:hidden;
-    white-space:nowrap;
-    font-family:Pixelated MS Sans Serif;
+    border-bottom: 0px; /* border under song title */
+    display: block;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: Pixelated MS Sans Serif;
     padding: 0.3125rem;
     /*font-size: 12px;*/
 }
 
+/* Replaces <marquee>: the left padding (100% of the box) starts the text at the right edge,
+   and the -100% shift carries it fully off the left. JS sets the duration from the text length. */
 .songtitle-text {
-    display:inline-block;
-    padding-left:100%;
+    display: inline-block;
+    padding-left: 100%;
     animation: songtitle-scroll 10s linear infinite;
 }
 
 @keyframes songtitle-scroll {
-    to { transform: translateX(-100%); }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .songtitle-text { animation:none; padding-left:0; }
-    .songtitle { text-overflow:ellipsis; }
+    .songtitle-text {
+        animation: none;
+        padding-left: 0;
+    }
+    .songtitle {
+        text-overflow: ellipsis;
+    }
 }
 
 .player-button {
@@ -69,10 +88,10 @@ input[type="range"]::-moz-range-track {
 
 .controls {
     font-size: 1.125rem !important; /* size of controls */
-    text-align:center;
-    width:100%;
-    position:relative;
-    bottom:0.625rem;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0.625rem;
 }
 
 .controls td {
@@ -99,7 +118,8 @@ input[type="range"]::-moz-range-track {
     width: 0.9375rem;
 }
 
-/* px kept in the slider rules below: they mirror 98.css's slider artwork, which is pixel-sized */
+/* Win98 slider. 98.css@0.1.4 doesn't style range inputs, so it's done here.
+   px kept below: it mirrors 98.css's pixel-sized slider artwork. */
 
 input[type="range"] {
     -webkit-appearance: none;
@@ -139,8 +159,15 @@ input[type="range"]::-webkit-slider-runnable-track {
     background: black;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
-    box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 darkgrey,
-        -1px -1px 0 darkgrey, 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
+    box-shadow:
+        1px 0 0 white,
+        1px 1px 0 white,
+        0 1px 0 white,
+        -1px 0 0 darkgrey,
+        -1px -1px 0 darkgrey,
+        0 -1px 0 darkgrey,
+        -1px 1px 0 white,
+        1px -1px darkgrey;
 }
 
 input[type="range"]::-moz-range-track {
@@ -150,6 +177,13 @@ input[type="range"]::-moz-range-track {
     background: black;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
-    box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 darkgrey,
-        -1px -1px 0 darkgrey, 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
+    box-shadow:
+        1px 0 0 white,
+        1px 1px 0 white,
+        0 1px 0 white,
+        -1px 0 0 darkgrey,
+        -1px -1px 0 darkgrey,
+        0 -1px 0 darkgrey,
+        -1px 1px 0 white,
+        1px -1px darkgrey;
 }

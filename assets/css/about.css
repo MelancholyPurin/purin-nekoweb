@@ -14,82 +14,82 @@
 }
 
 .abt-interests-quizzes {
-  align-items: stretch;
-  display: flex;
+    align-items: stretch;
+    display: flex;
 }
 
 .abt-interests-quizzes .abt-col {
-  display: flex;
-  flex-direction: column;
-  width: 21.875rem;
-  min-width: 0;
-  box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 21.875rem;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .abt-interests-quizzes .abt-col:last-child {
-  overflow-y: auto;
-  height: 100%;
-  min-height: 0;
+    overflow-y: auto;
+    height: 100%;
+    min-height: 0;
 }
 
 .mc-skin {
-  border: 1px dotted white;
-  border-radius: 0.3125rem;
-  width: 9.375rem;
-  margin: 0.625rem auto;
-  display: block;
+    border: 1px dotted white;
+    border-radius: 0.3125rem;
+    width: 9.375rem;
+    margin: 0.625rem auto;
+    display: block;
 }
 
 .fun-fact-container {
-  display: flex;
-  align-items: center;
-  height: 16.875rem;
+    display: flex;
+    align-items: center;
+    height: 16.875rem;
 }
 
 .fun-fact-box {
-  width: 18.75rem;
-  border: 2px solid gray;
-  margin: auto;
-  text-align: center;
-  background-color: lightgray;
-  border-radius: 0.3125rem;
+    width: 18.75rem;
+    border: 2px solid gray;
+    margin: auto;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 0.3125rem;
 }
 
 .fun-fact {
-  font-size: 1.125rem;
-  margin: auto;
-  font-weight: bold;
-  padding: 0.625rem;
-  color: black;
+    font-size: 1.125rem;
+    margin: auto;
+    font-weight: bold;
+    padding: 0.625rem;
+    color: black;
 }
 
 .rei-chiquita {
-  width: 15.625rem;
-  margin: 0.625rem auto;
-  display: block;
+    width: 15.625rem;
+    margin: 0.625rem auto;
+    display: block;
 }
 
 .abt-quiz img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 1rem auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
 }
 
 .questionnaire span {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .questionnaire p {
-  border-left: 1px dotted #BBBBBB;
-  margin: 0.3125rem 0 0.625rem 0.9375rem;
-  padding: 0 0 0 0.625rem;
+    border-left: 1px dotted #bbbbbb;
+    margin: 0.3125rem 0 0.625rem 0.9375rem;
+    padding: 0 0 0 0.625rem;
 }
 
 .small-leftcol-button {
-  width: 6rem;
+    width: 6rem;
 }
 
 .about-page .fake-screen {
-  background-color: #163540;
+    background-color: #163540;
 }

@@ -1,13 +1,13 @@
 /* index.html side-column windows: navigation, status.cafe, visitor count, clock and calendar, moon monitor. */
 
 .visitor-count .window-body {
-  text-align: center;
+    text-align: center;
 }
 
 .visitor-count .window-body img {
-  max-width: 100%;
-  height: auto;
-  display: inline-block;
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
 }
 
 .clock-calendar {
@@ -15,13 +15,13 @@
 }
 
 .statuscafe {
-    padding: .5em;
+    padding: 0.5em;
     background-color: azure;
     border: 1px solid midnightblue;
 }
 
 .statuscafe-username {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
 }
 
 .statuscafe-content {
@@ -35,91 +35,96 @@
 }
 
 .ic {
-    width:5.6875rem;
-    position:relative;
-    bottom:1px;
-    right:1px;
-    overflow:hidden;
-    padding:1px;
-    border:2px solid black;
+    width: 5.6875rem;
+    position: relative;
+    bottom: 1px;
+    right: 1px;
+    overflow: hidden;
+    padding: 1px;
+    border: 2px solid black;
 }
 
 .main-navbar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .main-navbar li {
-  margin-bottom: 0.3125rem;
-  display: flex;
-  align-items: center;
+    margin-bottom: 0.3125rem;
+    display: flex;
+    align-items: center;
 }
 
 .main-navbar a {
-  color: #222222;
-  text-decoration: none;
-  font-family: inherit;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  transition: background 0.2s;
-  padding: 4px 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
+    color: #222222;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+    padding: 4px 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
 }
 
-.main-navbar a:hover, .main-navbar a:focus {
-  background: #222;
-  color: #fff;
-  outline: none;
+.main-navbar a:hover,
+.main-navbar a:focus {
+    background: #222;
+    color: #fff;
+    outline: none;
 }
 
 .nav-icon {
-  max-width: 100%;
-  height: auto;
-  margin-right: 0.5rem;
-  image-rendering: pixelated;
+    max-width: 100%;
+    height: auto;
+    margin-right: 0.5rem;
+    image-rendering: pixelated;
 }
 
 .calendar {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  background-color: #FFF;
-  font-size: 0.625rem;
-  color: #222;
-  box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #fff;
+    font-size: 0.625rem;
+    color: #222;
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px grey,
+        inset -2px -2px #dfdfdf,
+        inset 2px 2px #0a0a0a;
 }
 
 .calendar-header {
-  text-align: center;
-  margin-bottom: 4px;
-  font-weight: bold;
-  font-size: 0.875rem;
-  text-decoration: underline;
+    text-align: center;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-decoration: underline;
 }
 
 .calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
-  text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
 }
 
 .calendar-grid div {
-  padding: 2px 0;
+    padding: 2px 0;
 }
 
 .calendar-today {
-  background-color: #E3B23C;
-  color: black;
-  font-weight: bold;
-  border: 1px dashed black;
-  border-radius: 3px;
+    background-color: #e3b23c;
+    color: black;
+    font-weight: bold;
+    border: 1px dashed black;
+    border-radius: 3px;
 }
 
-.moon-monitor .window-body{
-  display:flex;
-  justify-content: center;
-  align-items: center;
+.moon-monitor .window-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

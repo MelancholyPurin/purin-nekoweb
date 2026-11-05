@@ -1,75 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <base href="../">
-    <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.4/build/98.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/blog.css">
-    <style>body { margin: 0; background: transparent; }</style>
-</head>
-<body>
-    <section class="blog-page">
-        <div class="blog-book-bg">
-            <div class="blog-book">
-                <div class="blog-toc">
-                    <ul class="blog-toc-list">
-                        <li><a href="#" data-entry="welcome">back to welcome</a></li>
-                    </ul>
-                    <h4>2025</h4>
-                    <h5>November</h5>
-                    <h5>October</h5>
-                    <ul class="blog-toc-list">
-                        <li><a href="#" data-entry="entry1">Entry 1</a></li>
-                        <li><a href="#" data-entry="entry2">{8.} A Beer For Germany</a></li>
-                    </ul>
-                    <h5>September</h5>
-                    <ul class="blog-toc-list">
-                        <li><a href="#" data-entry="entry3">{21.} Very Obvious Signs I Was Trans That I Missed with Great Silliness</a></li>
-                    </ul>
-                </div>
-                <div class="blog-entry" id="blog-entry-content">
-                    <h4 style="text-align: center;">Welcome to my Estrogen Diary!</h4>
-                    <p>I have been on MtF HRT since DD.MM.2026.</p>
-                    <p>My therapist once told me that some trans people keep a diary detailing their experiences with HRT over time.</p>
-                    <p>That sounded like a wonderful idea to me; I want my experiences to inspire others to be brave and help them discover and love themselves.</p>
-                    <p>As always, thank you for reading! —Anja ♪</p>
+    <head>
+        <meta charset="UTF-8" />
+        <base href="../" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/98.css@0.1.4/build/98.css"
+        />
+        <link rel="stylesheet" href="assets/css/base.css" />
+        <link rel="stylesheet" href="assets/css/blog.css" />
+        <style>
+            body {
+                margin: 0;
+                background: transparent;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="blog-page">
+            <div class="blog-book-bg">
+                <div class="blog-book">
+                    <div class="blog-toc">
+                        <ul class="blog-toc-list">
+                            <li>
+                                <a href="#" data-entry="welcome"
+                                    >back to welcome</a
+                                >
+                            </li>
+                        </ul>
+                        <h4>2025</h4>
+                        <h5>November</h5>
+                        <h5>October</h5>
+                        <ul class="blog-toc-list">
+                            <li><a href="#" data-entry="entry1">Entry 1</a></li>
+                            <li>
+                                <a href="#" data-entry="entry2"
+                                    >{8.} A Beer For Germany</a
+                                >
+                            </li>
+                        </ul>
+                        <h5>September</h5>
+                        <ul class="blog-toc-list">
+                            <li>
+                                <a href="#" data-entry="entry3"
+                                    >{21.} Very Obvious Signs I Was Trans That I
+                                    Missed with Great Silliness</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="blog-entry" id="blog-entry-content">
+                        <h4 style="text-align: center">
+                            Welcome to my Estrogen Diary!
+                        </h4>
+                        <p>I have been on MtF HRT since DD.MM.2026.</p>
+                        <p>
+                            My therapist once told me that some trans people
+                            keep a diary detailing their experiences with HRT
+                            over time.
+                        </p>
+                        <p>
+                            That sounded like a wonderful idea to me; I want my
+                            experiences to inspire others to be brave and help
+                            them discover and love themselves.
+                        </p>
+                        <p>As always, thank you for reading! —Anja ♪</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <script>
-        (function() {
-            const blogEntries = {
-                welcome: {
-                    title: "Welcome to my Blog!",
-                    content: `<p>For someone who doesn't speak much, I do have a lot to say sometimes.</p>
+        <script>
+            (function () {
+                const blogEntries = {
+                    welcome: {
+                        title: "Welcome to my Blog!",
+                        content: `<p>For someone who doesn't speak much, I do have a lot to say sometimes.</p>
                               <p>This section is a space for me to write longer thinkpieces about whatever is on my mind or whatever's been going on in my life lately. Not really a diary, since one entry won't correspond to one day, and it might take me mutiple days or weeks to finish an entry.</p>
                               <p>Use the table of contents on the left page to browse through my entries.</p>
-                              <p>As always, thank you for reading! —Anja ~ ♪</p>`
-                },
-                entry1: {
-                    title: "My First Blog Post",
-                    content: "<p>Hello</p>"
-                },
-                entry2: {
-                    title: "My second entry",
-                    content: "<p>hola</p>"
-                }
-            };
+                              <p>As always, thank you for reading! —Anja ~ ♪</p>`,
+                    },
+                    entry1: {
+                        title: "My First Blog Post",
+                        content: "<p>Hello</p>",
+                    },
+                    entry2: {
+                        title: "My second entry",
+                        content: "<p>hola</p>",
+                    },
+                };
 
-            const entryContent = document.getElementById('blog-entry-content');
-            document.querySelectorAll('.blog-toc-list a').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const entry = blogEntries[link.dataset.entry];
-                    if(entry) {
-                        entryContent.innerHTML = `<h4 style="text-align: center;">${entry.title}</h4>${entry.content}`;
-                    }
-                });
-            });
-        })();
-    </script>
-</body>
+                const entryContent =
+                    document.getElementById("blog-entry-content");
+                document
+                    .querySelectorAll(".blog-toc-list a")
+                    .forEach(function (link) {
+                        link.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            const entry = blogEntries[link.dataset.entry];
+                            if (entry) {
+                                entryContent.innerHTML = `<h4 style="text-align: center;">${entry.title}</h4>${entry.content}`;
+                            }
+                        });
+                    });
+            })();
+        </script>
+    </body>
 </html>

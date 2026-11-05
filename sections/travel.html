@@ -1,217 +1,331 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <base href="../">
-    <link rel="stylesheet" href="https://unpkg.com/98.css@0.1.4/build/98.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/travel.css">
-    <style>
-        html, body { height: 100%; }
-        body { margin: 0; background: transparent; }
-        .travel-page { height: 100%; margin: 0; }
-        .travel-log-window { height: 100%; box-sizing: border-box; }
-    </style>
-</head>
-<body>
-    <section class="travel-page">
-        <div class="window travel-log-window">
-            <div class="title-bar travel-log-title-bar">
-                <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/travel-log/log-icon.png" alt=""/></sub> Mercutio's Travel Log</div>
-                <div class="title-bar-controls">
-                <button aria-label="Minimize"></button>
-                <button aria-label="Maximize"></button>
-                <button aria-label="Close"></button>
-                </div>
-            </div>
-            <div class="window-body travel-log-edit-bar">
-                <div class="travel-log-line"></div>
-                <p>File</p>
-                <p>Edit</p>
-                <p>View</p>
-                <p>Tools</p>
-                <p>Help</p>
-            </div>
-            <div class="window-body travel-log-explorer-icons">
-                <div class="travel-log-line2"></div>
-                <div class="explorer-w-title" data-section="tlHome">
-                    <img src="assets/images/travel-log/home-page.png" width="48" height="48"/>
-                    <p>Home</p>
-                </div>
-                <div class="explorer-w-title" data-section="tlCountryList">
-                    <img src="assets/images/travel-log/country-list.png" width="48" height="48"/>
-                    <p>Country List</p>
-                </div>
-                <div class="explorer-w-title" data-section="tlCalendar">
-                    <img src="assets/images/travel-log/calendar-icon.png" width="48" height="48"/>
-                    <p>Calendar</p>
-                </div>
-                <div class="explorer-w-title" data-section="tlStats">
-                    <img src="assets/images/travel-log/stats.png" width="48" height="48"/>
-                    <p>Stats</p>
-                </div>
-                <div class="explorer-w-title" data-section="tlMap">
-                    <img src="assets/images/travel-log/map.png" width="48" height="48"/>
-                    <p>Map</p>
-                </div>
-                <div class="explorer-w-title" data-section="tlFuturePlans">
-                    <img src="assets/images/travel-log/future-plans.png" width="48" height="48"/>
-                    <p>Future Plans</p>
-                </div>
-                <div class="travel-log-line4"></div>
-                <div class="explorer-w-title" data-section="tlSpecialThanks">
-                    <img src="assets/images/travel-log/special-thanks.png" width="48" height="48"/>
-                    <p>Special Thanks</p>
-                </div>
-                <div class="travel-log-line4"></div>
-                <div class="explorer-w-title" data-section="tlExplorer">
-                    <img src="assets/images/travel-log/show-directory.png" width="48" height="48"/>
-                    <p>Show Explorer</p>
-                </div>
-            </div>
-            <div class="field-row travel-log-address-bar">
-                <div class="travel-log-line3"></div>
-                <label for="travel-log-address">Address</label>
-            </div>
-            <div class="window-body travel-log-view">
-                <div class="travel-log-main-view">
-                    <div class="tree-tab travel-log-tree-tab">
-                        <div class="tree-tab-title">Explorer</div>
-                        <ul class="tree-view">
-                            <li class="tree-heading">Table of Contents</li>
-                            <li><a href="#" data-section="tlHome">Home</a></li>
-                            <li>
-                                <details>
-                                    <summary>Country List</summary>
-                                    <ul class="travel-log-tree-countries"></ul>
-                                </details>
-                            </li>
-                            <li><a href="#" data-section="tlCalendar">Calendar</a></li>
-                            <li><a href="#" data-section="tlMap">Map</a></li>
-                            <li><a href="#" data-section="tlStats">Stats</a></li>
-                            <li><a href="#" data-section="tlFuturePlans">Future Plans</a></li>
-                            <li><a href="#" data-section="tlSpecialThanks">Special Thanks</a></li>
-                        </ul>
-                    </div>
-                    <div class="travel-log-main-content">
-                    </div>
-                </div>
-            </div>
-            <div class="status-bar">
-                <p class="status-bar-field">Press F1 for help</p>
-                <p class="status-bar-field">Slide 1</p>
-                <p class="status-bar-field">CPU Usage: 14%</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expanded picture -->
-    <div class="travel-viewer-overlay">
-        <div class="window travel-viewer">
-            <div class="title-bar">
-                <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/travel-log/log-icon.png" alt=""/></sub> <span class="travel-viewer-title"></span></div>
-                <div class="title-bar-controls">
-                    <button class="travel-viewer-close" aria-label="Close"></button>
-                </div>
-            </div>
-            <div class="window-body">
-                <img class="travel-viewer-img" src="" alt="">
-            </div>
-            <div class="status-bar">
-                <p class="status-bar-field travel-viewer-caption"></p>
-                <p class="status-bar-field travel-viewer-count"></p>
-            </div>
-        </div>
-    </div>
-
-    <script type="module">
-        import { travelLogSections, travelCountries } from './assets/js/data/travel-data.js';
-
-        let explorerIsOpen = false;
-
-        const mainContent = document.querySelector('.travel-log-main-content');
-        const treeTab = document.querySelector('.travel-log-tree-tab');
-        const viewer = document.querySelector('.travel-viewer-overlay');
-
-        // --- explorer tree: one link per country, built from the data ---
-        document.querySelector('.travel-log-tree-countries').innerHTML = Object.entries(travelCountries)
-            .map(([key, country]) => `<li><a href="#" data-country="${key}">${country.name}</a></li>`)
-            .join('');
-
-        function setActiveTreeLink(selector) {
-            treeTab.querySelectorAll('a.active').forEach(a => a.classList.remove('active'));
-            const link = selector && treeTab.querySelector(selector);
-            if(link) {
-                link.classList.add('active');
-                // make sure a selected country is visible
-                const details = link.closest('details');
-                if(details) details.open = true;
+    <head>
+        <meta charset="UTF-8" />
+        <base href="../" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/98.css@0.1.4/build/98.css"
+        />
+        <link rel="stylesheet" href="assets/css/base.css" />
+        <link rel="stylesheet" href="assets/css/travel.css" />
+        <style>
+            html,
+            body {
+                height: 100%;
             }
-        }
+            body {
+                margin: 0;
+                background: transparent;
+            }
+            .travel-page {
+                height: 100%;
+                margin: 0;
+            }
+            .travel-log-window {
+                height: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="travel-page">
+            <div class="window travel-log-window">
+                <div class="title-bar travel-log-title-bar">
+                    <div class="title-bar-text">
+                        <sub
+                            ><img
+                                class="titlebaricon"
+                                src="assets/images/travel-log/log-icon.png"
+                                alt=""
+                        /></sub>
+                        Mercutio's Travel Log
+                    </div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Minimize"></button>
+                        <button aria-label="Maximize"></button>
+                        <button aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="window-body travel-log-edit-bar">
+                    <div class="travel-log-line"></div>
+                    <p>File</p>
+                    <p>Edit</p>
+                    <p>View</p>
+                    <p>Tools</p>
+                    <p>Help</p>
+                </div>
+                <div class="window-body travel-log-explorer-icons">
+                    <div class="travel-log-line2"></div>
+                    <div class="explorer-w-title" data-section="tlHome">
+                        <img
+                            src="assets/images/travel-log/home-page.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Home</p>
+                    </div>
+                    <div class="explorer-w-title" data-section="tlCountryList">
+                        <img
+                            src="assets/images/travel-log/country-list.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Country List</p>
+                    </div>
+                    <div class="explorer-w-title" data-section="tlCalendar">
+                        <img
+                            src="assets/images/travel-log/calendar-icon.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Calendar</p>
+                    </div>
+                    <div class="explorer-w-title" data-section="tlStats">
+                        <img
+                            src="assets/images/travel-log/stats.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Stats</p>
+                    </div>
+                    <div class="explorer-w-title" data-section="tlMap">
+                        <img
+                            src="assets/images/travel-log/map.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Map</p>
+                    </div>
+                    <div class="explorer-w-title" data-section="tlFuturePlans">
+                        <img
+                            src="assets/images/travel-log/future-plans.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Future Plans</p>
+                    </div>
+                    <div class="travel-log-line4"></div>
+                    <div
+                        class="explorer-w-title"
+                        data-section="tlSpecialThanks"
+                    >
+                        <img
+                            src="assets/images/travel-log/special-thanks.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Special Thanks</p>
+                    </div>
+                    <div class="travel-log-line4"></div>
+                    <div class="explorer-w-title" data-section="tlExplorer">
+                        <img
+                            src="assets/images/travel-log/show-directory.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Show Explorer</p>
+                    </div>
+                </div>
+                <div class="field-row travel-log-address-bar">
+                    <div class="travel-log-line3"></div>
+                    <label for="travel-log-address">Address</label>
+                </div>
+                <div class="window-body travel-log-view">
+                    <div class="travel-log-main-view">
+                        <div class="tree-tab travel-log-tree-tab">
+                            <div class="tree-tab-title">Explorer</div>
+                            <ul class="tree-view">
+                                <li class="tree-heading">Table of Contents</li>
+                                <li>
+                                    <a href="#" data-section="tlHome">Home</a>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary>Country List</summary>
+                                        <ul
+                                            class="travel-log-tree-countries"
+                                        ></ul>
+                                    </details>
+                                </li>
+                                <li>
+                                    <a href="#" data-section="tlCalendar"
+                                        >Calendar</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#" data-section="tlMap">Map</a>
+                                </li>
+                                <li>
+                                    <a href="#" data-section="tlStats">Stats</a>
+                                </li>
+                                <li>
+                                    <a href="#" data-section="tlFuturePlans"
+                                        >Future Plans</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#" data-section="tlSpecialThanks"
+                                        >Special Thanks</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="travel-log-main-content"></div>
+                    </div>
+                </div>
+                <div class="status-bar">
+                    <p class="status-bar-field">Press F1 for help</p>
+                    <p class="status-bar-field">Slide 1</p>
+                    <p class="status-bar-field">CPU Usage: 14%</p>
+                </div>
+            </div>
+        </section>
 
-        function syncCountryGrid() {
-            const countryGrid = document.querySelector('.country-list-grid');
-            if(countryGrid) countryGrid.classList.toggle('explorer-open', explorerIsOpen);
-        }
+        <!-- Expanded picture -->
+        <div class="travel-viewer-overlay">
+            <div class="window travel-viewer">
+                <div class="title-bar">
+                    <div class="title-bar-text">
+                        <sub
+                            ><img
+                                class="titlebaricon"
+                                src="assets/images/travel-log/log-icon.png"
+                                alt=""
+                        /></sub>
+                        <span class="travel-viewer-title"></span>
+                    </div>
+                    <div class="title-bar-controls">
+                        <button
+                            class="travel-viewer-close"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <img class="travel-viewer-img" src="" alt="" />
+                </div>
+                <div class="status-bar">
+                    <p class="status-bar-field travel-viewer-caption"></p>
+                    <p class="status-bar-field travel-viewer-count"></p>
+                </div>
+            </div>
+        </div>
 
-        function showSection(section) {
-            mainContent.innerHTML = travelLogSections[section] || '<p>Section not found.</p>';
-            mainContent.scrollTop = 0;
-            if(section === 'tlCountryList') syncCountryGrid();
-            setActiveTreeLink(`a[data-section="${section}"]`);
-        }
+        <script type="module">
+            import {
+                travelLogSections,
+                travelCountries,
+            } from "./assets/js/data/travel-data.js";
 
-        // load home on startup
-        showSection('tlHome');
+            let explorerIsOpen = false;
 
-        // --- toolbar icon navigation ---
-        document.querySelectorAll('.travel-log-explorer-icons .explorer-w-title').forEach(function(icon) {
-            icon.addEventListener('click', function() {
-                const section = icon.dataset.section;
-                if(section === 'tlExplorer') {
-                    toggleTravelLogTreeTab();
-                    syncCountryGrid();
-                    return;
+            const mainContent = document.querySelector(
+                ".travel-log-main-content",
+            );
+            const treeTab = document.querySelector(".travel-log-tree-tab");
+            const viewer = document.querySelector(".travel-viewer-overlay");
+
+            // --- explorer tree: one link per country, built from the data ---
+            document.querySelector(".travel-log-tree-countries").innerHTML =
+                Object.entries(travelCountries)
+                    .map(
+                        ([key, country]) =>
+                            `<li><a href="#" data-country="${key}">${country.name}</a></li>`,
+                    )
+                    .join("");
+
+            function setActiveTreeLink(selector) {
+                treeTab
+                    .querySelectorAll("a.active")
+                    .forEach((a) => a.classList.remove("active"));
+                const link = selector && treeTab.querySelector(selector);
+                if (link) {
+                    link.classList.add("active");
+                    // make sure a selected country is visible
+                    const details = link.closest("details");
+                    if (details) details.open = true;
                 }
-                showSection(section);
+            }
+
+            function syncCountryGrid() {
+                const countryGrid =
+                    document.querySelector(".country-list-grid");
+                if (countryGrid)
+                    countryGrid.classList.toggle(
+                        "explorer-open",
+                        explorerIsOpen,
+                    );
+            }
+
+            function showSection(section) {
+                mainContent.innerHTML =
+                    travelLogSections[section] || "<p>Section not found.</p>";
+                mainContent.scrollTop = 0;
+                if (section === "tlCountryList") syncCountryGrid();
+                setActiveTreeLink(`a[data-section="${section}"]`);
+            }
+
+            // load home on startup
+            showSection("tlHome");
+
+            // --- toolbar icon navigation ---
+            document
+                .querySelectorAll(
+                    ".travel-log-explorer-icons .explorer-w-title",
+                )
+                .forEach(function (icon) {
+                    icon.addEventListener("click", function () {
+                        const section = icon.dataset.section;
+                        if (section === "tlExplorer") {
+                            toggleTravelLogTreeTab();
+                            syncCountryGrid();
+                            return;
+                        }
+                        showSection(section);
+                    });
+                });
+
+            function toggleTravelLogTreeTab() {
+                explorerIsOpen = !explorerIsOpen;
+                treeTab.style.display = explorerIsOpen ? "flex" : "none";
+            }
+
+            // --- explorer tree links ---
+            treeTab.addEventListener("click", function (e) {
+                const link = e.target.closest("a");
+                if (!link) return;
+                e.preventDefault();
+                if (link.dataset.section) showSection(link.dataset.section);
+                else if (link.dataset.country)
+                    renderCountryDetail(link.dataset.country);
             });
-        });
 
-        function toggleTravelLogTreeTab() {
-            explorerIsOpen = !explorerIsOpen;
-            treeTab.style.display = explorerIsOpen ? 'flex' : 'none';
-        }
+            // --- country card click (delegated: cards are injected dynamically) ---
+            document.addEventListener("click", function (e) {
+                const card = e.target.closest(".country-card");
+                if (!card) return;
+                const key = card.dataset.country;
+                if (key && travelCountries[key]) renderCountryDetail(key);
+            });
 
-        // --- explorer tree links ---
-        treeTab.addEventListener('click', function(e) {
-            const link = e.target.closest('a');
-            if(!link) return;
-            e.preventDefault();
-            if(link.dataset.section) showSection(link.dataset.section);
-            else if(link.dataset.country) renderCountryDetail(link.dataset.country);
-        });
+            // --- country detail view ---
+            function renderCountryDetail(key) {
+                const country = travelCountries[key];
+                if (!country) return;
 
-        // --- country card click (delegated: cards are injected dynamically) ---
-        document.addEventListener('click', function(e) {
-            const card = e.target.closest('.country-card');
-            if(!card) return;
-            const key = card.dataset.country;
-            if(key && travelCountries[key]) renderCountryDetail(key);
-        });
-
-        // --- country detail view ---
-        function renderCountryDetail(key) {
-            const country = travelCountries[key];
-            if(!country) return;
-
-            const fileName = photo => photo.src.split('/').pop();
-            const photos = country.photos.map((photo, i) => `
+                const fileName = (photo) => photo.src.split("/").pop();
+                const photos = country.photos
+                    .map(
+                        (photo, i) => `
                 <a class="travel-photo" href="${photo.src}" data-index="${i}">
                     <span class="travel-photo-thumb"><img src="${photo.thumb || photo.src}" alt="${fileName(photo)}" loading="lazy"></span>
                     <span class="travel-photo-name">${fileName(photo)}</span>
-                </a>`).join('');
+                </a>`,
+                    )
+                    .join("");
 
-            mainContent.innerHTML = `
+                mainContent.innerHTML = `
                 <button class="back-to-countries">← Country List</button>
                 <div class="country-detail-header">
                     <img src="${country.flag}" alt="${country.name} Flag" class="country-flag">
@@ -224,44 +338,53 @@
                 </div>
                 <p class="travel-photo-count">${country.photos.length} object(s)</p>
             `;
-            mainContent.scrollTop = 0;
-            setActiveTreeLink(`a[data-country="${key}"]`);
+                mainContent.scrollTop = 0;
+                setActiveTreeLink(`a[data-country="${key}"]`);
 
-            mainContent.querySelector('.back-to-countries').addEventListener('click', function() {
-                showSection('tlCountryList');
+                mainContent
+                    .querySelector(".back-to-countries")
+                    .addEventListener("click", function () {
+                        showSection("tlCountryList");
+                    });
+
+                mainContent
+                    .querySelectorAll(".travel-photo")
+                    .forEach(function (link) {
+                        link.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            openViewer(country, Number(link.dataset.index));
+                        });
+                    });
+            }
+
+            // --- expanded picture ---
+            function openViewer(country, index) {
+                const photo = country.photos[index];
+                const img = viewer.querySelector(".travel-viewer-img");
+                img.src = photo.src;
+                img.alt = photo.src.split("/").pop();
+                viewer.querySelector(".travel-viewer-title").textContent =
+                    photo.src.split("/").pop();
+                viewer.querySelector(".travel-viewer-caption").textContent =
+                    photo.caption || "";
+                viewer.querySelector(".travel-viewer-count").textContent =
+                    `${index + 1} of ${country.photos.length}`;
+                viewer.classList.add("active");
+            }
+
+            function closeViewer() {
+                viewer.classList.remove("active");
+            }
+
+            viewer
+                .querySelector(".travel-viewer-close")
+                .addEventListener("click", closeViewer);
+            viewer.addEventListener("click", function (e) {
+                if (e.target === viewer) closeViewer();
             });
-
-            mainContent.querySelectorAll('.travel-photo').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openViewer(country, Number(link.dataset.index));
-                });
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") closeViewer();
             });
-        }
-
-        // --- expanded picture ---
-        function openViewer(country, index) {
-            const photo = country.photos[index];
-            const img = viewer.querySelector('.travel-viewer-img');
-            img.src = photo.src;
-            img.alt = photo.src.split('/').pop();
-            viewer.querySelector('.travel-viewer-title').textContent = photo.src.split('/').pop();
-            viewer.querySelector('.travel-viewer-caption').textContent = photo.caption || '';
-            viewer.querySelector('.travel-viewer-count').textContent = `${index + 1} of ${country.photos.length}`;
-            viewer.classList.add('active');
-        }
-
-        function closeViewer() {
-            viewer.classList.remove('active');
-        }
-
-        viewer.querySelector('.travel-viewer-close').addEventListener('click', closeViewer);
-        viewer.addEventListener('click', function(e) {
-            if(e.target === viewer) closeViewer();
-        });
-        document.addEventListener('keydown', function(e) {
-            if(e.key === 'Escape') closeViewer();
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>

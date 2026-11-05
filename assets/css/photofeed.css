@@ -16,7 +16,9 @@
 .polaroid {
     --rot: 0deg;
     transform: rotate(var(--rot));
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     cursor: pointer;
 }
 
@@ -30,7 +32,9 @@
 .polaroid-inner {
     background: #fff;
     padding: 0.5rem 0.5rem 2.375rem 0.5rem;
-    box-shadow: 3px 4px 0.875rem rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        3px 4px 0.875rem rgba(0, 0, 0, 0.35),
+        0 1px 3px rgba(0, 0, 0, 0.15);
     position: relative;
     line-height: 0;
 }
@@ -53,7 +57,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: 0.75rem;
     font-weight: bold;
     color: #2a2a2a;
@@ -125,7 +129,7 @@
 
 .lightbox-date {
     color: #aaa;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: 0.8rem;
     margin: 0.5rem 0 0 0;
 }

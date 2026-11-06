@@ -1,13 +1,29 @@
 import { trackList } from './data/music-data.js';
+import { SECTIONS, getSection } from './data/sections.js';
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    // Valid sections are whatever the navbar links to
-    const validSections = Array.from(document.querySelectorAll(".main-navbar a"), a => a.dataset.section);
+    // Navbar: one link per section in data/sections.js
+    const navList = document.querySelector(".main-navbar ul");
+    SECTIONS.forEach(function(section) {
+        const link = document.createElement("a");
+        link.href = `#${section.id}`;
+        link.dataset.section = section.id;
+        const icon = document.createElement("img");
+        icon.src = section.icon;
+        icon.width = 20;
+        icon.height = 20;
+        icon.alt = "";
+        icon.className = "nav-icon";
+        link.append(icon, " " + section.label);
+        const item = document.createElement("li");
+        item.append(link);
+        navList.append(item);
+    });
 
     function sectionFromHash() {
         const hash = window.location.hash.replace('#', '');
-        return validSections.includes(hash) ? hash : 'home';
+        return getSection(hash) ? hash : 'home';
     }
 
     // The section being shown; the nav highlight, title bar, background and frame all follow it
@@ -157,26 +173,16 @@ document.addEventListener("DOMContentLoaded", function(){
     loadTrack(track_index);
 
     function updateSectionTitleBar(section) {
-        const sectionTitles = {
-            home:      { text: "Home",           img: "assets/images/titles/door-home.webp",      img2: "assets/images/titles/madot-triangle.webp" },
-            about:     { text: "About Me",        img: "assets/images/titles/door-about.webp",     img2: "assets/images/titles/madot-umbrella.webp" },
-            minecraft: { text: "Minecraft World", img: "assets/images/titles/door-minecraft.webp", img2: "assets/images/titles/madot-flute.webp" },
-            travel:    { text: "Travel Log",      img: "assets/images/titles/door-travel.webp",    img2: "assets/images/titles/madot-bicycle.png" },
-            blog:      { text: "Blog",            img: "assets/images/titles/door-blog.webp",      img2: "assets/images/titles/madot-yuki.webp" },
-            photofeed: { text: "Photo Feed",      img: "assets/images/titles/door-photofeed.webp", img2: "assets/images/titles/madot-witch.webp" },
-            guestbook: { text: "Guestbook",       img: "assets/images/titles/door-guestbook.png",  img2: "assets/images/titles/madot-hand.webp" },
-            music:     { text: "Vinyl Collection",     img: "assets/images/titles/door-dream.webp",     img2: "assets/images/titles/madot-hat.webp" },
-            shrines:   { text: "Shrines",         img: "assets/images/titles/door-shrines.webp",   img2: "assets/images/titles/madot-knife.webp" },
-            resources: { text: "Resources",       img: "assets/images/titles/door-resources.webp", img2: "assets/images/titles/madot-noface.webp" },
-        };
         const bar = document.querySelector(".section-title-bar");
         updateSectionTitleBar.currentSection = section;
         bar.style.opacity = "0";
         setTimeout(function() {
             if(updateSectionTitleBar.currentSection === section){
-                document.querySelector(".section-title-text").textContent = sectionTitles[section].text;
-                document.getElementById("section-door-img").src = sectionTitles[section].img;
-                document.getElementById("section-madotsuki-img").src = sectionTitles[section].img2 || "";
+                const info = getSection(section);
+                document.querySelector(".section-title-text").textContent = info.title;
+                document.getElementById("section-door-img").src = info.door;
+                document.getElementById("section-door-img").alt = info.title;
+                document.getElementById("section-madotsuki-img").src = info.madotsuki || "";
                 bar.style.opacity = "1";
             }
         }, 250);
@@ -277,20 +283,8 @@ let bgFadeTimer;
 
 function setSectionBackground(section) {
     // Called both inside and outside the DOMContentLoaded handler, so kept at module scope
-    const backgrounds = {
-        home:      "url('assets/images/backgrounds/home-bg.gif')",
-        about:     "url('assets/images/backgrounds/about-bg.webp')",
-        minecraft: "url('assets/images/backgrounds/minecraft-bg.png')",
-        travel:    "url('assets/images/backgrounds/travel-bg.webp')",
-        blog:      "url('assets/images/backgrounds/blog-bg.jpg')",
-        photofeed: "url('assets/images/backgrounds/photofeed-bg.jpg')",
-        guestbook: "url('assets/images/backgrounds/guestbook-bg.webp')",
-        music:     "url('assets/images/backgrounds/dream-bg.jpg')",
-        shrines:   "url('assets/images/backgrounds/shrines-bg.webp')",
-        resources: "url('assets/images/backgrounds/resources-bg.webp')",
-    };
-
-    const newBg = backgrounds[section] || "";
+    const info = getSection(section);
+    const newBg = info && info.background ? `url('${info.background}')` : "";
     const overlay = document.querySelector(".bg-fade-overlay");
 
     overlay.style.backgroundImage = newBg;

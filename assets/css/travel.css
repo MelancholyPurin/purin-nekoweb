@@ -345,6 +345,29 @@
     overflow: auto;
 }
 
+.travel-viewer-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 18rem;
+  height: 13.5rem;
+  max-width: 100%;
+  background: #fff;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+  cursor: wait;
+}
+
+.travel-viewer-loading[hidden],
+.travel-viewer-img[hidden] {
+  display: none;
+}
+
+.travel-viewer-loading p {
+  margin: 0;
+}
+
 .travel-viewer-img {
     display: block;
     /* capped well below the full frame so vertical and square photos don't dominate the window */

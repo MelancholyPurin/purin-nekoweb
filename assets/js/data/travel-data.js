@@ -174,8 +174,8 @@ export const travelLogSections = {
 // Each entry: name, flag (path), description text, and a photos array.
 // photos: [ { src, thumb, name, caption } ]
 //   src     full-size image, shown in the expanded picture (a local path or a full URL, e.g. catbox)
-//   name    optional label under the thumbnail and in the viewer title; defaults to src's filename,
-//           so set it for hosted files whose URL is a random id ("https://files.catbox.moe/8gg45b.webp")
+//   name    optional label under the thumbnail and in the viewer title; defaults to the thumb's
+//           filename (or src's if there is no thumb), so catbox URLs like ".../8gg45b.webp" don't need it
 //   thumb   small image for the folder grid (falls back to src if left out)
 //   caption optional; shows in the status bar of the expanded picture
 // Don't copy photos in by hand: run tools/optimize-travel-photos.sh <country> <folder-of-originals>.
@@ -321,20 +321,20 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/lithuania.webp",
         description: "Vilnius was a surprisingly pleasant visit. The old town has a distinct Baroque character you don't really expect from a Baltic capital, and the local food scene is genuinely underrated.",
         photos: [
-            { src: "assets/images/travel-log/photos/lithuania/angel.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/angel.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/castle_island.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/castle_island.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/cat.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/cat.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/church.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/church.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/constitution.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/constitution.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/crown.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/crown.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/dogg.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/dogg.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/fake_country.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/fake_country.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/heaven.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/heaven.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/kaunas.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/kaunas.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/long_road.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/long_road.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/pink_soup.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/pink_soup.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/tower.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/tower.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/lithuania/up_high.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/up_high.webp", caption: "" },
+            { src: "https://files.catbox.moe/mne6c4.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/angel.webp", caption: "" },
+            { src: "https://files.catbox.moe/dw2wb1.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/castle_island.webp", caption: "" },
+            { src: "https://files.catbox.moe/9jaavt.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/cat.webp", caption: "" },
+            { src: "https://files.catbox.moe/8tor19.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/church.webp", caption: "" },
+            { src: "https://files.catbox.moe/3adp4g.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/constitution.webp", caption: "" },
+            { src: "https://files.catbox.moe/xqb1f6.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/crown.webp", caption: "" },
+            { src: "https://files.catbox.moe/iohvw3.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/dogg.webp", caption: "" },
+            { src: "https://files.catbox.moe/tcen2l.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/fake_country.webp", caption: "" },
+            { src: "https://files.catbox.moe/l2aumf.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/heaven.webp", caption: "" },
+            { src: "https://files.catbox.moe/16p6mw.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/kaunas.webp", caption: "" },
+            { src: "https://files.catbox.moe/6wgo42.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/long_road.webp", caption: "" },
+            { src: "https://files.catbox.moe/9cyt5k.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/pink_soup.webp", caption: "" },
+            { src: "https://files.catbox.moe/iq88r4.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/tower.webp", caption: "" },
+            { src: "https://files.catbox.moe/nr08rd.webp", thumb: "assets/images/travel-log/photos/lithuania/thumbs/up_high.webp", caption: "" },
         ],
     },
     luxembourg: {
@@ -370,21 +370,21 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/portugal.webp",
         description: "Portugal completely stole my heart. The light, the tiles, the food, the people — everything about it felt warm and lived-in. Lisbon in particular is a city I could see myself living in without hesitation.",
         photos: [
-            { src: "assets/images/travel-log/photos/portugal/bridge_night.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/bridge_night.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/cat.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cat.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/cat2.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cat2.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/cat3.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cat3.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/cliff.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cliff.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/colorful.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/colorful.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/end_of_world.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/end_of_world.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/lego.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/lego.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/mcdonalds.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/mcdonalds.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/mirador.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/mirador.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/porto.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/porto.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/quinta.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/quinta.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/sticker.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/sticker.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/sun.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/sun.webp", caption: "" },
-            { src: "assets/images/travel-log/photos/portugal/water.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/water.webp", caption: "" },
+            { src: "https://files.catbox.moe/97bp8g.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/bridge_night.webp", caption: "" },
+            { src: "https://files.catbox.moe/m8xexa.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cat.webp", caption: "" },
+            { src: "https://files.catbox.moe/8de146.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cat2.webp", caption: "" },
+            { src: "https://files.catbox.moe/c3et0d.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cat3.webp", caption: "" },
+            { src: "https://files.catbox.moe/nrydca.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/cliff.webp", caption: "" },
+            { src: "https://files.catbox.moe/bns8we.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/colorful.webp", caption: "" },
+            { src: "https://files.catbox.moe/oxqgyi.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/end_of_world.webp", caption: "" },
+            { src: "https://files.catbox.moe/m2xjww.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/lego.webp", caption: "" },
+            { src: "https://files.catbox.moe/hd6qfh.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/mcdonalds.webp", caption: "" },
+            { src: "https://files.catbox.moe/xb1hlc.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/mirador.webp", caption: "" },
+            { src: "https://files.catbox.moe/cr5d80.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/porto.webp", caption: "" },
+            { src: "https://files.catbox.moe/j28nnx.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/quinta.webp", caption: "" },
+            { src: "https://files.catbox.moe/wlc09k.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/sticker.webp", caption: "" },
+            { src: "https://files.catbox.moe/sdq86h.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/sun.webp", caption: "" },
+            { src: "https://files.catbox.moe/t8x5vj.webp", thumb: "assets/images/travel-log/photos/portugal/thumbs/water.webp", caption: "" },
         ],
     },
     slovakia: {

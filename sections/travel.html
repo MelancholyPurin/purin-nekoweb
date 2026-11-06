@@ -203,6 +203,10 @@
                     </div>
                 </div>
                 <div class="window-body">
+                    <div class="travel-viewer-loading" hidden>
+                        <img src="assets/images/icons/hourglassicon.png" width="48" height="48" alt="" />
+                        <p>Loading...</p>
+                    </div>
                     <img class="travel-viewer-img" src="" alt="" />
                 </div>
                 <div class="status-bar">
@@ -309,18 +313,29 @@
                 if (key && travelCountries[key]) renderCountryDetail(key);
             });
 
+            // The label under a thumbnail and in the viewer's title bar: the photo's `name` if it has one,
+            // otherwise the file name of its thumbnail (local, so it keeps the real name even when the
+            // full-size file is on catbox under a random id), otherwise the file name from its src.
+            function photoName(photo) {
+                return photo.name || (photo.thumb || photo.src).split("/").pop();
+            }
+
+            // Names are hand-written so a quote or & must not break the markup
+            function escapeHtml(text) {
+                return String(text).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+            }
+
             // --- country detail view ---
             function renderCountryDetail(key) {
                 const country = travelCountries[key];
                 if (!country) return;
 
-                const fileName = (photo) => photo.src.split("/").pop();
                 const photos = country.photos
                     .map(
                         (photo, i) => `
-                <a class="travel-photo" href="${photo.src}" data-index="${i}">
-                    <span class="travel-photo-thumb"><img src="${photo.thumb || photo.src}" alt="${fileName(photo)}" loading="lazy"></span>
-                    <span class="travel-photo-name">${fileName(photo)}</span>
+                <a class="travel-photo" href="${escapeHtml(photo.src)}" data-index="${i}">
+                    <span class="travel-photo-thumb"><img src="${escapeHtml(photo.thumb || photo.src)}" alt="${escapeHtml(photoName(photo))}" loading="lazy"></span>
+                    <span class="travel-photo-name">${escapeHtml(photoName(photo))}</span>
                 </a>`,
                     )
                     .join("");
@@ -361,10 +376,28 @@
             function openViewer(country, index) {
                 const photo = country.photos[index];
                 const img = viewer.querySelector(".travel-viewer-img");
+                const loading = viewer.querySelector(".travel-viewer-loading");
+                const loadingText = loading.querySelector("p");
+
+                // Hide the previous picture and show the hourglass until the new one has arrived.
+                // Each handler checks it still belongs to the photo being shown, so a slow earlier
+                // photo can't pop up after a later one was opened.
+                img.hidden = true;
+                loading.hidden = false;
+                loadingText.textContent = "Loading...";
+                img.onload = function () {
+                    if (img.getAttribute("src") !== photo.src) return;
+                    loading.hidden = true;
+                    img.hidden = false;
+                };
+                img.onerror = function () {
+                    if (img.getAttribute("src") !== photo.src) return;
+                    loadingText.textContent = "Couldn't load this picture.";
+                };
                 img.src = photo.src;
-                img.alt = photo.src.split("/").pop();
+                img.alt = photoName(photo);
                 viewer.querySelector(".travel-viewer-title").textContent =
-                    photo.src.split("/").pop();
+                    photoName(photo);
                 viewer.querySelector(".travel-viewer-caption").textContent =
                     photo.caption || "";
                 viewer.querySelector(".travel-viewer-count").textContent =

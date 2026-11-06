@@ -128,3 +128,29 @@
     justify-content: center;
     align-items: center;
 }
+
+.moon-phase {
+    display: flex;
+    justify-content: center;
+}
+
+.moon-phase-frame {
+    position: relative;
+    flex: none;
+}
+
+.moon-phase-frame img {
+    display: block;
+}
+
+.moon-phase-label {
+    position: absolute;
+    top: 7.375rem;
+    left: 3rem;
+    width: 7.25rem;
+    background: #000;
+    color: #7f7f7f;
+    font: 10px/12px arial, helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+}

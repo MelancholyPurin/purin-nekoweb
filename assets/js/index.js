@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     document.querySelectorAll(".main-navbar a").forEach(function(link){
         link.addEventListener("click", function(e){
+            if(e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
             e.preventDefault();
             const section = link.dataset.section;
             if(section === currentSection) return;

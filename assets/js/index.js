@@ -4,7 +4,7 @@ import { SECTIONS, getSection } from './data/sections.js';
 document.addEventListener("DOMContentLoaded", function(){
 
     // Navbar: one link per section in data/sections.js
-    const navList = document.querySelector(".main-navbar ul");
+    const navList = document.querySelector(".mainNavbar ul");
     SECTIONS.forEach(function(section) {
         const link = document.createElement("a");
         link.href = `#${section.id}`;
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
         icon.width = 20;
         icon.height = 20;
         icon.alt = "";
-        icon.className = "nav-icon";
+        icon.className = "navIcon";
         link.append(icon, " " + section.label);
         const item = document.createElement("li");
         item.append(link);
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let currentSection = sectionFromHash();
 
     function setActiveNavLink(section) {
-        document.querySelectorAll(".main-navbar a").forEach(function(link) {
+        document.querySelectorAll(".mainNavbar a").forEach(function(link) {
             if(link.dataset.section === section) link.setAttribute("aria-current", "page");
             else link.removeAttribute("aria-current");
         });
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(){
         setSectionBackground(section);
         updateSectionTitleBar(section);
         // replace() so the frame doesn't add its own history entries; only the URL hash should
-        document.querySelector('.content-frame').contentWindow.location.replace(`sections/${section}.html`);
+        document.querySelector('.contentFrame').contentWindow.location.replace(`sections/${section}.html`);
     }
 
     // Restore section from URL hash on load, defaulting to home. The frame starts empty
@@ -51,20 +51,20 @@ document.addEventListener("DOMContentLoaded", function(){
     setActiveNavLink(initialSection);
     setSectionBackground(initialSection);
     if(initialSection !== 'home') updateSectionTitleBar(initialSection);
-    document.querySelector('.content-frame').contentWindow.location.replace(`sections/${initialSection}.html`);
+    document.querySelector('.contentFrame').contentWindow.location.replace(`sections/${initialSection}.html`);
 
     // Back/forward buttons
     window.addEventListener('popstate', function() {
         const section = sectionFromHash();
         loadSection(section);
         // the nav highlight is the link's :focus style, so move focus to the page now shown
-        document.querySelector(`.main-navbar a[data-section="${section}"]`).focus({ preventScroll: true });
+        document.querySelector(`.mainNavbar a[data-section="${section}"]`).focus({ preventScroll: true });
     });
 
     // Randomly swap button carousel (top) and stamp carousel (bottom)
     if (Math.random() < 0.5) {
-        document.querySelector("header").after(document.querySelector(".stamp-carousel-container"));
-        document.querySelector(".layout-container").after(document.querySelector(".button-carousel-container"));
+        document.querySelector("header").after(document.querySelector(".stampCarouselContainer"));
+        document.querySelector(".layoutContainer").after(document.querySelector(".buttonCarouselContainer"));
     }
 
     const quoteList = [
@@ -76,12 +76,12 @@ document.addEventListener("DOMContentLoaded", function(){
     const randomInt = Math.floor(Math.random() * quoteList.length);
     document.querySelector(".quote").textContent = quoteList[randomInt];
 
-    const track_name = document.querySelector(".songtitle-text");
-    const playpause_btn = document.querySelector(".playpause-track button");
+    const track_name = document.querySelector(".songtitleText");
+    const playpause_btn = document.querySelector(".playpauseTrack button");
     const playpause_img = playpause_btn.querySelector("img");
     const seek_slider = document.querySelector(".seek_slider");
-    const curr_time = document.querySelector(".current-time");
-    const total_duration = document.querySelector(".total-duration");
+    const curr_time = document.querySelector(".currentTime");
+    const total_duration = document.querySelector(".totalDuration");
     const curr_track = document.getElementById("music");
 
     // ~47px/s, what the old <marquee scrollamount="4"> moved at
@@ -157,8 +157,8 @@ document.addEventListener("DOMContentLoaded", function(){
     playpause_btn.addEventListener("click", function() {
         if(curr_track.paused) playTrack(); else pauseTrack();
     });
-    document.querySelector(".prev-track").addEventListener("click", prevTrack);
-    document.querySelector(".next-track").addEventListener("click", nextTrack);
+    document.querySelector(".prevTrack").addEventListener("click", prevTrack);
+    document.querySelector(".nextTrack").addEventListener("click", nextTrack);
     seek_slider.addEventListener("change", seekTo);
     curr_track.addEventListener("play", function() { showPlaying(true); });
     curr_track.addEventListener("pause", function() { showPlaying(false); });
@@ -173,13 +173,13 @@ document.addEventListener("DOMContentLoaded", function(){
     loadTrack(track_index);
 
     function updateSectionTitleBar(section) {
-        const bar = document.querySelector(".section-title-bar");
+        const bar = document.querySelector(".sectionTitleBar");
         updateSectionTitleBar.currentSection = section;
         bar.style.opacity = "0";
         setTimeout(function() {
             if(updateSectionTitleBar.currentSection === section){
                 const info = getSection(section);
-                document.querySelector(".section-title-text").textContent = info.title;
+                document.querySelector(".sectionTitleText").textContent = info.title;
                 document.getElementById("section-door-img").src = info.door;
                 document.getElementById("section-door-img").alt = info.title;
                 document.getElementById("section-madotsuki-img").src = info.madotsuki || "";
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }, 250);
     }
 
-    document.querySelectorAll(".main-navbar a").forEach(function(link){
+    document.querySelectorAll(".mainNavbar a").forEach(function(link){
         link.addEventListener("click", function(e){
             if(e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
             e.preventDefault();
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ]
 
     shuffle(buttonImages);
-    const track = document.querySelector(".button-carousel-track");
+    const track = document.querySelector(".buttonCarouselTrack");
     fillCarousel(track, "assets/images/buttons/", buttonImages, 88, 31);
 
     setCarouselSpeed(track);
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ]
 
     shuffle(stampImages);
-    const stampTrack = document.querySelector(".stamp-carousel-track");
+    const stampTrack = document.querySelector(".stampCarouselTrack");
     fillCarousel(stampTrack, "assets/images/stamps/", stampImages, 99, 56);
 
     setCarouselSpeed(stampTrack);
@@ -285,7 +285,7 @@ function setSectionBackground(section) {
     // Called both inside and outside the DOMContentLoaded handler, so kept at module scope
     const info = getSection(section);
     const newBg = info && info.background ? `url('${info.background}')` : "";
-    const overlay = document.querySelector(".bg-fade-overlay");
+    const overlay = document.querySelector(".bgFadeOverlay");
 
     overlay.style.backgroundImage = newBg;
     overlay.style.opacity = 1;
@@ -315,20 +315,20 @@ function generateCalendar(selector) {
         "July","August","September","October","November","December"
     ];
     container.innerHTML = `
-        <div class="calendar-header">${monthNames[month]} ${year}</div>
-        <div class="calendar-grid">
+        <div class="calendarHeader">${monthNames[month]} ${year}</div>
+        <div class="calendarGrid">
             <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
         </div>
     `;
     const grid = document.createElement("div");
-    grid.className = "calendar-grid";
+    grid.className = "calendarGrid";
     for (let i = 0; i < firstDay; i++) {
         grid.appendChild(document.createElement("div"));
     }
     for (let day = 1; day <= daysInMonth; day++) {
         const dayDiv = document.createElement("div");
         dayDiv.textContent = day;
-        if (day === today) { dayDiv.classList.add("calendar-today"); }
+        if (day === today) { dayDiv.classList.add("calendarToday"); }
         grid.appendChild(dayDiv);
     }
     container.appendChild(grid);

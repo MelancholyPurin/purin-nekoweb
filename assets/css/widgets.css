@@ -1,16 +1,16 @@
 /* index.html side-column windows: navigation, status.cafe, visitor count, clock and calendar, moon monitor. */
 
-.visitor-count .window-body {
+.visitorCount .window-body {
     text-align: center;
 }
 
-.visitor-count .window-body img {
+.visitorCount .window-body img {
     max-width: 100%;
     height: auto;
     display: inline-block;
 }
 
-.clock-calendar {
+.clockCalendar {
     text-align: center;
 }
 
@@ -20,15 +20,15 @@
     border: 1px solid midnightblue;
 }
 
-.statuscafe-username {
+.statuscafeUsername {
     margin-bottom: 0.5em;
 }
 
-.statuscafe-content {
+.statuscafeContent {
     margin: 0 1em 0.5em 1em;
 }
 
-.madeline-icon {
+.madelineIcon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,19 +44,19 @@
     border: 2px solid black;
 }
 
-.main-navbar ul {
+.mainNavbar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.main-navbar li {
+.mainNavbar li {
     margin-bottom: 0.3125rem;
     display: flex;
     align-items: center;
 }
 
-.main-navbar a {
+.mainNavbar a {
     color: #222222;
     text-decoration: none;
     font-family: inherit;
@@ -69,14 +69,14 @@
     font-weight: bold;
 }
 
-.main-navbar a:hover,
-.main-navbar a:focus {
+.mainNavbar a:hover,
+.mainNavbar a:focus {
     background: #222;
     color: #fff;
     outline: none;
 }
 
-.nav-icon {
+.navIcon {
     max-width: 100%;
     height: auto;
     margin-right: 0.5rem;
@@ -96,7 +96,7 @@
         inset 2px 2px #0a0a0a;
 }
 
-.calendar-header {
+.calendarHeader {
     text-align: center;
     margin-bottom: 4px;
     font-weight: bold;
@@ -104,18 +104,18 @@
     text-decoration: underline;
 }
 
-.calendar-grid {
+.calendarGrid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 2px;
     text-align: center;
 }
 
-.calendar-grid div {
+.calendarGrid div {
     padding: 2px 0;
 }
 
-.calendar-today {
+.calendarToday {
     background-color: #e3b23c;
     color: black;
     font-weight: bold;
@@ -123,27 +123,27 @@
     border-radius: 3px;
 }
 
-.moon-monitor .window-body {
+.moonMonitor .window-body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.moon-phase {
+.moonPhase {
     display: flex;
     justify-content: center;
 }
 
-.moon-phase-frame {
+.moonPhaseFrame {
     position: relative;
     flex: none;
 }
 
-.moon-phase-frame img {
+.moonPhaseFrame img {
     display: block;
 }
 
-.moon-phase-label {
+.moonPhaseLabel {
     position: absolute;
     top: 7.375rem;
     left: 3rem;

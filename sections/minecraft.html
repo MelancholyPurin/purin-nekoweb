@@ -18,27 +18,27 @@
         <script src="assets/js/typewriter.js" defer></script>
     </head>
     <body>
-        <section class="minecraft-page mc-gallery-bg">
+        <section class="minecraftPage mcGalleryBg">
             <div>
                 <div id="mcGallery">
-                    <div class="mc-city-carousel">
-                        <button class="mc-button" id="mc-city-prev">
+                    <div class="mcCityCarousel">
+                        <button class="mcButton" id="mc-city-prev">
                             Prev
                         </button>
-                        <span class="mc-city-name"></span>
-                        <button class="mc-button" id="mc-city-next">
+                        <span class="mcCityName"></span>
+                        <button class="mcButton" id="mc-city-next">
                             Next
                         </button>
                     </div>
-                    <div class="mc-city-desc"></div>
-                    <div class="mc-img-carousel">
-                        <img class="mc-img" src="" alt="" />
-                        <div class="mc-img-caption"></div>
-                        <div class="mc-img-carousel-buttons">
-                            <button class="mc-button" id="mc-img-prev">
+                    <div class="mcCityDesc"></div>
+                    <div class="mcImgCarousel">
+                        <img class="mcImg" src="" alt="" />
+                        <div class="mcImgCaption"></div>
+                        <div class="mcImgCarouselButtons">
+                            <button class="mcButton" id="mc-img-prev">
                                 Prev
                             </button>
-                            <button class="mc-button" id="mc-img-next">
+                            <button class="mcButton" id="mc-img-next">
                                 Next
                             </button>
                         </div>
@@ -46,8 +46,8 @@
                 </div>
             </div>
         </section>
-        <section class="minecraft-page">
-            <div class="fake-screen">
+        <section class="minecraftPage">
+            <div class="fakeScreen">
                 <h4 class="typeWriter">>_ the story behind the world :3</h4>
                 <p>
                     I've been playing Minecraft since 2011. No other game has
@@ -99,9 +99,9 @@
             let currentMCImage = 0;
 
             function renderMCImgGroup() {
-                document.querySelector(".mc-city-name").textContent =
+                document.querySelector(".mcCityName").textContent =
                     mcGalleryGroups[currentMCGroup].name;
-                document.querySelector(".mc-city-desc").textContent =
+                document.querySelector(".mcCityDesc").textContent =
                     mcGalleryGroups[currentMCGroup].description;
                 currentMCImage = 0;
                 renderMCImage();
@@ -110,8 +110,8 @@
             function renderMCImage() {
                 const imgData =
                     mcGalleryGroups[currentMCGroup].images[currentMCImage];
-                document.querySelector(".mc-img").src = imgData.src;
-                document.querySelector(".mc-img-caption").textContent =
+                document.querySelector(".mcImg").src = imgData.src;
+                document.querySelector(".mcImgCaption").textContent =
                     imgData.caption;
             }
 

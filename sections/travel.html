@@ -18,20 +18,20 @@
                 margin: 0;
                 background: transparent;
             }
-            .travel-page {
+            .travelPage {
                 height: 100%;
                 margin: 0;
             }
-            .travel-log-window {
+            .travelLogWindow {
                 height: 100%;
                 box-sizing: border-box;
             }
         </style>
     </head>
     <body>
-        <section class="travel-page">
-            <div class="window travel-log-window">
-                <div class="title-bar travel-log-title-bar">
+        <section class="travelPage">
+            <div class="window travelLogWindow">
+                <div class="title-bar travelLogTitleBar">
                     <div class="title-bar-text">
                         <sub
                             ><img
@@ -39,7 +39,7 @@
                                 src="assets/images/travel-log/log-icon.png"
                                 alt=""
                         /></sub>
-                        Mercutio's Travel Log
+                        Purin's Travel Log
                     </div>
                     <div class="title-bar-controls">
                         <button aria-label="Minimize"></button>
@@ -47,17 +47,17 @@
                         <button aria-label="Close"></button>
                     </div>
                 </div>
-                <div class="window-body travel-log-edit-bar">
-                    <div class="travel-log-line"></div>
+                <div class="window-body travelLogEditBar">
+                    <div class="travelLogLine"></div>
                     <p>File</p>
                     <p>Edit</p>
                     <p>View</p>
                     <p>Tools</p>
                     <p>Help</p>
                 </div>
-                <div class="window-body travel-log-explorer-icons">
-                    <div class="travel-log-line2"></div>
-                    <div class="explorer-w-title" data-section="tlHome">
+                <div class="window-body travelLogExplorerIcons">
+                    <div class="travelLogLine2"></div>
+                    <div class="explorerWTitle" data-section="tlHome">
                         <img
                             src="assets/images/travel-log/home-page.png"
                             width="48"
@@ -65,7 +65,7 @@
                         />
                         <p>Home</p>
                     </div>
-                    <div class="explorer-w-title" data-section="tlCountryList">
+                    <div class="explorerWTitle" data-section="tlCountryList">
                         <img
                             src="assets/images/travel-log/country-list.png"
                             width="48"
@@ -73,7 +73,7 @@
                         />
                         <p>Country List</p>
                     </div>
-                    <div class="explorer-w-title" data-section="tlCalendar">
+                    <div class="explorerWTitle" data-section="tlCalendar">
                         <img
                             src="assets/images/travel-log/calendar-icon.png"
                             width="48"
@@ -81,7 +81,7 @@
                         />
                         <p>Calendar</p>
                     </div>
-                    <div class="explorer-w-title" data-section="tlStats">
+                    <div class="explorerWTitle" data-section="tlStats">
                         <img
                             src="assets/images/travel-log/stats.png"
                             width="48"
@@ -89,7 +89,7 @@
                         />
                         <p>Stats</p>
                     </div>
-                    <div class="explorer-w-title" data-section="tlMap">
+                    <div class="explorerWTitle" data-section="tlMap">
                         <img
                             src="assets/images/travel-log/map.png"
                             width="48"
@@ -97,7 +97,7 @@
                         />
                         <p>Map</p>
                     </div>
-                    <div class="explorer-w-title" data-section="tlFuturePlans">
+                    <div class="explorerWTitle" data-section="tlFuturePlans">
                         <img
                             src="assets/images/travel-log/future-plans.png"
                             width="48"
@@ -105,9 +105,9 @@
                         />
                         <p>Future Plans</p>
                     </div>
-                    <div class="travel-log-line4"></div>
+                    <div class="travelLogLine4"></div>
                     <div
-                        class="explorer-w-title"
+                        class="explorerWTitle"
                         data-section="tlSpecialThanks"
                     >
                         <img
@@ -117,8 +117,8 @@
                         />
                         <p>Special Thanks</p>
                     </div>
-                    <div class="travel-log-line4"></div>
-                    <div class="explorer-w-title" data-section="tlExplorer">
+                    <div class="travelLogLine4"></div>
+                    <div class="explorerWTitle" data-section="tlExplorer">
                         <img
                             src="assets/images/travel-log/show-directory.png"
                             width="48"
@@ -127,16 +127,16 @@
                         <p>Show Explorer</p>
                     </div>
                 </div>
-                <div class="field-row travel-log-address-bar">
-                    <div class="travel-log-line3"></div>
+                <div class="field-row travelLogAddressBar">
+                    <div class="travelLogLine3"></div>
                     <label for="travel-log-address">Address</label>
                 </div>
-                <div class="window-body travel-log-view">
-                    <div class="travel-log-main-view">
-                        <div class="tree-tab travel-log-tree-tab">
-                            <div class="tree-tab-title">Explorer</div>
+                <div class="window-body travelLogView">
+                    <div class="travelLogMainView">
+                        <div class="treeTab travelLogTreeTab">
+                            <div class="treeTabTitle">Explorer</div>
                             <ul class="tree-view">
-                                <li class="tree-heading">Table of Contents</li>
+                                <li class="treeHeading">Table of Contents</li>
                                 <li>
                                     <a href="#" data-section="tlHome">Home</a>
                                 </li>
@@ -144,7 +144,7 @@
                                     <details>
                                         <summary>Country List</summary>
                                         <ul
-                                            class="travel-log-tree-countries"
+                                            class="travelLogTreeCountries"
                                         ></ul>
                                     </details>
                                 </li>
@@ -171,7 +171,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="travel-log-main-content"></div>
+                        <div class="travelLogMainContent"></div>
                     </div>
                 </div>
                 <div class="status-bar">
@@ -183,8 +183,8 @@
         </section>
 
         <!-- Expanded picture -->
-        <div class="travel-viewer-overlay">
-            <div class="window travel-viewer">
+        <div class="travelViewerOverlay">
+            <div class="window travelViewer">
                 <div class="title-bar">
                     <div class="title-bar-text">
                         <sub
@@ -193,25 +193,25 @@
                                 src="assets/images/travel-log/log-icon.png"
                                 alt=""
                         /></sub>
-                        <span class="travel-viewer-title"></span>
+                        <span class="travelViewerTitle"></span>
                     </div>
                     <div class="title-bar-controls">
                         <button
-                            class="travel-viewer-close"
+                            class="travelViewerClose"
                             aria-label="Close"
                         ></button>
                     </div>
                 </div>
                 <div class="window-body">
-                    <div class="travel-viewer-loading" hidden>
+                    <div class="travelViewerLoading" hidden>
                         <img src="assets/images/icons/hourglassicon.png" width="48" height="48" alt="" />
                         <p>Loading...</p>
                     </div>
-                    <img class="travel-viewer-img" src="" alt="" />
+                    <img class="travelViewerImg" src="" alt="" />
                 </div>
                 <div class="status-bar">
-                    <p class="status-bar-field travel-viewer-caption"></p>
-                    <p class="status-bar-field travel-viewer-count"></p>
+                    <p class="status-bar-field travelViewerCaption"></p>
+                    <p class="status-bar-field travelViewerCount"></p>
                 </div>
             </div>
         </div>
@@ -225,13 +225,13 @@
             let explorerIsOpen = false;
 
             const mainContent = document.querySelector(
-                ".travel-log-main-content",
+                ".travelLogMainContent",
             );
-            const treeTab = document.querySelector(".travel-log-tree-tab");
-            const viewer = document.querySelector(".travel-viewer-overlay");
+            const treeTab = document.querySelector(".travelLogTreeTab");
+            const viewer = document.querySelector(".travelViewerOverlay");
 
             // --- explorer tree: one link per country, built from the data ---
-            document.querySelector(".travel-log-tree-countries").innerHTML =
+            document.querySelector(".travelLogTreeCountries").innerHTML =
                 Object.entries(travelCountries)
                     .map(
                         ([key, country]) =>
@@ -254,10 +254,10 @@
 
             function syncCountryGrid() {
                 const countryGrid =
-                    document.querySelector(".country-list-grid");
+                    document.querySelector(".countryListGrid");
                 if (countryGrid)
                     countryGrid.classList.toggle(
-                        "explorer-open",
+                        "explorerOpen",
                         explorerIsOpen,
                     );
             }
@@ -276,7 +276,7 @@
             // --- toolbar icon navigation ---
             document
                 .querySelectorAll(
-                    ".travel-log-explorer-icons .explorer-w-title",
+                    ".travelLogExplorerIcons .explorerWTitle",
                 )
                 .forEach(function (icon) {
                     icon.addEventListener("click", function () {
@@ -307,7 +307,7 @@
 
             // --- country card click (delegated: cards are injected dynamically) ---
             document.addEventListener("click", function (e) {
-                const card = e.target.closest(".country-card");
+                const card = e.target.closest(".countryCard");
                 if (!card) return;
                 const key = card.dataset.country;
                 if (key && travelCountries[key]) renderCountryDetail(key);
@@ -333,37 +333,37 @@
                 const photos = country.photos
                     .map(
                         (photo, i) => `
-                <a class="travel-photo" href="${escapeHtml(photo.src)}" data-index="${i}">
-                    <span class="travel-photo-thumb"><img src="${escapeHtml(photo.thumb || photo.src)}" alt="${escapeHtml(photoName(photo))}" loading="lazy"></span>
-                    <span class="travel-photo-name">${escapeHtml(photoName(photo))}</span>
+                <a class="travelPhoto" href="${escapeHtml(photo.src)}" data-index="${i}">
+                    <span class="travelPhotoThumb"><img src="${escapeHtml(photo.thumb || photo.src)}" alt="${escapeHtml(photoName(photo))}" loading="lazy"></span>
+                    <span class="travelPhotoName">${escapeHtml(photoName(photo))}</span>
                 </a>`,
                     )
                     .join("");
 
                 mainContent.innerHTML = `
-                <button class="back-to-countries">← Country List</button>
-                <div class="country-detail-header">
-                    <img src="${country.flag}" alt="${country.name} Flag" class="country-flag">
+                <button class="backToCountries">← Country List</button>
+                <div class="countryDetailHeader">
+                    <img src="${country.flag}" alt="${country.name} Flag" class="countryFlag">
                     <h2>${country.name}</h2>
                 </div>
-                <p class="country-detail-desc">${country.description}</p>
+                <p class="countryDetailDesc">${country.description}</p>
                 <hr>
-                <div class="travel-photo-folder">
-                    ${photos || '<p class="travel-photo-empty">This folder is empty.</p>'}
+                <div class="travelPhotoFolder">
+                    ${photos || '<p class="travelPhotoEmpty">This folder is empty.</p>'}
                 </div>
-                <p class="travel-photo-count">${country.photos.length} object(s)</p>
+                <p class="travelPhotoCount">${country.photos.length} object(s)</p>
             `;
                 mainContent.scrollTop = 0;
                 setActiveTreeLink(`a[data-country="${key}"]`);
 
                 mainContent
-                    .querySelector(".back-to-countries")
+                    .querySelector(".backToCountries")
                     .addEventListener("click", function () {
                         showSection("tlCountryList");
                     });
 
                 mainContent
-                    .querySelectorAll(".travel-photo")
+                    .querySelectorAll(".travelPhoto")
                     .forEach(function (link) {
                         link.addEventListener("click", function (e) {
                             e.preventDefault();
@@ -375,8 +375,8 @@
             // --- expanded picture ---
             function openViewer(country, index) {
                 const photo = country.photos[index];
-                const img = viewer.querySelector(".travel-viewer-img");
-                const loading = viewer.querySelector(".travel-viewer-loading");
+                const img = viewer.querySelector(".travelViewerImg");
+                const loading = viewer.querySelector(".travelViewerLoading");
                 const loadingText = loading.querySelector("p");
 
                 // Hide the previous picture and show the hourglass until the new one has arrived.
@@ -396,11 +396,11 @@
                 };
                 img.src = photo.src;
                 img.alt = photoName(photo);
-                viewer.querySelector(".travel-viewer-title").textContent =
+                viewer.querySelector(".travelViewerTitle").textContent =
                     photoName(photo);
-                viewer.querySelector(".travel-viewer-caption").textContent =
+                viewer.querySelector(".travelViewerCaption").textContent =
                     photo.caption || "";
-                viewer.querySelector(".travel-viewer-count").textContent =
+                viewer.querySelector(".travelViewerCount").textContent =
                     `${index + 1} of ${country.photos.length}`;
                 viewer.classList.add("active");
             }
@@ -410,7 +410,7 @@
             }
 
             viewer
-                .querySelector(".travel-viewer-close")
+                .querySelector(".travelViewerClose")
                 .addEventListener("click", closeViewer);
             viewer.addEventListener("click", function (e) {
                 if (e.target === viewer) closeViewer();

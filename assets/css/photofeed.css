@@ -1,10 +1,10 @@
-.photofeed-intro {
+.photofeedIntro {
     margin-bottom: 1.5rem;
     max-width: fit-content;
 }
 
 /* Auto-filling grid — adds a new row automatically as photos are added */
-.polaroid-grid {
+.polaroidGrid {
     margin: 0 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
@@ -29,7 +29,7 @@
 }
 
 /* CSS polaroid frame — white card with thick bottom strip */
-.polaroid-inner {
+.polaroidInner {
     background: #fff;
     padding: 0.5rem 0.5rem 2.375rem 0.5rem;
     box-shadow:
@@ -40,7 +40,7 @@
 }
 
 /* Photo fills the inner square, stretched to fit any aspect ratio */
-.polaroid-photo {
+.polaroidPhoto {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: fill;
@@ -48,7 +48,7 @@
 }
 
 /* Title sits in the white bottom strip */
-.polaroid-title {
+.polaroidTitle {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -73,7 +73,7 @@
    Lightbox
    ===================== */
 
-.lightbox-overlay {
+.lightboxOverlay {
     display: none;
     position: fixed;
     inset: 0;
@@ -83,12 +83,12 @@
     align-items: center;
 }
 
-.lightbox-overlay.active {
+.lightboxOverlay.active {
     display: flex;
 }
 
 /* Close button: top-right of the entire overlay */
-.lightbox-close {
+.lightboxClose {
     position: absolute;
     top: 0.75rem;
     right: 1.25rem;
@@ -102,12 +102,12 @@
     z-index: 1;
 }
 
-.lightbox-close:hover {
+.lightboxClose:hover {
     color: yellow;
 }
 
 /* Upper section: image + date, vertically + horizontally centered */
-.lightbox-top {
+.lightboxTop {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -119,7 +119,7 @@
     box-sizing: border-box;
 }
 
-.lightbox-img {
+.lightboxImg {
     max-width: 88%;
     max-height: 55vh;
     object-fit: contain;
@@ -127,7 +127,7 @@
     box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.7);
 }
 
-.lightbox-date {
+.lightboxDate {
     color: #aaa;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.8rem;

@@ -1,24 +1,24 @@
 /* sections/about.html */
 
-.split-screen {
+.splitScreen {
     display: flex;
     gap: 1rem;
     margin: 1rem auto;
     justify-content: center;
 }
 
-.abt-col {
+.abtCol {
     box-sizing: border-box;
     height: auto;
     width: 21.5625rem;
 }
 
-.abt-interests-quizzes {
+.abtInterestsQuizzes {
     align-items: stretch;
     display: flex;
 }
 
-.abt-interests-quizzes .abt-col {
+.abtInterestsQuizzes .abtCol {
     display: flex;
     flex-direction: column;
     width: 21.875rem;
@@ -26,13 +26,18 @@
     box-sizing: border-box;
 }
 
-.abt-interests-quizzes .abt-col:last-child {
+.abtInterestsQuizzes .abtCol:last-child {
     overflow-y: auto;
     height: 100%;
     min-height: 0;
 }
 
-.mc-skin {
+/* more air between the quickFacts entries (also when one wraps onto two lines) */
+.quickFacts li + li {
+    margin-top: 0.75rem;
+}
+
+.mcSkin {
     border: 1px dotted white;
     border-radius: 0.3125rem;
     width: 9.375rem;
@@ -40,13 +45,13 @@
     display: block;
 }
 
-.fun-fact-container {
+.funFactContainer {
     display: flex;
     align-items: center;
     height: 16.875rem;
 }
 
-.fun-fact-box {
+.funFactBox {
     width: 18.75rem;
     border: 2px solid gray;
     margin: auto;
@@ -55,7 +60,7 @@
     border-radius: 0.3125rem;
 }
 
-.fun-fact {
+.funFact {
     font-size: 1.125rem;
     margin: auto;
     font-weight: bold;
@@ -63,13 +68,13 @@
     color: black;
 }
 
-.rei-chiquita {
+.reiChiquita {
     width: 15.625rem;
     margin: 0.625rem auto;
     display: block;
 }
 
-.abt-quiz img {
+.abtQuiz img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -86,10 +91,10 @@
     padding: 0 0 0 0.625rem;
 }
 
-.small-leftcol-button {
+.smallLeftcolButton {
     width: 6rem;
 }
 
-.about-page .fake-screen {
+.aboutPage .fakeScreen {
     background-color: #163540;
 }

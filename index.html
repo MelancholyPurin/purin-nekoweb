@@ -19,14 +19,14 @@
         <script type="module" src="assets/js/index.js"></script>
     </head>
     <body>
-        <div class="bg-fade-overlay"></div>
+        <div class="bgFadeOverlay"></div>
         <header>
-            <h1 class="crt main-title"> - melancholy.Purin - </h1>
+            <h1 class="crt mainTitle"> - melancholy.Purin - </h1>
         </header>
-        <div class="button-carousel-container">
-            <div class="button-carousel-track"></div>
+        <div class="buttonCarouselContainer">
+            <div class="buttonCarouselTrack"></div>
         </div>
-        <div class="layout-container">
+        <div class="layoutContainer">
             <aside class="column left">
                 <section id="navbar">
                     <div class="window">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="window-body">
                             <!-- links are built by index.js from assets/js/data/sections.js -->
-                            <nav class="main-navbar">
+                            <nav class="mainNavbar">
                                 <ul></ul>
                             </nav>
                         </div>
@@ -58,10 +58,10 @@
                             </div>
                         </div>
                         <div class="window-body">
-                            <div class="madeline-icon">
+                            <div class="madelineIcon">
                                 <img class="ic" src="assets/images/celeste-madeline.gif">
                             </div>
-                            <div class="statuscafe" id="statuscafe"><div class="statuscafe-username" id="statuscafe-username"></div><div class="statuscafe-content" id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=mercutio" defer></script>
+                            <div class="statuscafe" id="statuscafe"><div class="statuscafeUsername" id="statuscafe-username"></div><div class="statuscafeContent" id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=mercutio" defer></script>
                         </div>
                     </div>
                 </section>
@@ -94,8 +94,8 @@
                         </div>
                         <div class="window-body">
                             <p>Breaching into the real world.</p>
-                            <p><a href="https://github.com/Mercutio3" target="_blank" rel="noopener noreferrer"><img class="small-id-button" src="assets/images/id_buttons/github.png" alt="GitHub Icon"/></a></p>
-                            <p><a href="https://discordapp.com/users/387394475036770307" target="_blank" rel="noopener noreferrer"><img class="small-id-button" src="assets/images/id_buttons/discord.png" alt="Discord Icon"/></a></p>
+                            <p><a href="https://github.com/Mercutio3" target="_blank" rel="noopener noreferrer"><img class="smallIdButton" src="assets/images/id_buttons/github.png" alt="GitHub Icon"/></a></p>
+                            <p><a href="https://discordapp.com/users/387394475036770307" target="_blank" rel="noopener noreferrer"><img class="smallIdButton" src="assets/images/id_buttons/discord.png" alt="Discord Icon"/></a></p>
                             <p><a href="https://myanimelist.net/profile/Mercutio3" target="_blank" rel="noopener noreferrer">MyAnimeList</a></p>
                         </div>
                     </div>
@@ -120,20 +120,20 @@
             <div class="column middle">
                 <main>
                     <section style="display: flex; justify-content: center;">
-                        <div class="section-title-bar">
+                        <div class="sectionTitleBar">
                             <div style="align-items: center; justify-content: center; display: flex; gap: 30px;">
-                                <img id="section-door-img" class="door-img" src="assets/images/titles/door-home.webp" alt="Home"/>
-                                <h2 class="crt section-title-text">Home</h2>
+                                <img id="section-door-img" class="doorImg" src="assets/images/titles/door-home.webp" alt="Home"/>
+                                <h2 class="crt sectionTitleText">Home</h2>
                                 <img id="section-madotsuki-img" src="assets/images/titles/madot-triangle.webp" height="80px" alt="Madotsuki"/>
                             </div>
                         </div>
                     </section>
-                    <iframe class="content-frame" title="Page content"></iframe>
+                    <iframe class="contentFrame" title="Page content"></iframe>
                 </main>
             </div>
 
             <aside class="column right">
-                <section class="music-player">
+                <section class="musicPlayer">
                     <div class="window">
                         <div class="title-bar">
                             <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/titlebaricon.png" width="14" height="14" alt="Title Bar Icon"/></sub> Ame-Chan's Jams</div>
@@ -148,25 +148,25 @@
                                 <div class="imagestyle"><img class="ic" src="assets/images/musicplayer/amechan.gif" alt=""></div>
                                 <div id="musicplayer">
                                     <div class="songtitlewindow">
-                                        <div class="flex" style="display: flex;"><div class="songtitle"><span class="songtitle-text"></span></div><div class="songtitlearrow"></div></div>
+                                        <div class="flex" style="display: flex;"><div class="songtitle"><span class="songtitleText"></span></div><div class="songtitlearrow"></div></div>
                                     </div>
                         
                                 <div class="seeking">
-                                    <div class="current-time">00:00</div>
+                                    <div class="currentTime">00:00</div>
                                     <input type="range" min="0" max="100" step="any" value="0" class="seek_slider" aria-label="Seek">
-                                    <div class="total-duration">0:00</div>
+                                    <div class="totalDuration">0:00</div>
                                 </div>
                         
                                 <table class="controls">
                                     <tr>
                                         <td>
-                                            <div class="prev-track"><button class="player-button" aria-label="Previous track"><img src="assets/images/musicplayer/prevtrack.png" class="controlimg" alt=""></button></div>
+                                            <div class="prevTrack"><button class="playerButton" aria-label="Previous track"><img src="assets/images/musicplayer/prevtrack.png" class="controlimg" alt=""></button></div>
                                         </td>
                                         <td>
-                                            <div class="playpause-track"><button class="player-button" aria-label="Play"><img src="assets/images/musicplayer/playpause.png" class="controlimg" alt=""></button></div>
+                                            <div class="playpauseTrack"><button class="playerButton" aria-label="Play"><img src="assets/images/musicplayer/playpause.png" class="controlimg" alt=""></button></div>
                                         </td>
                                         <td>
-                                            <div class="next-track"><button class="player-button" aria-label="Next track"><img src="assets/images/musicplayer/nexttrack.png" class="controlimg" alt=""></button></div>
+                                            <div class="nextTrack"><button class="playerButton" aria-label="Next track"><img src="assets/images/musicplayer/nexttrack.png" class="controlimg" alt=""></button></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -176,7 +176,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="visitor-count">
+                <section class="visitorCount">
                     <div class="window">
                         <div class="title-bar">
                             <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/visitoricon.png" width="14" height="14" alt="Visitor Icon"/></sub> Visitor Count</div>
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="clock-calendar">
+                <section class="clockCalendar">
                     <div class="window">
                         <div class="title-bar">
                             <div class="title-bar-text"><sub><img class="titlebaricon" src="assets/images/icons/timedateicon.png" width="14" height="14" alt="Time and Date Icon"/></sub> My Time</div>
@@ -242,7 +242,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="moon-monitor">
+                <section class="moonMonitor">
                     <div class="window">
                         <div class="title-bar">
                             <div class="title-bar-text">Moon Monitor</div>
@@ -254,10 +254,10 @@
                         </div>
                         <div class="window-body">
                             <!-- Current moon phase image (c) MoonConnection.com -->
-                            <div class="moon-phase">
-                                <div class="moon-phase-frame">
+                            <div class="moonPhase">
+                                <div class="moonPhaseFrame">
                                     <a href="https://www.moonconnection.com" target="mc_moon_ph"><img src="https://www.moonmodule.com/cs/dm/hn.gif" width="212" height="136" alt="Current moon phase"></a>
-                                    <a class="moon-phase-label" href="https://www.moonconnection.com/moon_phases.phtml" target="mc_moon_ph">moon phases</a>
+                                    <a class="moonPhaseLabel" href="https://www.moonconnection.com/moon_phases.phtml" target="mc_moon_ph">moon phases</a>
                                 </div>
                             </div>
                         </div>
@@ -265,8 +265,8 @@
                 </section>
             </aside>
         </div>
-        <div class="stamp-carousel-container">
-            <div class="stamp-carousel-track"></div>
+        <div class="stampCarouselContainer">
+            <div class="stampCarouselTrack"></div>
         </div>
         
         <footer>

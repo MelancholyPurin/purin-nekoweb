@@ -60,7 +60,7 @@ input[type="range"]::-moz-range-track {
 
 /* Replaces <marquee>: the left padding (100% of the box) starts the text at the right edge,
    and the -100% shift carries it fully off the left. JS sets the duration from the text length. */
-.songtitle-text {
+.songtitleText {
     display: inline-block;
     padding-left: 100%;
     animation: songtitle-scroll 10s linear infinite;
@@ -73,7 +73,7 @@ input[type="range"]::-moz-range-track {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .songtitle-text {
+    .songtitleText {
         animation: none;
         padding-left: 0;
     }
@@ -82,7 +82,7 @@ input[type="range"]::-moz-range-track {
     }
 }
 
-.player-button {
+.playerButton {
     min-width: 3.125rem;
 }
 
@@ -105,11 +105,11 @@ input[type="range"]::-moz-range-track {
     padding: 0.875rem; /* padding around seeking bar */
 }
 
-.current-time {
+.currentTime {
     padding-right: 0.3125rem;
 }
 
-.total-duration {
+.totalDuration {
     padding-left: 0.3125rem;
 }
 

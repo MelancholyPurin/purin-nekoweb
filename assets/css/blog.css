@@ -1,6 +1,6 @@
 /* sections/blog.html */
 
-.blog-book-bg {
+.blogBookBg {
     background: url("../images/bookandquill.webp");
     background-repeat: no-repeat;
     background-position: center center;
@@ -16,7 +16,7 @@
     font-family: minecraftFont;
 }
 
-.blog-book {
+.blogBook {
     font-family: minecraftFont;
     display: flex;
     width: 43.75rem;
@@ -25,60 +25,60 @@
     color: #3a2f0b;
 }
 
-.blog-toc,
-.blog-entry,
-.blog-toc h4,
-.blog-toc h5,
-.blog-toc ul,
-.blog-toc li,
-.blog-toc a,
-.blog-entry h4 {
+.blogToc,
+.blogEntry,
+.blogToc h4,
+.blogToc h5,
+.blogToc ul,
+.blogToc li,
+.blogToc a,
+.blogEntry h4 {
     font-family: minecraftFont;
 }
 
-.blog-toc,
-.blog-entry {
+.blogToc,
+.blogEntry {
     color: #3a2f0b;
 }
 
-.blog-toc {
+.blogToc {
     width: 50%;
     padding: 1.5rem;
     border-right: 2px solid #c2b280;
     min-height: 25.2448rem;
 }
 
-.blog-toc h4 {
+.blogToc h4 {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.blog-toc h5 {
+.blogToc h5 {
     font-size: 1rem;
     margin-bottom: 0;
 }
 
-.blog-toc ul {
+.blogToc ul {
     list-style: none;
     padding: 0;
 }
 
-.blog-toc li {
+.blogToc li {
     margin-bottom: 0.75rem;
 }
 
-.blog-toc a {
+.blogToc a {
     text-decoration: underline;
     color: #6b4f1d;
     font-weight: bold;
 }
 
-.blog-entry {
+.blogEntry {
     width: 50%;
     padding: 1.5rem;
     min-height: 25.2448rem;
 }
 
-.blog-entry h4 {
+.blogEntry h4 {
     margin-top: 0;
 }

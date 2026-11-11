@@ -1,6 +1,6 @@
 /* index.html page frame: background fade, header, three-column layout, carousels, section title bar, CRT text effect, footer quote. */
 
-.bg-fade-overlay {
+.bgFadeOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -15,14 +15,14 @@
     background-repeat: no-repeat;
 }
 
-.main-title {
+.mainTitle {
     color: white;
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
 
-.layout-container {
+.layoutContainer {
     display: flex;
     gap: 1rem;
     margin: 0 1rem 2rem;
@@ -195,12 +195,12 @@ footer {
     }
 }
 
-.door-img {
+.doorImg {
     border: 2px solid black;
     height: 4.75rem;
 }
 
-.section-title-bar {
+.sectionTitleBar {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -211,7 +211,7 @@ footer {
     opacity: 1;
 }
 
-.section-title-text {
+.sectionTitleText {
     color: white;
     text-align: center;
     margin: 0;
@@ -219,7 +219,7 @@ footer {
     font-family: lainFont;
 }
 
-.button-carousel-container {
+.buttonCarouselContainer {
     /* width: calc(225px + 775px + 225px); */
     overflow: hidden;
     background: transparent;
@@ -228,21 +228,21 @@ footer {
     position: relative;
 }
 
-.button-carousel-track {
+.buttonCarouselTrack {
     height: 3rem;
 }
 
-.button-carousel-track img {
+.buttonCarouselTrack img {
     height: 2.5rem;
     width: auto;
     display: block;
 }
 
-.button-carousel-container {
+.buttonCarouselContainer {
     margin-bottom: 0;
 }
 
-.stamp-carousel-container {
+.stampCarouselContainer {
     overflow: hidden;
     background: transparent;
     height: 3.5rem;
@@ -252,15 +252,15 @@ footer {
     position: relative;
 }
 
-.stamp-carousel-track {
+.stampCarouselTrack {
     height: 3.5rem;
 }
 
 /* Both carousels: the images are in the track twice, so sliding it left by half its width loops
    seamlessly. The trailing padding equals the gap so each half is exactly one full period.
    JS sets animation-duration from the width (see setCarouselSpeed). */
-.button-carousel-track,
-.stamp-carousel-track {
+.buttonCarouselTrack,
+.stampCarouselTrack {
     display: flex;
     flex: none;
     width: max-content;
@@ -277,19 +277,19 @@ footer {
     }
 }
 
-.button-carousel-container:hover .button-carousel-track,
-.stamp-carousel-container:hover .stamp-carousel-track {
+.buttonCarouselContainer:hover .buttonCarouselTrack,
+.stampCarouselContainer:hover .stampCarouselTrack {
     animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .button-carousel-track,
-    .stamp-carousel-track {
+    .buttonCarouselTrack,
+    .stampCarouselTrack {
         animation: none;
     }
 }
 
-.stamp-carousel-track img {
+.stampCarouselTrack img {
     height: 3.5rem;
     width: auto;
     display: block;
@@ -309,7 +309,7 @@ footer {
     min-height: 0;
 }
 
-.content-frame {
+.contentFrame {
     flex: 1;
     border: none;
     display: block;

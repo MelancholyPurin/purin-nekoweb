@@ -53,11 +53,11 @@ h4 {
     font-family: lainFont2;
 }
 
-.fake-screen:hover {
+.fakeScreen:hover {
     border-color: yellow;
 }
 
-.fake-screen {
+.fakeScreen {
     font-family: "Courier New", Courier, monospace;
     font-size: 1rem;
     color: white;
@@ -73,7 +73,7 @@ h4 {
     filter: brightness(1.2);
 }
 
-.fake-screen::before {
+.fakeScreen::before {
     content: " ";
     display: block;
     position: absolute;
@@ -101,7 +101,7 @@ h4 {
     text-shadow: none;
 }
 
-.resource-link {
+.resourceLink {
     color: white;
 }
 
@@ -176,11 +176,11 @@ body,
     scrollbar-width: thin;
 }
 
-.small-id-button {
+.smallIdButton {
     width: 6.8125rem;
 }
 
-.bio-pic {
+.bioPic {
     float: left;
     height: auto;
     max-width: 7.8125rem;
@@ -190,6 +190,6 @@ body,
     border-radius: 0.625rem;
 }
 
-.bio-pic:hover {
+.bioPic:hover {
     filter: grayscale(0);
 }

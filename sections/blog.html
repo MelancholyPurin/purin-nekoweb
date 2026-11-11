@@ -17,11 +17,11 @@
         </style>
     </head>
     <body>
-        <section class="blog-page">
-            <div class="blog-book-bg">
-                <div class="blog-book">
-                    <div class="blog-toc">
-                        <ul class="blog-toc-list">
+        <section class="blogPage">
+            <div class="blogBookBg">
+                <div class="blogBook">
+                    <div class="blogToc">
+                        <ul class="blogTocList">
                             <li>
                                 <a href="#" data-entry="welcome"
                                     >back to welcome</a
@@ -31,7 +31,7 @@
                         <h4>2025</h4>
                         <h5>November</h5>
                         <h5>October</h5>
-                        <ul class="blog-toc-list">
+                        <ul class="blogTocList">
                             <li><a href="#" data-entry="entry1">Entry 1</a></li>
                             <li>
                                 <a href="#" data-entry="entry2"
@@ -40,7 +40,7 @@
                             </li>
                         </ul>
                         <h5>September</h5>
-                        <ul class="blog-toc-list">
+                        <ul class="blogTocList">
                             <li>
                                 <a href="#" data-entry="entry3"
                                     >{21.} Very Obvious Signs I Was Trans That I
@@ -49,7 +49,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="blog-entry" id="blog-entry-content">
+                    <div class="blogEntry" id="blog-entry-content">
                         <h4 style="text-align: center">
                             Welcome to my Estrogen Diary!
                         </h4>
@@ -93,7 +93,7 @@
                 const entryContent =
                     document.getElementById("blog-entry-content");
                 document
-                    .querySelectorAll(".blog-toc-list a")
+                    .querySelectorAll(".blogTocList a")
                     .forEach(function (link) {
                         link.addEventListener("click", function (e) {
                             e.preventDefault();

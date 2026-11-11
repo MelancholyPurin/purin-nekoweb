@@ -31,19 +31,19 @@
         </style>
     </head>
     <body>
-        <section class="photofeed-page">
-            <div class="fake-screen photofeed-intro">
+        <section class="photofeedPage">
+            <div class="fakeScreen photofeedIntro">
                 <p>Stuff that's made me laugh or I find amusing.</p>
             </div>
-            <div class="polaroid-grid" id="polaroid-grid"></div>
+            <div class="polaroidGrid" id="polaroid-grid"></div>
         </section>
 
         <!-- Lightbox -->
-        <div class="lightbox-overlay" id="lightbox">
-            <button class="lightbox-close" id="lightbox-close">&times;</button>
-            <div class="lightbox-top">
-                <img class="lightbox-img" id="lightbox-img" src="" alt="" />
-                <p class="lightbox-date" id="lightbox-date"></p>
+        <div class="lightboxOverlay" id="lightbox">
+            <button class="lightboxClose" id="lightbox-close">&times;</button>
+            <div class="lightboxTop">
+                <img class="lightboxImg" id="lightbox-img" src="" alt="" />
+                <p class="lightboxDate" id="lightbox-date"></p>
             </div>
             <!-- OMORI dialogue box at the bottom of the overlay -->
             <div class="textbox-wrap">
@@ -89,16 +89,16 @@
                 card.style.setProperty("--rot", rot + "deg");
 
                 const inner = document.createElement("div");
-                inner.className = "polaroid-inner";
+                inner.className = "polaroidInner";
 
                 const img = document.createElement("img");
-                img.className = "polaroid-photo";
+                img.className = "polaroidPhoto";
                 img.src = photo.src;
                 img.alt = photo.title;
                 img.loading = "lazy";
 
                 const titleEl = document.createElement("span");
-                titleEl.className = "polaroid-title";
+                titleEl.className = "polaroidTitle";
                 titleEl.textContent = photo.title;
 
                 inner.appendChild(img);

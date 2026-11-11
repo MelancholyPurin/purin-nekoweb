@@ -1,30 +1,30 @@
 /* sections/travel.html: the explorer window, country list, photo folder and picture viewer. */
 
-.travel-log-window {
+.travelLogWindow {
     display: flex;
     flex-direction: column;
     overflow: hidden;
     transition: 0.3s all;
 }
 
-.travel-log-window > * {
+.travelLogWindow > * {
     flex-shrink: 0;
 }
 
 /* the explorer body takes up whatever space the toolbars leave */
 
-.travel-log-window > .travel-log-view {
+.travelLogWindow > .travelLogView {
     flex: 1 1 0;
     min-height: 0;
     display: flex;
     flex-direction: column;
 }
 
-.travel-log-title-bar {
+.travelLogTitleBar {
     background: linear-gradient(90deg, #636b2f, #fcda8b);
 }
 
-.travel-log-edit-bar {
+.travelLogEditBar {
     display: flex;
     height: 1.875rem;
     margin: 0;
@@ -35,13 +35,13 @@
         inset -1px -1px grey;
 }
 
-.travel-log-edit-bar p {
+.travelLogEditBar p {
     padding: 0.3125rem;
 }
 
-.travel-log-line,
-.travel-log-line2,
-.travel-log-line3 {
+.travelLogLine,
+.travelLogLine2,
+.travelLogLine3 {
     width: 4px;
     box-shadow:
         inset -1px -1px #565656,
@@ -51,19 +51,19 @@
     margin-right: 3px;
 }
 
-.travel-log-line {
+.travelLogLine {
     height: 70%;
 }
 
-.travel-log-line2 {
+.travelLogLine2 {
     height: 5.125rem;
 }
 
-.travel-log-line3 {
+.travelLogLine3 {
     height: 1.4375rem;
 }
 
-.travel-log-line4 {
+.travelLogLine4 {
     width: 0px;
     height: 5.125rem;
     border-left: 1px inset gray;
@@ -73,7 +73,7 @@
     margin-right: 3px;
 }
 
-.explorer-w-title {
+.explorerWTitle {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,11 +81,11 @@
     padding: 0.3125rem 0.625rem 0.3125rem 0.625rem;
 }
 
-.explorer-w-title p {
+.explorerWTitle p {
     margin-bottom: 0;
 }
 
-.travel-log-explorer-icons {
+.travelLogExplorerIcons {
     display: flex;
     padding: 0.3125rem;
     margin: 0;
@@ -94,7 +94,7 @@
         inset -1px -1px grey;
 }
 
-.travel-log-address-bar {
+.travelLogAddressBar {
     padding-left: 0.3125rem;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
@@ -104,7 +104,7 @@
     border-bottom: 1px inset white;
 }
 
-.travel-log-main-view {
+.travelLogMainView {
     background: #fff;
     box-shadow:
         inset -1px -1px #fff,
@@ -119,7 +119,7 @@
     padding: 0;
 }
 
-.travel-log-main-content {
+.travelLogMainContent {
     font-size: 1rem;
     flex: 1;
     min-width: 0;
@@ -127,7 +127,7 @@
     overflow-y: auto;
 }
 
-.travel-log-tree-tab {
+.travelLogTreeTab {
     display: none;
     background: #f3f3f3;
     border-right: 2px solid #c0c0c0;
@@ -139,12 +139,12 @@
     flex-direction: column;
 }
 
-.tree-tab-title {
+.treeTabTitle {
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
-.travel-log-tree-tab .tree-view {
+.travelLogTreeTab .tree-view {
     font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
     font-size: 0.9375rem;
     margin-left: 0;
@@ -153,7 +153,7 @@
     overflow-y: auto;
 }
 
-.tree-view .tree-heading {
+.tree-view .treeHeading {
     font-weight: bold;
 }
 
@@ -172,7 +172,7 @@
     color: #fff;
 }
 
-.travel-coming-soon {
+.travelComingSoon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,7 +182,7 @@
     text-align: center;
 }
 
-.yume-walk {
+.yumeWalk {
     border: 3px solid black;
     border-radius: 0.3125rem;
     margin: 0 auto;
@@ -190,7 +190,7 @@
     display: block;
 }
 
-.country-list-grid {
+.countryListGrid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
@@ -198,22 +198,22 @@
     margin-top: 2rem 0;
 }
 
-.country-list-grid.explorer-open {
+.countryListGrid.explorerOpen {
     grid-template-columns: repeat(4, 1fr);
 }
 
-.country-card {
+.countryCard {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
 
-.country-card:hover .country-flag {
+.countryCard:hover .countryFlag {
     border-color: #0078d7;
 }
 
-.country-detail-header {
+.countryDetailHeader {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,21 +221,21 @@
     margin: 0.625rem 0 0.5rem 0;
 }
 
-.country-detail-header h2 {
+.countryDetailHeader h2 {
     margin: 0;
 }
 
-.country-detail-desc {
+.countryDetailDesc {
     margin-bottom: 0.625rem;
 }
 
-.back-to-countries {
+.backToCountries {
     margin-bottom: 0.5rem;
 }
 
 /* ---- country photos: look like a Windows 98 folder in "thumbnails" view ---- */
 
-.travel-photo-folder {
+.travelPhotoFolder {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
     gap: 0.75rem 0.5rem;
@@ -250,7 +250,7 @@
         inset 2px 2px #0a0a0a;
 }
 
-.travel-photo {
+.travelPhoto {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -261,7 +261,7 @@
     outline: none;
 }
 
-.travel-photo-thumb {
+.travelPhotoThumb {
     width: 6rem;
     height: 4.5rem;
     box-sizing: border-box;
@@ -274,14 +274,14 @@
         inset 2px 2px #0a0a0a;
 }
 
-.travel-photo-thumb img {
+.travelPhotoThumb img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.travel-photo-name {
+.travelPhotoName {
     max-width: 100%;
     margin-top: 0.3125rem;
     padding: 1px 3px;
@@ -294,15 +294,15 @@
 
 /* selected look: navy label with a dotted focus box */
 
-.travel-photo:hover .travel-photo-name,
-.travel-photo:focus-visible .travel-photo-name {
+.travelPhoto:hover .travelPhotoName,
+.travelPhoto:focus-visible .travelPhotoName {
     background: #000080;
     color: #fff;
     outline: 1px dotted #ff0;
     outline-offset: -1px;
 }
 
-.travel-photo-empty {
+.travelPhotoEmpty {
     grid-column: 1 / -1;
     align-self: center;
     margin: 0;
@@ -310,14 +310,14 @@
     text-align: center;
 }
 
-.travel-photo-count {
+.travelPhotoCount {
     margin: 0.375rem 0 0;
     font-size: 0.8125rem;
 }
 
 /* ---- expanded picture, shown as a 98.css window ---- */
 
-.travel-viewer-overlay {
+.travelViewerOverlay {
     display: none;
     position: fixed;
     inset: 0;
@@ -329,23 +329,23 @@
     background: rgba(0, 0, 0, 0.6);
 }
 
-.travel-viewer-overlay.active {
+.travelViewerOverlay.active {
     display: flex;
 }
 
-.travel-viewer {
+.travelViewer {
     display: flex;
     flex-direction: column;
     max-width: 100%;
     max-height: 100%;
 }
 
-.travel-viewer .window-body {
+.travelViewer .window-body {
     min-height: 0;
     overflow: auto;
 }
 
-.travel-viewer-loading {
+.travelViewerLoading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -359,16 +359,16 @@
   cursor: wait;
 }
 
-.travel-viewer-loading[hidden],
-.travel-viewer-img[hidden] {
+.travelViewerLoading[hidden],
+.travelViewerImg[hidden] {
   display: none;
 }
 
-.travel-viewer-loading p {
+.travelViewerLoading p {
   margin: 0;
 }
 
-.travel-viewer-img {
+.travelViewerImg {
     display: block;
     /* capped well below the full frame so vertical and square photos don't dominate the window */
     max-width: 100%;
@@ -384,7 +384,7 @@
     background: #fff;
 }
 
-.country-flag {
+.countryFlag {
     width: auto;
     height: 3rem;
     display: block;
@@ -393,12 +393,12 @@
     border-radius: 0.3125rem;
 }
 
-.future-plan-row {
+.futurePlanRow {
     overflow: hidden;
     margin-bottom: 1.2rem;
 }
 
-.future-plan-flag {
+.futurePlanFlag {
     float: left;
     height: 2.5rem;
     width: auto;
@@ -408,6 +408,6 @@
     margin-bottom: 0.375rem;
 }
 
-.future-plan-text p {
+.futurePlanText p {
     margin-top: 0;
 }

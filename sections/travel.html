@@ -73,14 +73,6 @@
                         />
                         <p>Country List</p>
                     </div>
-                    <div class="explorerWTitle" data-section="tlCalendar">
-                        <img
-                            src="assets/images/travel-log/calendar-icon.png"
-                            width="48"
-                            height="48"
-                        />
-                        <p>Calendar</p>
-                    </div>
                     <div class="explorerWTitle" data-section="tlStats">
                         <img
                             src="assets/images/travel-log/stats.png"
@@ -88,6 +80,14 @@
                             height="48"
                         />
                         <p>Stats</p>
+                    </div>
+                    <div class="explorerWTitle" data-section="tlCalendar">
+                        <img
+                            src="assets/images/travel-log/calendar-icon.png"
+                            width="48"
+                            height="48"
+                        />
+                        <p>Calendar</p>
                     </div>
                     <div class="explorerWTitle" data-section="tlMap">
                         <img
@@ -129,7 +129,11 @@
                 </div>
                 <div class="field-row travelLogAddressBar">
                     <div class="travelLogLine3"></div>
-                    <label for="travel-log-address">Address</label>
+                    <span id="travel-log-address-label">Address</span>
+                    <nav
+                        class="travelLogAddress"
+                        aria-labelledby="travel-log-address-label"
+                    ></nav>
                 </div>
                 <div class="window-body travelLogView">
                     <div class="travelLogMainView">
@@ -154,10 +158,10 @@
                                     >
                                 </li>
                                 <li>
-                                    <a href="#" data-section="tlMap">Map</a>
+                                    <a href="#" data-section="tlStats">Stats</a>
                                 </li>
                                 <li>
-                                    <a href="#" data-section="tlStats">Stats</a>
+                                    <a href="#" data-section="tlMap">Map</a>
                                 </li>
                                 <li>
                                     <a href="#" data-section="tlFuturePlans"
@@ -262,9 +266,164 @@
                     );
             }
 
+            // --- address bar: a folder-style path to where you are, each part a link back up ---
+            const addressBar = document.querySelector(".travelLogAddress");
+            const sectionLabels = {
+                tlHome: null,
+                tlCountryList: "Country List",
+                tlCalendar: "Calendar",
+                tlMap: "Map",
+                tlStats: "Stats",
+                tlFuturePlans: "Future Plans",
+                tlSpecialThanks: "Special Thanks",
+            };
+
+            // crumbs: the sections/countries between "Travel Log" and the current page, e.g.
+            // ["tlCountryList", "belgium"]. The last one is the current page and isn't a link.
+            function setAddress(crumbs) {
+                const parts = [{ label: "Travel Log", go: "tlHome" }];
+                crumbs.forEach(function (crumb) {
+                    if (travelCountries[crumb])
+                        parts.push({
+                            label: travelCountries[crumb].name,
+                            country: crumb,
+                        });
+                    else parts.push({ label: sectionLabels[crumb], go: crumb });
+                });
+                addressBar.replaceChildren();
+                parts.forEach(function (part, i) {
+                    if (i > 0) addressBar.append(" > ");
+                    if (i === parts.length - 1) {
+                        const current = document.createElement("span");
+                        current.className = "addressCurrent";
+                        current.textContent = part.label;
+                        current.setAttribute("aria-current", "page");
+                        addressBar.append(current);
+                        return;
+                    }
+                    const link = document.createElement("a");
+                    link.href = "#";
+                    link.textContent = part.label;
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        if (part.country) renderCountryDetail(part.country);
+                        else showSection(part.go);
+                    });
+                    addressBar.append(link);
+                });
+            }
+
+            // --- stats page: everything is worked out from travelCountries ---
+            const TIERS = ["S", "A", "B", "C", "D", "F"];
+            const CONTINENT_COUNT = 7;
+
+            // every 4-digit year in a country's "visited" (2019, "2019, 2023", "Summer 2019", [2019, 2023])
+            function visitedYears(country) {
+                const found = String(country.visited ?? "").match(/\b\d{4}\b/g);
+                return found ? found.map(Number) : [];
+            }
+
+            function renderStats() {
+                const entries = Object.entries(travelCountries);
+                const photoCount = ([, c]) => c.photos.length;
+                const totalPhotos = entries.reduce((sum, e) => sum + photoCount(e), 0);
+
+                const continents = [...new Set(entries.map(([, c]) => c.continent).filter(Boolean))];
+
+                const mostPhotos = Math.max(...entries.map(photoCount));
+                const topCountries = entries
+                    .filter((e) => photoCount(e) === mostPhotos && mostPhotos > 0)
+                    .map(([, c]) => c.name);
+
+                const summary = [
+                    ["Countries visited", entries.length],
+                    ["Total photos", totalPhotos],
+                    [
+                        "Continents covered",
+                        continents.length
+                            ? `${continents.length} of ${CONTINENT_COUNT} (${continents.join(", ")})`
+                            : "-",
+                    ],
+                    [
+                        "Most photos",
+                        topCountries.length
+                            ? `${topCountries.join(", ")} (${mostPhotos}${topCountries.length > 1 ? " each" : ""})`
+                            : "-",
+                    ],
+                ]
+                    .map(
+                        ([label, value]) =>
+                            `<p class="statRow"><strong>${label}:</strong> ${escapeHtml(value)}</p>`,
+                    )
+                    .join("");
+
+                // tier list: one row per tier, plus a row for countries with no tier yet
+                const tierRow = (label, list, cls) => `
+                    <div class="tierRow">
+                        <div class="tierLabel ${cls}">${label}</div>
+                        <div class="tierFlags">${list
+                            .map(
+                                ([key, c]) =>
+                                    `<button type="button" class="tierFlag" data-country="${key}" title="${escapeHtml(c.name)}"><img src="${escapeHtml(c.flag)}" alt="${escapeHtml(c.name)}"></button>`,
+                            )
+                            .join("")}</div>
+                    </div>`;
+                const tiered = (t) => entries.filter(([, c]) => String(c.tier).trim().toUpperCase() === t);
+                const unranked = entries.filter(([, c]) => !TIERS.includes(String(c.tier).trim().toUpperCase()));
+                const tierList =
+                    TIERS.map((t) => tierRow(t, tiered(t), "tier" + t)).join("") +
+                    (unranked.length ? tierRow("?", unranked, "tierNone") : "");
+
+                // timeline: one bar per year (including empty years in between)
+                const perYear = {};
+                let undated = 0;
+                entries.forEach(([, c]) => {
+                    const years = visitedYears(c);
+                    if (!years.length) undated++;
+                    new Set(years).forEach((y) => (perYear[y] = (perYear[y] || 0) + 1));
+                });
+                const years = Object.keys(perYear).map(Number);
+                let timeline;
+                if (years.length) {
+                    const first = Math.min(...years);
+                    const last = Math.max(...years);
+                    const max = Math.max(...Object.values(perYear));
+                    let cols = "";
+                    for (let y = first; y <= last; y++) {
+                        const n = perYear[y] || 0;
+                        cols += `<div class="timelineCol" title="${y}: ${n} ${n === 1 ? "country" : "countries"}">
+                            <span class="timelineCount">${n || ""}</span>
+                            ${n ? `<div class="timelineBar" style="--share: ${n / max}"></div>` : ""}
+                            <span class="timelineYear">${y}</span>
+                        </div>`;
+                    }
+                    timeline = `<div class="timeline">${cols}</div>`;
+                } else {
+                    timeline = `<p class="statsNote">Add a <code>visited</code> year to the countries to fill this in.</p>`;
+                }
+                const undatedNote =
+                    years.length && undated
+                        ? `<p class="statsNote">${undated} ${undated === 1 ? "country has" : "countries have"} no year yet.</p>`
+                        : "";
+
+                mainContent.innerHTML = `
+                    <h2 class="statsTitle">~ Stats ~</h2>
+                    <div class="statsSummary">${summary}</div>
+                    <h3 class="statsHeading">Tier List</h3>
+                    <div class="tierList">${tierList}</div>
+                    <h3 class="statsHeading">Countries per Year</h3>
+                    ${timeline}${undatedNote}`;
+                mainContent.querySelectorAll(".tierFlag").forEach((btn) =>
+                    btn.addEventListener("click", () => renderCountryDetail(btn.dataset.country)),
+                );
+            }
+
             function showSection(section) {
-                mainContent.innerHTML =
-                    travelLogSections[section] || "<p>Section not found.</p>";
+                setAddress(sectionLabels[section] ? [section] : []);
+                if (section === "tlStats") renderStats();
+                else
+                    mainContent.innerHTML =
+                        travelLogSections[section] || "<p>Section not found.</p>";
                 mainContent.scrollTop = 0;
                 if (section === "tlCountryList") syncCountryGrid();
                 setActiveTreeLink(`a[data-section="${section}"]`);
@@ -325,6 +484,26 @@
                 return String(text).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
             }
 
+            // "Visited: 2019" etc. One line each; a field left empty in the data isn't shown.
+            const factFields = [
+                ["Visited", "visited"],
+                ["Favorite Food", "favoriteFood"],
+                ["Favorite Building", "favoriteBuilding"],
+                ["Public Transportation", "publicTransportation"],
+            ];
+
+            function countryFacts(country) {
+                const lines = factFields
+                    .map(([label, field]) => {
+                        const value = [].concat(country[field] ?? "").join(", ").trim();
+                        return value
+                            ? `<p class="countryFact"><strong>${label}:</strong> ${escapeHtml(value)}</p>`
+                            : "";
+                    })
+                    .join("");
+                return lines ? `<div class="countryFacts">${lines}</div>` : "";
+            }
+
             // --- country detail view ---
             function renderCountryDetail(key) {
                 const country = travelCountries[key];
@@ -347,6 +526,7 @@
                     <h2>${country.name}</h2>
                 </div>
                 <p class="countryDetailDesc">${country.description}</p>
+                ${countryFacts(country)}
                 <hr>
                 <div class="travelPhotoFolder">
                     ${photos || '<p class="travelPhotoEmpty">This folder is empty.</p>'}
@@ -354,6 +534,7 @@
                 <p class="travelPhotoCount">${country.photos.length} object(s)</p>
             `;
                 mainContent.scrollTop = 0;
+                setAddress(["tlCountryList", key]);
                 setActiveTreeLink(`a[data-country="${key}"]`);
 
                 mainContent

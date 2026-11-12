@@ -104,6 +104,33 @@
     border-bottom: 1px inset white;
 }
 
+/* the path field: a sunken white box like a Win98 address input */
+.travelLogAddress {
+    flex: 1;
+    min-width: 0;
+    margin-right: 0.3125rem;
+    padding: 2px 4px;
+    background: #fff;
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px grey,
+        inset -2px -2px #dfdfdf,
+        inset 2px 2px #0a0a0a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.travelLogAddress a {
+    color: #000;
+    text-decoration: none;
+}
+
+.travelLogAddress a:hover,
+.travelLogAddress a:focus-visible {
+    text-decoration: underline;
+}
+
 .travelLogMainView {
     background: #fff;
     box-shadow:
@@ -226,7 +253,10 @@
 }
 
 .countryDetailDesc {
-    margin-bottom: 0.625rem;
+    margin: 0 auto;
+    padding-bottom: 0.625rem;
+    width: 70%;
+    text-align: center;
 }
 
 .backToCountries {
@@ -410,4 +440,161 @@
 
 .futurePlanText p {
     margin-top: 0;
+}
+
+/* ---- country facts (Visited, Favorite Food, ...): one line each under the description ---- */
+
+.countryFacts {
+    margin: 0 auto;
+    padding-bottom: 0.625rem;
+    width: 70%;
+    text-align: center;
+}
+
+.countryFact {
+    margin: 0.125rem 0;
+}
+
+/* ---- stats page ---- */
+
+.statsTitle {
+    text-align: center;
+}
+
+.statsSummary {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 1rem auto;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px grey,
+        inset -2px -2px #dfdfdf,
+        inset 2px 2px #0a0a0a;
+}
+
+.statRow {
+    margin: 0.25rem 0;
+}
+
+.statsHeading {
+    margin: 1rem 0 0.5rem 0;
+}
+
+.statsNote {
+    margin: 0.5rem 0;
+    font-style: italic;
+}
+
+/* tier list: coloured label cell + a row of country flags */
+.tierList {
+    border: 2px solid #000;
+    background: #1a1a17;
+}
+
+.tierRow {
+    display: flex;
+    min-height: 3.5rem;
+    border-bottom: 2px solid #000;
+}
+
+.tierRow:last-child {
+    border-bottom: 0;
+}
+
+.tierLabel {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.tierS { background: #ff7f7f; }
+.tierA { background: #ffbf7f; }
+.tierB { background: #ffdf7f; }
+.tierC { background: #ffff7f; }
+.tierD { background: #bfff7f; }
+.tierF { background: #7fbfff; }
+.tierNone { background: #c0c0c0; }
+
+.tierFlags {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 0.375rem;
+    padding: 0.375rem;
+}
+
+.tierFlag {
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 2px solid #000;
+    background: none;
+    box-shadow: none;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.tierFlag img {
+    display: block;
+    height: 2.5rem;
+    width: auto;
+}
+
+.tierFlag:hover,
+.tierFlag:focus-visible {
+    border-color: #fff;
+    outline: 1px dotted #fff;
+}
+
+/* countries per year: a small bar chart */
+.timeline {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 10rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    overflow-x: auto;
+    background: #fff;
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px grey,
+        inset -2px -2px #dfdfdf,
+        inset 2px 2px #0a0a0a;
+}
+
+.timelineCol {
+    display: flex;
+    flex: 1 0 2.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.timelineBar {
+    box-sizing: border-box;
+    /* the column minus the count (top) and year (bottom) labels */
+    height: calc((100% - 2.75rem) * var(--share));
+    width: 70%;
+    background: #000080;
+    border: 1px solid #000;
+    border-bottom: 0;
+}
+
+.timelineCount,
+.timelineYear {
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+.timelineYear {
+    padding: 0.125rem 0;
 }

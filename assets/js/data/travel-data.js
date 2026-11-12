@@ -1,7 +1,7 @@
 export const travelLogSections = {
     tlHome: `<h2 style="text-align: center;">My Very Epic Travel Log!</h2>
                                             <img class="yumeWalk" src="assets/images/travel-log/yumenikki-walk.gif" alt="Yume Nikki Walk">
-                                            <p>I'm also quite fond of exploring the real world, not just Minecraft! :P</p>
+                                            <p>I'm quite fond of exploring the real world, not just Minecraft! :P</p>
                                             <p>This is my Travel Log! A cute and convenient place to show and keep track of places that I have visited over the years.
                                                 Besides being a simple archive, I also want to keep track of what I saw/did in each place and how I felt while being there, pictures and all.
                                                 I also want to include sections like a map, a calendar, and a statistics list so I can step back and admire my travels as a whole (a girl loves her reminiscing!).
@@ -12,7 +12,7 @@ export const travelLogSections = {
                                             <p>As usual, thank you for reading! I hope you can learn something about the places I've been to, and maybe gotten ideas of places you'd like to visit yourself :3</p>
                                             <p>—Anja ♪</p>`,
     tlCountryList: `<h2 style="text-align: center;">~ Country List ~</h2>
-                                         <p style="text-align: center;">Click on a country to view its entries.</p>
+                                         <p style="text-align: center;">Click on a country to view pictures and thoughts about it.</p>
                                          <img src="assets/images/travel-log/train.gif" alt="Train" style="display: block; margin: 0px auto 20px auto; max-width: 100%; height: auto;">
                                         <div class="countryListGrid">
                                             <div class="countryCard" data-country="austria">
@@ -103,7 +103,7 @@ export const travelLogSections = {
                                         </div>`,
     tlCalendar: `<div class="travelComingSoon"><p>Coming soon!</p></div>`,
     tlMap: `<div class="travelComingSoon"><p>Coming soon!</p></div>`,
-    tlStats: `<div class="travelComingSoon"><p>Coming soon!</p></div>`,
+    // tlStats is built in sections/travel.html (renderStats) from the country data below
     tlFuturePlans: `<div style="align-items: center; justify-content: center; display: flex; margin-top: 32px;">
                                                 <img src="assets/images/travel-log/clock.gif">
                                                 <h2 style="text-align: center; margin: 0px 10px;">Future Plans</h2>
@@ -171,7 +171,18 @@ export const travelLogSections = {
 
 // ---------------------------------------------------------------------------
 // Country detail data
-// Each entry: name, flag (path), description text, and a photos array.
+// Each entry: name, flag (path), description text, the fact fields below, and a photos array.
+//
+// Fact fields (all optional; an empty one is simply not shown on the country's page):
+//   continent             "Europe", "North America", ... counted on the Stats page
+//   visited               year(s) you went, e.g. 2019 or "2019, 2023" or "Summer 2019"; every 4-digit
+//                         year in it is a bar on the Stats timeline
+//   favoriteFood          one short line
+//   favoriteBuilding      one short line
+//   publicTransportation  one short line
+//   tier                  "S", "A", "B", "C", "D" or "F": places the country in the Stats tier list
+//                         (no tier = shown in the Unranked row)
+//
 // photos: [ { src, thumb, name, caption } ]
 //   src     full-size image, shown in the expanded picture (a local path or a full URL, e.g. catbox)
 //   name    optional label under the thumbnail and in the viewer title; defaults to the thumb's
@@ -188,25 +199,38 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/austria.webp",
         description:
             "Austria has an incredible density of history, art, and architecture packed into its cities. My visit was a family trip with my brother — it was the kind of place that makes you want to slow down and just look.",
+        continent: "Europe",
+        visited: "August 2023",
+        favoriteFood: "Schnitzel",
+        favoriteBuilding: "Wiener Rathaus",
+        publicTransportation: "Awesome!",
+        tier: "A",
         photos: [],
     },
     belgium: {
         name: "Belgium",
         flag: "assets/images/travel-log/flags/belgium.webp",
         description:
-            "Belgium surprised me. I expected it to be a quiet transit country, but Brussels had far more personality than I anticipated, and the food — waffles, fries, chocolate, beer — is unironically some of the best in Europe.",
+            "There is a LOT more to see in Belgium than I thought, but it's spread out quite evenly among its largest cities. Fortunately it's a very small country, and it would probably get boring to spend more than two days in any given city anyway.",
+        continent: "Europe",
+        visited: "July 2024",
+        favoriteFood: "Flemish Beef Stew",
+        favoriteBuilding: "L'hôtel de Ville de Bruxelles",
+        publicTransportation: "Good, gotta admit...",
+        tier: "B",
         photos: [
             {
                 src: "https://files.catbox.moe/dd9kmk.webp",
                 thumb: "assets/images/travel-log/photos/belgium/thumbs/antwerp.webp",
                 name: "antwerp.webp",
-                caption: "",
+                caption: "Flanders is genuinely goated.",
             },
             {
                 src: "https://files.catbox.moe/1e5iim.webp",
                 thumb: "assets/images/travel-log/photos/belgium/thumbs/arch.webp",
                 name: "arch.webp",
-                caption: "",
+                caption:
+                    "You'd think this building looks nicer viewed directly in front of it but no the optimal picture spot is at a slight angle.",
             },
             {
                 src: "https://files.catbox.moe/bobmtv.webp",
@@ -255,7 +279,7 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/i3g0kt.webp",
                 thumb: "assets/images/travel-log/photos/belgium/thumbs/parliament.webp",
                 name: "parliament.webp",
-                caption: "",
+                caption: "*Feels the aura*",
             },
             {
                 src: "https://files.catbox.moe/plqjgr.webp",
@@ -279,7 +303,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/sie4lc.webp",
                 thumb: "assets/images/travel-log/photos/belgium/thumbs/trains.webp",
                 name: "trains.webp",
-                caption: "",
+                caption:
+                    "The interior of Antwerp's main station. Genuinely breathtaking.",
             },
             {
                 src: "https://files.catbox.moe/eg3rtl.webp",
@@ -294,12 +319,25 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/canada.png",
         description:
             "Canada was a mixed experience for me as a destination, but visiting a dear friend made the whole trip worth it. I got to see a very local, non-touristy side of the country that I wouldn't have found on my own.",
+        continent: "North America",
+        visited: "June 2023, March 2024",
+        favoriteFood: "Poutine",
+        favoriteBuilding: "CN Tower",
+        publicTransportation:
+            "Quite lacking for a city as big and important as Toronto.",
+        tier: "C",
         photos: [],
     },
     croatia: {
         name: "Croatia",
         flag: "assets/images/travel-log/flags/croatia.webp",
         description: "",
+        continent: "Europe",
+        visited: "July 2026",
+        favoriteFood: "",
+        favoriteBuilding: "Diocletian's Palace",
+        publicTransportation: "Okay.",
+        tier: "S",
         photos: [],
     },
     cuba: {
@@ -307,6 +345,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/cuba.webp",
         description:
             "Cuba is one of the most unique places I've ever been. Life there feels completely separate from the rest of the world — the contrasts between crumbling colonial grandeur and everyday reality are unlike anything I'd seen before.",
+        continent: "North America",
+        visited: "December 2024",
+        favoriteFood: "'Black Rice'",
+        favoriteBuilding: "National Theater",
+        publicTransportation: "Pretty bad :(",
+        tier: "A",
         photos: [
             {
                 src: "https://files.catbox.moe/1vj9x4.webp",
@@ -412,7 +456,14 @@ export const travelCountries = {
     czechia: {
         name: "Czechia",
         flag: "assets/images/travel-log/flags/czechia.webp",
-        description: "Even before I got to visit, I always imagined Czechia as more of a winter destination. This was indeed the case in January 2024, when I spent some days of winter break in Prague with a couple friends. It's probably one of the most medieval-feeling places I've been to, and one of the countries I am really wanting to go back to. I loved the architecture!",
+        description:
+            "Even before I got to visit, I always imagined Czechia as more of a winter destination. This was indeed the case in January 2024, when I spent some days of winter break in Prague with a couple friends. It's probably one of the most medieval-feeling places I've been to, and one of the countries I am really wanting to go back to. I loved the architecture!",
+        continent: "Europe",
+        visited: "January 2024",
+        favoriteFood: "",
+        favoriteBuilding: "",
+        publicTransportation: "",
+        tier: "A",
         photos: [],
     },
     denmark: {
@@ -420,6 +471,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/denmark.webp",
         description:
             "After keeping it in my sights for some years, I finally got to visit Denmark for Easter 2026. It was also my first time in Scandinavia. Despite being so close to Germany and the rest of Europe, Copenhagen felt very differnt fron any other European capital I've visited aside from Helsinki. I do not know if I would live here. But it was certainly very easy and welcoming to explore it.",
+        continent: "Europe",
+        visited: "April 2026",
+        favoriteFood: "Cinnamon Roll",
+        favoriteBuilding: "Nyhavn Houses",
+        publicTransportation: "Really good!",
+        tier: "B",
         photos: [
             {
                 src: "https://files.catbox.moe/klvcey.webp",
@@ -487,7 +544,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/b75oto.webp",
                 thumb: "assets/images/travel-log/photos/denmark/thumbs/pagoda.webp",
                 name: "pagoda.webp",
-                caption: "",
+                caption:
+                    "This must've been ten times as fascinating in the 1800s.",
             },
             {
                 src: "https://files.catbox.moe/bfnkgc.webp",
@@ -509,6 +567,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/estonia.webp",
         description:
             "Tallinn's old town easily wins the medieval-ness competition, miles ahead of even Prague and Lüneburg. It was fun to wander around between parks, cafés, and restaurants; I even found the grocery stores here to be really good! However, even though I made the mistake of visitng on a Monday (when museums close), I couldn't ignore the fact that there really wasn't a lot to do once you've walked around the Old Town a couple times. While I certainly don't regret visitng Estonia, I don't think I'll be coming back soon.",
+        continent: "Europe",
+        visited: "April 2025",
+        favoriteFood: "Kiluvõileib",
+        favoriteBuilding: "",
+        publicTransportation: "Very nice!",
+        tier: "D",
         photos: [
             {
                 src: "https://files.catbox.moe/wu38dm.webp",
@@ -521,7 +585,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/nehpgm.webp",
                 thumb: "assets/images/travel-log/photos/estonia/thumbs/church.webp",
                 name: "church.webp",
-                caption: "",
+                caption:
+                    "For an atheist I certainly do photograph churches and cathedrals quite often.",
             },
             {
                 src: "https://files.catbox.moe/0dq2ju.webp",
@@ -547,7 +612,7 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/pww8in.webp",
                 thumb: "assets/images/travel-log/photos/estonia/thumbs/questionable.webp",
                 name: "questionable.webp",
-                caption: "Very interesting flags at ",
+                caption: "Very interesting flags at some guy's private museum.",
             },
             {
                 src: "https://files.catbox.moe/qqh5v2.webp",
@@ -568,6 +633,12 @@ export const travelCountries = {
         name: "Finland",
         flag: "assets/images/travel-log/flags/finland.webp",
         description: "Entry coming soon.",
+        continent: "Europe",
+        visited: "April 2025",
+        favoriteFood: "Reindeer Soup",
+        favoriteBuilding: "Uspenski Cathedral",
+        publicTransportation: "Very solid.",
+        tier: "B",
         photos: [
             {
                 src: "https://files.catbox.moe/55drc0.webp",
@@ -636,6 +707,12 @@ export const travelCountries = {
         name: "France",
         flag: "assets/images/travel-log/flags/france.webp",
         description: "Entry coming soon.",
+        continent: "Europe",
+        visited: "August 2022",
+        favoriteFood: "Croque Madam",
+        favoriteBuilding: "",
+        publicTransportation: "Really great :/",
+        tier: "B",
         photos: [],
     },
     germany: {
@@ -643,6 +720,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/germany.webp",
         description:
             "Germany is where I live, and over the years I've had the privilege of exploring much of it. No two cities feel the same here — each has its own identity, history, and dialect. I still have a lot left to see.",
+        continent: "Europe",
+        visited: "",
+        favoriteFood: "Himmel und Äd",
+        favoriteBuilding: "Hamburger Rathaus",
+        publicTransportation: "",
+        tier: "A",
         photos: [],
     },
     latvia: {
@@ -650,6 +733,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/latvia.webp",
         description:
             "Latvia was by far my favorite of the three Baltic countires, and probably one of my favorite places I've ever visited. It's hard to explain what it was about Riga that captured me so much, but the food, architecture, weather, history, fashion, and people all seemed to match my vibe quite well. My friends and I were on a great mood the whole time.",
+        continent: "Europe",
+        visited: "April 2025",
+        favoriteFood: "Literally everything.",
+        favoriteBuilding: "House of the Blackheads",
+        publicTransportation: "Didn't take any.",
+        tier: "S",
         photos: [
             {
                 src: "https://files.catbox.moe/qsoyrs.webp",
@@ -699,7 +788,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/ityoaj.webp",
                 thumb: "assets/images/travel-log/photos/latvia/thumbs/street.webp",
                 name: "street.webp",
-                caption: "This architecture usually doesn't felt 'cozy' to me, but here it definitely does.",
+                caption:
+                    "This architecture usually doesn't felt 'cozy' to me, but here it definitely does.",
             },
             {
                 src: "https://files.catbox.moe/3eavlu.webp",
@@ -715,6 +805,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/lithuania.webp",
         description:
             "Vilnius was a surprisingly pleasant visit. The old town has a distinct Baroque character you don't really expect from a Baltic capital, and the local food scene is genuinely underrated.",
+        continent: "Europe",
+        visited: "April 2025",
+        favoriteFood: "Pink Soup",
+        favoriteBuilding: "Trakai Castle",
+        publicTransportation: "",
+        tier: "A",
         photos: [
             {
                 src: "https://files.catbox.moe/mne6c4.webp",
@@ -726,7 +822,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/dw2wb1.webp",
                 thumb: "assets/images/travel-log/photos/lithuania/thumbs/castle_island.webp",
                 name: "castle_island.webp",
-                caption: "Probably the only thing to see in Trakai but man it absolutely worthwhile!",
+                caption:
+                    "Probably the only thing to see in Trakai but man it absolutely worthwhile!",
             },
             {
                 src: "https://files.catbox.moe/9jaavt.webp",
@@ -768,13 +865,15 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/l2aumf.webp",
                 thumb: "assets/images/travel-log/photos/lithuania/thumbs/heaven.webp",
                 name: "heaven.webp",
-                caption: "The 'Gates of Heaven'. I have no idea what's on the other side.",
+                caption:
+                    "The 'Gates of Heaven'. I have no idea what's on the other side.",
             },
             {
                 src: "https://files.catbox.moe/16p6mw.webp",
                 thumb: "assets/images/travel-log/photos/lithuania/thumbs/kaunas.webp",
                 name: "kaunas.webp",
-                caption: "That one church at the end of that one street in Kaunas.",
+                caption:
+                    "That one church at the end of that one street in Kaunas.",
             },
             {
                 src: "https://files.catbox.moe/6wgo42.webp",
@@ -807,6 +906,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/luxembourg.webp",
         description:
             "I'm not gonna lie, after more than two years since I visited Luxembourg I still can't decide if it was worth the detour. Getting here from any of the three countries that border it is kind of a hassle, and there wa. HOWEVER, that didn't make my visit any less enjoyable! The old city is beautiful, and the sandwich I had here is genuinely on my top 5 meals ever. It's one of the more unique countries I've visited for sure. Just not my type :)",
+        continent: "Europe",
+        visited: "July 2024",
+        favoriteFood: "Charles's Sandwich",
+        favoriteBuilding: "That One Bridge In Luxembourg®",
+        publicTransportation: "Free!",
+        tier: "D",
         photos: [
             {
                 src: "https://files.catbox.moe/23rvu5.webp",
@@ -830,7 +935,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/obx8wy.webp",
                 thumb: "assets/images/travel-log/photos/luxembourg/thumbs/flag.webp",
                 name: "flag.webp",
-                caption: "Not sure why, but the colors in this flag make me a bit uneasy.",
+                caption:
+                    "Not sure why, but the colors in this flag make me a bit uneasy.",
             },
             {
                 src: "https://files.catbox.moe/921kep.webp",
@@ -869,12 +975,24 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/mexico.webp",
         description:
             "My homeland. I spent nineteen years in Mexico before moving to Europe and it shaped who I am more than anywhere else. No matter how many countries I visit, Mexico will always feel like home in a way nowhere else can fully replicate.",
+        continent: "North America",
+        visited: "",
+        favoriteFood: "",
+        favoriteBuilding: "",
+        publicTransportation: "",
+        tier: "S",
         photos: [],
     },
     netherlands: {
         name: "Netherlands",
         flag: "assets/images/travel-log/flags/netherlands.webp",
         description: "Entry coming soon.",
+        continent: "Europe",
+        visited: "June 2025",
+        favoriteFood: "Stroopwafel",
+        favoriteBuilding: "Rijksmuseum",
+        publicTransportation: "Frustratingly good.",
+        tier: "B",
         photos: [
             {
                 src: "https://files.catbox.moe/9sr8pp.webp",
@@ -933,12 +1051,18 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/portugal.webp",
         description:
             "Portugal completely stole my heart. The light, the tiles, the food, the people — everything about it felt warm and lived-in. Lisbon in particular is a city I could see myself living in without hesitation.",
+        continent: "Europe",
+        visited: "August 2024",
+        favoriteFood: "Octopus",
+        favoriteBuilding: "Palácio Nacional da Pena",
+        publicTransportation: "On its way.",
+        tier: "S",
         photos: [
             {
                 src: "https://files.catbox.moe/97bp8g.webp",
                 thumb: "assets/images/travel-log/photos/portugal/thumbs/bridge_night.webp",
                 name: "bridge_night.webp",
-                caption: "",
+                caption: "That One Bridge In Porto®, at night.",
             },
             {
                 src: "https://files.catbox.moe/m8xexa.webp",
@@ -968,19 +1092,22 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/bns8we.webp",
                 thumb: "assets/images/travel-log/photos/portugal/thumbs/colorful.webp",
                 name: "colorful.webp",
-                caption: "",
+                caption:
+                    "European architecture in general is severely lacking in color so this palace here was a pleasant surprise.",
             },
             {
                 src: "https://files.catbox.moe/oxqgyi.webp",
                 thumb: "assets/images/travel-log/photos/portugal/thumbs/end_of_world.webp",
                 name: "end_of_world.webp",
-                caption: "",
+                caption:
+                    "I kinda like that it was foggy. My render distance was low :3",
             },
             {
                 src: "https://files.catbox.moe/m2xjww.webp",
                 thumb: "assets/images/travel-log/photos/portugal/thumbs/lego.webp",
                 name: "lego.webp",
-                caption: "",
+                caption:
+                    "I'm not gonna lie I am not the biggest Pastel de Nata fan but I'm all for a lego version.",
             },
             {
                 src: "https://files.catbox.moe/hd6qfh.webp",
@@ -1017,7 +1144,7 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/sdq86h.webp",
                 thumb: "assets/images/travel-log/photos/portugal/thumbs/sun.webp",
                 name: "sun.webp",
-                caption: "",
+                caption: "Beautiful type shit",
             },
             {
                 src: "https://files.catbox.moe/t8x5vj.webp",
@@ -1032,6 +1159,12 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/slovakia.webp",
         description:
             "I will not lay a strong claim of having 'been' in Slovakia when I only spent a few hours in the capital, Bratislava, as a daytrip during my stay in Vienna. But frankly I found it to be a place too memorable and welcoming to not include here.",
+        continent: "Europe",
+        visited: "August 2023",
+        favoriteFood: "Pierogi",
+        favoriteBuilding: "Bratislava Castle",
+        publicTransportation: "Pretty okay!",
+        tier: "c",
         photos: [
             {
                 src: "https://files.catbox.moe/l60x34.webp",
@@ -1084,6 +1217,12 @@ export const travelCountries = {
         name: "Slovenia",
         flag: "assets/images/travel-log/flags/slovenia.webp",
         description: "SLOVEnia",
+        continent: "Europe",
+        visited: "July 2026",
+        favoriteFood: "",
+        favoriteBuilding: "The Triple Bridge",
+        publicTransportation: "",
+        tier: "A",
         photos: [
             {
                 src: "https://files.catbox.moe/lio1h8.webp",
@@ -1125,7 +1264,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/6sebjn.webp",
                 thumb: "assets/images/travel-log/photos/slovenia/thumbs/dragon.webp",
                 name: "dragon.webp",
-                caption: "",
+                caption:
+                    "They knew what they were doing when they made a fucking dragon their coat of arms.",
             },
             {
                 src: "https://files.catbox.moe/asypwh.webp",
@@ -1149,7 +1289,8 @@ export const travelCountries = {
                 src: "https://files.catbox.moe/ibe7jl.webp",
                 thumb: "assets/images/travel-log/photos/slovenia/thumbs/river_day.webp",
                 name: "river_day.webp",
-                caption: "",
+                caption:
+                    "One of the nicest views in Ljubljana, at least in the summer!",
             },
             {
                 src: "https://files.catbox.moe/k3vryi.webp",
@@ -1164,12 +1305,24 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/turkey.webp",
         description:
             "Istanbul is one of the most fascinating cities on Earth — the crossroads of East and West, ancient and modern, all existing at once. I was lucky enough to experience it with locals who showed me a side of the city no guidebook would find.",
+        continent: "Europe",
+        visited: "April 2023",
+        favoriteFood: "Iskender Kebap",
+        favoriteBuilding: "Topkapı Palace",
+        publicTransportation: "Alright.",
+        tier: "A",
         photos: [],
     },
     usa: {
         name: "United States",
         flag: "assets/images/travel-log/flags/usa.webp",
         description: "Entry coming soon.",
+        continent: "North America",
+        visited: "",
+        favoriteFood: "Texas Brisket Sandwich",
+        favoriteBuilding: "Washington Monument",
+        publicTransportation: "Gross (mind you, I have not been to NYC)",
+        tier: "B",
         photos: [],
     },
 };

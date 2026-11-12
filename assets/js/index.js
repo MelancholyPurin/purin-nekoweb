@@ -106,7 +106,82 @@ document.addEventListener("DOMContentLoaded", function(){
         track_name.style.animationDuration = (track_name.offsetWidth / MARQUEE_PX_PER_SECOND) + "s";
     }
 
+    // --- track dropdown: the arrow (or the title box) opens a list of every track ---
+    const trackMenu = document.querySelector(".trackMenu");
+    const trackMenuButton = document.querySelector(".songtitlearrow");
+    const trackOptions = trackList.map(function(track, i) {
+        const option = document.createElement("li");
+        option.className = "trackOption";
+        option.id = "track-option-" + i;
+        option.setAttribute("role", "option");
+        option.textContent = track.name;
+        option.title = track.name;
+        option.addEventListener("click", function() {
+            closeTrackMenu();
+            if(i !== track_index) selectTrack(i);
+        });
+        option.addEventListener("mousemove", function() { setActiveOption(i); });
+        trackMenu.append(option);
+        return option;
+    });
+    let activeOption = 0;
+
+    function setActiveOption(i) {
+        activeOption = i;
+        trackOptions.forEach(function(option, n) { option.classList.toggle("trackOptionActive", n === i); });
+        trackMenu.setAttribute("aria-activedescendant", trackOptions[i].id);
+        trackOptions[i].scrollIntoView({ block: "nearest" });
+    }
+
+    function openTrackMenu() {
+        trackMenu.hidden = false;
+        trackMenuButton.setAttribute("aria-expanded", "true");
+        setActiveOption(track_index);
+        trackMenu.focus({ preventScroll: true });
+    }
+
+    function closeTrackMenu() {
+        if(trackMenu.hidden) return;
+        trackMenu.hidden = true;
+        trackMenuButton.setAttribute("aria-expanded", "false");
+        trackMenuButton.focus({ preventScroll: true });
+    }
+
+    function selectTrack(index) {
+        track_index = index;
+        loadTrack(index);
+        playTrack();
+    }
+
+    document.querySelector(".songtitlewindow").addEventListener("click", function(e) {
+        if(trackMenu.contains(e.target)) return;
+        if(trackMenu.hidden) openTrackMenu(); else closeTrackMenu();
+    });
+    trackMenuButton.addEventListener("keydown", function(e) {
+        if(e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); openTrackMenu(); }
+    });
+    trackMenu.addEventListener("keydown", function(e) {
+        const last = trackOptions.length - 1;
+        if(e.key === "ArrowDown") setActiveOption(Math.min(activeOption + 1, last));
+        else if(e.key === "ArrowUp") setActiveOption(Math.max(activeOption - 1, 0));
+        else if(e.key === "Home") setActiveOption(0);
+        else if(e.key === "End") setActiveOption(last);
+        else if(e.key === "Enter" || e.key === " ") {
+            closeTrackMenu();
+            if(activeOption !== track_index) selectTrack(activeOption);
+        }
+        else if(e.key === "Escape" || e.key === "Tab") closeTrackMenu();
+        else return;
+        if(e.key !== "Tab") e.preventDefault();
+    });
+    // clicking anywhere else closes it; so does clicking inside the page frame (a separate document)
+    document.addEventListener("click", function(e) {
+        if(!trackMenu.hidden && !e.target.closest(".songtitlewindow")) closeTrackMenu();
+    });
+    window.addEventListener("blur", function() { if(!trackMenu.hidden) closeTrackMenu(); });
+
     function loadTrack(index) {
+        trackOptions.forEach(function(option, n) { option.setAttribute("aria-selected", n === index ? "true" : "false"); });
         resetValues();
         curr_track.src = trackList[index].path;
         curr_track.load();

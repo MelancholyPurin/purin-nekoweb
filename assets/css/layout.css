@@ -223,7 +223,7 @@ footer {
     /* width: calc(225px + 775px + 225px); */
     overflow: hidden;
     background: transparent;
-    margin: 0 4rem 1rem 4rem;
+    margin: 0 4rem 1rem;
     height: 3rem;
     position: relative;
 }
@@ -248,7 +248,7 @@ footer {
     height: 3.5rem;
     display: flex;
     box-shadow: 0 -2px 0.5rem rgba(0, 0, 0, 0.2);
-    margin: 0 4rem 1rem 4rem;
+    margin: 0 4rem 1rem;
     position: relative;
 }
 

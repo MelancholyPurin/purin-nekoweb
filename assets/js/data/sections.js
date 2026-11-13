@@ -66,7 +66,7 @@ export const SECTIONS = [
         id: "music",
         label: "Music Collection",
         icon: "assets/images/icons/navbar/music.png",
-        title: "Vinyl Collection",
+        title: "Music Collection",
         door: "assets/images/titles/door-dream.webp",
         madotsuki: "assets/images/titles/madot-hat.webp",
         background: "assets/images/backgrounds/dream-bg.jpg",

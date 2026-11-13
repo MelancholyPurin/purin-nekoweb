@@ -32,6 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 0.5rem;
 }
 
 .ic {
@@ -51,22 +52,22 @@
 }
 
 .mainNavbar li {
-    margin-bottom: 0.3125rem;
     display: flex;
     align-items: center;
+    padding-bottom: 0.3125rem;
 }
 
 .mainNavbar a {
-    color: #222222;
-    text-decoration: none;
-    font-family: inherit;
-    font-size: 1rem;
     display: flex;
     align-items: center;
-    transition: background 0.2s;
-    padding: 4px 0.5rem;
-    border-radius: 4px;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    color: #222222;
+    font-family: inherit;
+    font-size: 1rem;
     font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s;
 }
 
 .mainNavbar a:hover,
@@ -84,8 +85,7 @@
 }
 
 .calendar {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem 0.5rem;
     background-color: #fff;
     font-size: 0.625rem;
     color: #222;
@@ -97,10 +97,10 @@
 }
 
 .calendarHeader {
-    text-align: center;
-    margin-bottom: 4px;
+    padding-bottom: 0.25rem;
     font-weight: bold;
     font-size: 0.875rem;
+    text-align: center;
     text-decoration: underline;
 }
 

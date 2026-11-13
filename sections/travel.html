@@ -418,9 +418,141 @@
                 );
             }
 
+            // --- map page: the world-map.svg shapes, coloured by each country's tier ---
+            let worldMapText = null;
+            let mapRequest = 0;
+
+            async function renderMap() {
+                const request = ++mapRequest;
+                mainContent.innerHTML = `<h2 class="statsTitle">~ Map ~</h2><p class="statsNote">Loading map...</p>`;
+                try {
+                    if (!worldMapText) {
+                        const response = await fetch("assets/images/travel-log/world-map.svg");
+                        if (!response.ok) throw new Error(response.status);
+                        worldMapText = await response.text();
+                    }
+                } catch (err) {
+                    if (request === mapRequest && mainContent.dataset.view === "tlMap")
+                        mainContent.innerHTML = `<h2 class="statsTitle">~ Map ~</h2><p class="statsNote">Couldn't load the map.</p>`;
+                    return;
+                }
+                // the user may have clicked elsewhere while it loaded
+                if (request !== mapRequest || mainContent.dataset.view !== "tlMap") return;
+
+                const legend = [...TIERS, "None"]
+                    .map(
+                        (t) =>
+                            `<span class="mapLegendItem"><span class="mapSwatch tier${t}"></span>${t === "None" ? "No tier yet" : "Tier " + t}</span>`,
+                    )
+                    .join("");
+                mainContent.innerHTML = `
+                    <h2 class="statsTitle">~ Map ~</h2>
+                    <p>Color-coded according to the tierist colors in Stats section. How about we think of this as a digital scratchmap?</p>
+                    <div class="mapZoom" role="group" aria-label="Zoom"></div>
+                    <div class="mapStage">
+                        ${worldMapText}
+                        <div class="mapTooltip" hidden></div>
+                    </div>
+                    <div class="mapLegend">${legend}<span class="mapLegendItem"><span class="mapSwatch mapSwatchOff"></span>Not visited</span></div>`;
+
+                const stage = mainContent.querySelector(".mapStage");
+                const svg = stage.querySelector("svg");
+                const tooltip = stage.querySelector(".mapTooltip");
+                svg.removeAttribute("width");
+                svg.removeAttribute("height");
+
+                // colour and wire up the countries that are in travel-data.js (matched by ISO code)
+                const byCode = {};
+                Object.entries(travelCountries).forEach(([key, c]) => {
+                    if (c.code) byCode[c.code] = [key, c];
+                });
+                svg.querySelectorAll("path[data-code]").forEach((path) => {
+                    const hit = byCode[path.dataset.code];
+                    if (!hit) return;
+                    const [key, country] = hit;
+                    const tier = String(country.tier).trim().toUpperCase();
+                    path.classList.add("mapVisited", "mapTier" + (TIERS.includes(tier) ? tier : "None"));
+                    path.dataset.country = key;
+                    path.setAttribute("tabindex", "0");
+                    path.setAttribute("role", "link");
+                    path.setAttribute("aria-label", country.name);
+                    svg.append(path); // later in the file = painted on top, so its border isn't hidden by neighbours
+                });
+
+                // hover tooltip
+                svg.addEventListener("mousemove", (e) => {
+                    const path = e.target.closest("path");
+                    if (!path) {
+                        tooltip.hidden = true;
+                        return;
+                    }
+                    const country = travelCountries[path.dataset.country];
+                    const parts = [country ? country.name : path.dataset.name];
+                    if (country && TIERS.includes(String(country.tier).trim().toUpperCase()))
+                        parts.push(String(country.tier).trim().toUpperCase() + " Tier");
+                    const visited = country ? [].concat(country.visited ?? "").join(", ").trim() : "";
+                    if (visited) parts.push(visited);
+                    tooltip.textContent = parts.join(" - ");
+                    tooltip.hidden = false;
+                    const box = stage.getBoundingClientRect();
+                    tooltip.style.left = e.clientX - box.left + 12 + "px";
+                    tooltip.style.top = e.clientY - box.top + 12 + "px";
+                });
+                svg.addEventListener("mouseleave", () => (tooltip.hidden = true));
+
+                // click or Enter on a visited country opens its page
+                svg.addEventListener("click", (e) => {
+                    const path = e.target.closest("[data-country]");
+                    if (path) renderCountryDetail(path.dataset.country);
+                });
+                svg.addEventListener("keydown", (e) => {
+                    const path = e.target.closest("[data-country]");
+                    if (path && e.key === "Enter") renderCountryDetail(path.dataset.country);
+                });
+
+                // zoom: the regions are just different viewBoxes of the same drawing
+                const regions = { World: svg.dataset.viewWorld, Europe: svg.dataset.viewEurope };
+                const parse = (text) => text.split(" ").map(Number);
+                let current = parse(regions.World);
+                let animation = 0;
+                const zoomBar = mainContent.querySelector(".mapZoom");
+
+                function zoomTo(name) {
+                    zoomBar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.region === name)));
+                    const from = current;
+                    const to = parse(regions[name]);
+                    cancelAnimationFrame(animation);
+                    const set = (box) => {
+                        current = box;
+                        svg.setAttribute("viewBox", box.join(" "));
+                    };
+                    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return set(to);
+                    const start = performance.now();
+                    const DURATION = 450;
+                    (function step(now) {
+                        const t = Math.min((now - start) / DURATION, 1);
+                        const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+                        set(from.map((v, i) => v + (to[i] - v) * ease));
+                        if (t < 1) animation = requestAnimationFrame(step);
+                    })(start);
+                }
+
+                Object.keys(regions).forEach((name) => {
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.dataset.region = name;
+                    button.textContent = name;
+                    button.addEventListener("click", () => zoomTo(name));
+                    zoomBar.append(button);
+                });
+                zoomTo("World");
+            }
+
             function showSection(section) {
+                mainContent.dataset.view = section;
                 setAddress(sectionLabels[section] ? [section] : []);
                 if (section === "tlStats") renderStats();
+                else if (section === "tlMap") renderMap();
                 else
                     mainContent.innerHTML =
                         travelLogSections[section] || "<p>Section not found.</p>";
@@ -534,6 +666,7 @@
                 <p class="travelPhotoCount">${country.photos.length} object(s)</p>
             `;
                 mainContent.scrollTop = 0;
+                mainContent.dataset.view = "country";
                 setAddress(["tlCountryList", key]);
                 setActiveTreeLink(`a[data-country="${key}"]`);
 

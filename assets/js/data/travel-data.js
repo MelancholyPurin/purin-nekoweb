@@ -3,16 +3,16 @@ export const travelLogSections = {
                                             <img class="yumeWalk" src="assets/images/travel-log/yumenikki-walk.gif" alt="Yume Nikki Walk">
                                             <p>I'm quite fond of exploring the real world, not just Minecraft! :P</p>
                                             <p>This is my Travel Log! A cute and convenient place to show and keep track of places that I have visited over the years.
-                                                Besides being a simple archive, I also want to keep track of what I saw/did in each place and how I felt while being there, pictures and all.
+                                                Besides being a simple archive, I want to include a brief description and some pictures of what I saw/did there.
                                                 I also want to include sections like a map, a calendar, and a statistics list so I can step back and admire my travels as a whole (a girl loves her reminiscing!).
                                                 This is also a good way to keep track of places I want to visit in the future.
                                             </p>
-                                            <p>Bear in mind though, it will be a while before every single entry is fully fleshed out. I'll work on this on my free time.</p>
-                                            <p>A good place to start would probably be the <b>country list</b>. The majority of entries are under Mexico and Germany, those being the countries I grew up in and currently live in respectively.</p>
-                                            <p>As usual, thank you for reading! I hope you can learn something about the places I've been to, and maybe gotten ideas of places you'd like to visit yourself :3</p>
-                                            <p>—Anja ♪</p>`,
+                                            <p>A good place to start would probably be the <b>country list</b>. Bear in mind though, I can't guarantee that all entries will be equally fleshed out. It's hard to write as much for a country I only spend one or two days in compared to a country that I grew up in or currently live in.</p>
+                                            <p>Unfortunately, much like with the rest of my hobbies, being employed has drastically cut down the amount of free time I have available to travel around. While I don't think I'll ever hit my 2024 peak again, I'll still do my best to visit one or two new ones every year.</p>
+                                            <p>As usual, thank you for reading! I hope you can learn something about the places I've been to, or maybe gotten ideas of places you'd like to visit yourself :3</p>
+                                            <p>Purin ♪</p>`,
     tlCountryList: `<h2 style="text-align: center;">~ Country List ~</h2>
-                                         <p style="text-align: center;">Click on a country to view pictures and thoughts about it.</p>
+                                         <p style="text-align: center;">Click on a country to view its entry.</p>
                                          <img src="assets/images/travel-log/train.gif" alt="Train" style="display: block; margin: 0px auto 20px auto; max-width: 100%; height: auto;">
                                         <div class="countryListGrid">
                                             <div class="countryCard" data-country="austria">
@@ -102,7 +102,7 @@ export const travelLogSections = {
 
                                         </div>`,
     tlCalendar: `<div class="travelComingSoon"><p>Coming soon!</p></div>`,
-    tlMap: `<div class="travelComingSoon"><p>Coming soon!</p></div>`,
+    // tlMap is built in sections/travel.html (renderMap) from assets/images/travel-log/world-map.svg
     // tlStats is built in sections/travel.html (renderStats) from the country data below
     tlFuturePlans: `<div style="align-items: center; justify-content: center; display: flex; margin-top: 32px;">
                                                 <img src="assets/images/travel-log/clock.gif">
@@ -174,6 +174,7 @@ export const travelLogSections = {
 // Each entry: name, flag (path), description text, the fact fields below, and a photos array.
 //
 // Fact fields (all optional; an empty one is simply not shown on the country's page):
+//   code                  ISO 3166-1 alpha-2 country code ("BE", "PT", "US"): ties the country to its shape on the Map
 //   continent             "Europe", "North America", ... counted on the Stats page
 //   visited               year(s) you went, e.g. 2019 or "2019, 2023" or "Summer 2019"; every 4-digit
 //                         year in it is a bar on the Stats timeline
@@ -199,6 +200,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/austria.webp",
         description:
             "Austria has an incredible density of history, art, and architecture packed into its cities. My visit was a family trip with my brother — it was the kind of place that makes you want to slow down and just look.",
+        code: "AT",
         continent: "Europe",
         visited: "August 2023",
         favoriteFood: "Schnitzel",
@@ -212,6 +214,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/belgium.webp",
         description:
             "There is a LOT more to see in Belgium than I thought, but it's spread out quite evenly among its largest cities. Fortunately it's a very small country, and it would probably get boring to spend more than two days in any given city anyway.",
+        code: "BE",
         continent: "Europe",
         visited: "July 2024",
         favoriteFood: "Flemish Beef Stew",
@@ -319,6 +322,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/canada.png",
         description:
             "Canada was a mixed experience for me as a destination, but visiting a dear friend made the whole trip worth it. I got to see a very local, non-touristy side of the country that I wouldn't have found on my own.",
+        code: "CA",
         continent: "North America",
         visited: "June 2023, March 2024",
         favoriteFood: "Poutine",
@@ -332,6 +336,7 @@ export const travelCountries = {
         name: "Croatia",
         flag: "assets/images/travel-log/flags/croatia.webp",
         description: "",
+        code: "HR",
         continent: "Europe",
         visited: "July 2026",
         favoriteFood: "",
@@ -345,6 +350,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/cuba.webp",
         description:
             "Cuba is one of the most unique places I've ever been. Life there feels completely separate from the rest of the world — the contrasts between crumbling colonial grandeur and everyday reality are unlike anything I'd seen before.",
+        code: "CU",
         continent: "North America",
         visited: "December 2024",
         favoriteFood: "'Black Rice'",
@@ -458,6 +464,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/czechia.webp",
         description:
             "Even before I got to visit, I always imagined Czechia as more of a winter destination. This was indeed the case in January 2024, when I spent some days of winter break in Prague with a couple friends. It's probably one of the most medieval-feeling places I've been to, and one of the countries I am really wanting to go back to. I loved the architecture!",
+        code: "CZ",
         continent: "Europe",
         visited: "January 2024",
         favoriteFood: "",
@@ -471,6 +478,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/denmark.webp",
         description:
             "After keeping it in my sights for some years, I finally got to visit Denmark for Easter 2026. It was also my first time in Scandinavia. Despite being so close to Germany and the rest of Europe, Copenhagen felt very differnt fron any other European capital I've visited aside from Helsinki. I do not know if I would live here. But it was certainly very easy and welcoming to explore it.",
+        code: "DK",
         continent: "Europe",
         visited: "April 2026",
         favoriteFood: "Cinnamon Roll",
@@ -567,6 +575,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/estonia.webp",
         description:
             "Tallinn's old town easily wins the medieval-ness competition, miles ahead of even Prague and Lüneburg. It was fun to wander around between parks, cafés, and restaurants; I even found the grocery stores here to be really good! However, even though I made the mistake of visitng on a Monday (when museums close), I couldn't ignore the fact that there really wasn't a lot to do once you've walked around the Old Town a couple times. While I certainly don't regret visitng Estonia, I don't think I'll be coming back soon.",
+        code: "EE",
         continent: "Europe",
         visited: "April 2025",
         favoriteFood: "Kiluvõileib",
@@ -633,6 +642,7 @@ export const travelCountries = {
         name: "Finland",
         flag: "assets/images/travel-log/flags/finland.webp",
         description: "Entry coming soon.",
+        code: "FI",
         continent: "Europe",
         visited: "April 2025",
         favoriteFood: "Reindeer Soup",
@@ -707,6 +717,7 @@ export const travelCountries = {
         name: "France",
         flag: "assets/images/travel-log/flags/france.webp",
         description: "Entry coming soon.",
+        code: "FR",
         continent: "Europe",
         visited: "August 2022",
         favoriteFood: "Croque Madam",
@@ -720,6 +731,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/germany.webp",
         description:
             "Germany is where I live, and over the years I've had the privilege of exploring much of it. No two cities feel the same here — each has its own identity, history, and dialect. I still have a lot left to see.",
+        code: "DE",
         continent: "Europe",
         visited: "",
         favoriteFood: "Himmel und Äd",
@@ -733,6 +745,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/latvia.webp",
         description:
             "Latvia was by far my favorite of the three Baltic countires, and probably one of my favorite places I've ever visited. It's hard to explain what it was about Riga that captured me so much, but the food, architecture, weather, history, fashion, and people all seemed to match my vibe quite well. My friends and I were on a great mood the whole time.",
+        code: "LV",
         continent: "Europe",
         visited: "April 2025",
         favoriteFood: "Literally everything.",
@@ -805,6 +818,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/lithuania.webp",
         description:
             "Vilnius was a surprisingly pleasant visit. The old town has a distinct Baroque character you don't really expect from a Baltic capital, and the local food scene is genuinely underrated.",
+        code: "LT",
         continent: "Europe",
         visited: "April 2025",
         favoriteFood: "Pink Soup",
@@ -906,6 +920,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/luxembourg.webp",
         description:
             "I'm not gonna lie, after more than two years since I visited Luxembourg I still can't decide if it was worth the detour. Getting here from any of the three countries that border it is kind of a hassle, and there wa. HOWEVER, that didn't make my visit any less enjoyable! The old city is beautiful, and the sandwich I had here is genuinely on my top 5 meals ever. It's one of the more unique countries I've visited for sure. Just not my type :)",
+        code: "LU",
         continent: "Europe",
         visited: "July 2024",
         favoriteFood: "Charles's Sandwich",
@@ -975,6 +990,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/mexico.webp",
         description:
             "My homeland. I spent nineteen years in Mexico before moving to Europe and it shaped who I am more than anywhere else. No matter how many countries I visit, Mexico will always feel like home in a way nowhere else can fully replicate.",
+        code: "MX",
         continent: "North America",
         visited: "",
         favoriteFood: "",
@@ -987,6 +1003,7 @@ export const travelCountries = {
         name: "Netherlands",
         flag: "assets/images/travel-log/flags/netherlands.webp",
         description: "Entry coming soon.",
+        code: "NL",
         continent: "Europe",
         visited: "June 2025",
         favoriteFood: "Stroopwafel",
@@ -1051,6 +1068,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/portugal.webp",
         description:
             "Portugal completely stole my heart. The light, the tiles, the food, the people — everything about it felt warm and lived-in. Lisbon in particular is a city I could see myself living in without hesitation.",
+        code: "PT",
         continent: "Europe",
         visited: "August 2024",
         favoriteFood: "Octopus",
@@ -1159,6 +1177,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/slovakia.webp",
         description:
             "I will not lay a strong claim of having 'been' in Slovakia when I only spent a few hours in the capital, Bratislava, as a daytrip during my stay in Vienna. But frankly I found it to be a place too memorable and welcoming to not include here.",
+        code: "SK",
         continent: "Europe",
         visited: "August 2023",
         favoriteFood: "Pierogi",
@@ -1217,6 +1236,7 @@ export const travelCountries = {
         name: "Slovenia",
         flag: "assets/images/travel-log/flags/slovenia.webp",
         description: "SLOVEnia",
+        code: "SI",
         continent: "Europe",
         visited: "July 2026",
         favoriteFood: "",
@@ -1305,6 +1325,7 @@ export const travelCountries = {
         flag: "assets/images/travel-log/flags/turkey.webp",
         description:
             "Istanbul is one of the most fascinating cities on Earth — the crossroads of East and West, ancient and modern, all existing at once. I was lucky enough to experience it with locals who showed me a side of the city no guidebook would find.",
+        code: "TR",
         continent: "Europe",
         visited: "April 2023",
         favoriteFood: "Iskender Kebap",
@@ -1317,6 +1338,7 @@ export const travelCountries = {
         name: "United States",
         flag: "assets/images/travel-log/flags/usa.webp",
         description: "Entry coming soon.",
+        code: "US",
         continent: "North America",
         visited: "",
         favoriteFood: "Texas Brisket Sandwich",

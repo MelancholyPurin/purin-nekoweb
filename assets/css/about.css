@@ -81,14 +81,122 @@
     margin: 1rem auto;
 }
 
-.questionnaire span {
-    font-weight: bold;
+.forumBox {
+    background: #e8edf5;
+    border: 1px solid #5d7aa6;
+    color: #111;
+    font-family: Verdana, sans-serif;
+    font-size: 0.85rem;
 }
 
-.questionnaire p {
-    border-left: 1px dotted #bbbbbb;
-    margin: 0.3125rem 0 0.625rem 0.9375rem;
-    padding: 0 0 0 0.625rem;
+.forumBox a.resourceLink {
+    color: #1c3a78;
+}
+
+.forumTitle {
+    background: linear-gradient(#4a6fa8, #2f4d80);
+    color: white;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+}
+
+.forumDesc {
+    margin: 0;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #5d7aa6;
+    color: #333;
+    font-size: 0.75rem;
+}
+
+.forumPost {
+    display: flex;
+}
+
+.forumUser {
+    flex: none;
+    width: 7rem;
+    box-sizing: border-box;
+    padding: 0.75rem 0.5rem;
+    background: #c9d5e8;
+    border-right: 1px solid #5d7aa6;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+.forumUser b {
+    color: #1c3a78;
+}
+
+.forumUser img {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    margin: 0.4rem auto;
+    border: 1px solid #5d7aa6;
+}
+
+.forumBody {
+    flex: 1;
+    min-width: 0;
+    padding: 0.6rem 0.9rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.forumMeta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-bottom: 1px solid #5d7aa6;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.7rem;
+    color: #555;
+    font-size: 0.7rem;
+}
+
+.forumQuestion {
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.forumAnswer {
+    min-height: 6rem;
+    line-height: 1.5;
+}
+
+/* all: unset drops 98.css look so it matches the forum */
+.forumNext {
+    all: unset;
+    box-sizing: border-box;
+    align-self: flex-end;
+    margin-top: 0.6rem;
+    padding: 0.25rem 0.8rem;
+    background: linear-gradient(#f4f7fb, #c9d5e8);
+    border: 1px solid #5d7aa6;
+    border-radius: 3px;
+    color: #1c3a78;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.forumNext:hover {
+    background: linear-gradient(#ffffff, #dbe5f3);
+}
+
+.forumNext:active {
+    background: linear-gradient(#c9d5e8, #f4f7fb);
+}
+
+.forumNext:focus-visible {
+    outline: 2px solid #1c3a78;
+    outline-offset: 2px;
+}
+
+@media (max-width: 30rem) {
+    .forumUser {
+        width: 5rem;
+    }
 }
 
 .smallLeftcolButton {

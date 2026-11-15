@@ -402,20 +402,37 @@
             </div>
         </section>
         <section class="aboutPage">
-            <div class="fakeScreen" style="height: 275px; overflow: auto">
-                <h4 class="typeWriter">>_ a silly questionnaire</h4>
-                <p>
+            <div class="forumBox" id="questionnaire">
+                <div class="forumTitle">a silly questionnaire</div>
+                <p class="forumDesc">
                     I've seen several Neocities/Nekoweb users answer
                     <a
                         class="resourceLink"
                         href="https://burypink.neocities.org/gifts"
                         >this</a
                     >
-                    questionaire. I quite like it tbh so I'll include it as
+                    questionnaire. I quite like it tbh so I'll include it as
                     well. If you'd like to see/answer questions I've written,
                     you can find those in my blog page!
                 </p>
-                <div class="questionnaire">
+                <div class="forumPost">
+                    <div class="forumUser">
+                        <b>Mercutio</b>
+                        <img src="assets/images/abtpic.webp" alt="" />
+                        <span>Posts: 100</span>
+                    </div>
+                    <div class="forumBody">
+                        <div class="forumMeta">
+                            <span>Posted: Sun Oct 19, 2025 1:02 am</span>
+                            <span class="forumCount"></span>
+                        </div>
+                        <div class="forumQuestion"></div>
+                        <div class="forumAnswer"></div>
+                        <button class="forumNext" type="button"></button>
+                    </div>
+                </div>
+            </div>
+            <template id="questionnaireData">
                     <span>1) time and date u started this?</span>
                     <p>Sunday, October 19th 2025 at 01:02.</p>
                     <span>2) asl?</span>
@@ -842,8 +859,8 @@
                     <p>sandboxes and platformers</p>
                     <span>100) time and date you finished this?</span>
                     <p>Sunday, October 19th 2025, 15:46.</p>
-                </div>
-            </div>
+                
+            </template>
         </section>
 
         <script>
@@ -884,6 +901,39 @@
                         document.querySelector(".funFact").textContent =
                             factList[randomInt];
                     });
+
+                (function () {
+                    const box = document.getElementById("questionnaire");
+                    const items = [
+                        ...document.getElementById("questionnaireData").content
+                            .children,
+                    ];
+                    const pairs = [];
+                    for (let i = 0; i + 1 < items.length; i += 2) {
+                        pairs.push([items[i], items[i + 1]]);
+                    }
+                    const question = box.querySelector(".forumQuestion");
+                    const answer = box.querySelector(".forumAnswer");
+                    const count = box.querySelector(".forumCount");
+                    const next = box.querySelector(".forumNext");
+                    let index = 0;
+
+                    function show() {
+                        question.innerHTML = pairs[index][0].innerHTML;
+                        answer.innerHTML = pairs[index][1].innerHTML;
+                        count.textContent = index + 1 + " / " + pairs.length;
+                        next.textContent =
+                            index === pairs.length - 1
+                                ? "\u21BA Start over"
+                                : "Next \u25B6";
+                    }
+
+                    next.addEventListener("click", function () {
+                        index = (index + 1) % pairs.length;
+                        show();
+                    });
+                    show();
+                })();
 
                 function syncInterestsQuizzesHeight() {
                     const split = document.querySelector(

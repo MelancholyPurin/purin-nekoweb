@@ -3,3 +3,23 @@
 .resourcesPage .fakeScreen {
     background-color: #3a273b;
 }
+
+/* list boxes use .fieldBox (base.css) */
+.resourcesPage .fieldBox {
+    --fieldBoxBg: rgba(28, 40, 62, 0.94);
+    --fieldBoxBorder: #6f86ad;
+    --fieldBoxLegendBg: #18243d;
+    --fieldBoxLegendText: #e8eefa;
+}
+
+.resourcesPage .fieldBox li li {
+    font-size: 0.75rem;
+}
+
+.resourceButtonList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}

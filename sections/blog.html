@@ -15,6 +15,7 @@
                 background: transparent;
             }
         </style>
+        <script type="module" src="assets/js/sectionTitle.js"></script>
     </head>
     <body>
         <section class="blogPage">
@@ -50,7 +51,7 @@
                         </ul>
                     </div>
                     <div class="blogEntry" id="blog-entry-content">
-                        <h4 style="text-align: center">
+                        <h4 class="centerText">
                             Welcome to my Estrogen Diary!
                         </h4>
                         <p>I have been on MtF HRT since 07.09.2026.</p>
@@ -99,7 +100,7 @@
                             e.preventDefault();
                             const entry = blogEntries[link.dataset.entry];
                             if (entry) {
-                                entryContent.innerHTML = `<h4 style="text-align: center;">${entry.title}</h4>${entry.content}`;
+                                entryContent.innerHTML = `<h4 class="centerText">${entry.title}</h4>${entry.content}`;
                             }
                         });
                     });

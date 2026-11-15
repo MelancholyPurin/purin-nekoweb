@@ -14,6 +14,7 @@
 
 .resourcesPage .fieldBox li li {
     font-size: 0.75rem;
+    line-height: 1.5;
 }
 
 .resourceButtonList {
@@ -22,4 +23,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+}
+.resourcesIntroTitle {
+    font-size: 1rem;
 }

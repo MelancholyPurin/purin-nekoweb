@@ -92,6 +92,9 @@
     border: 2px solid #3d2b0a;
 }
 
-.minecraftPage .fakeScreen {
-    background-color: #4f1424;
+.minecraftPage .fieldBox {
+    --fieldBoxBg: rgba(44, 18, 36, 0.55);
+    --fieldBoxBorder: #9a6a88;
+    --fieldBoxLegendBg: #2a0f22;
+    --fieldBoxLegendText: #ffe9f3;
 }

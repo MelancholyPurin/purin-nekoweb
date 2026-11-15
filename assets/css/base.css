@@ -193,3 +193,294 @@ body,
 .bioPic:hover {
     filter: grayscale(0);
 }
+
+/* CRT text effect */
+
+@keyframes textShadow {
+    0% {
+        text-shadow:
+            0.65px 0 1.2px rgba(0, 30, 255, 0.6),
+            -0.65px 0 1.2px rgba(255, 0, 80, 0.4),
+            0 0 4px;
+    }
+    5% {
+        text-shadow:
+            3.2px 0 1.5px rgba(0, 30, 255, 0.7),
+            -3.2px 0 1.5px rgba(255, 0, 80, 0.5),
+            0 0 0.3125rem;
+    }
+    10% {
+        text-shadow:
+            0.8px 0 1.2px rgba(0, 30, 255, 0.6),
+            -0.8px 0 1.2px rgba(255, 0, 80, 0.4),
+            0 0 4px;
+    }
+    15% {
+        text-shadow:
+            1.8px 0 1.4px rgba(0, 30, 255, 0.65),
+            -1.8px 0 1.4px rgba(255, 0, 80, 0.45),
+            0 0 0.2812rem;
+    }
+    20% {
+        text-shadow:
+            4px 0 2px rgba(0, 30, 255, 0.75),
+            -4px 0 2px rgba(255, 0, 80, 0.55),
+            0 0 0.375rem;
+    }
+    25% {
+        text-shadow:
+            2px 0 1.5px rgba(0, 30, 255, 0.7),
+            -2px 0 1.5px rgba(255, 0, 80, 0.5),
+            0 0 0.3125rem;
+    }
+    30% {
+        text-shadow:
+            1px 0 1.3px rgba(0, 30, 255, 0.65),
+            -1px 0 1.3px rgba(255, 0, 80, 0.45),
+            0 0 0.2812rem;
+    }
+    35% {
+        text-shadow:
+            0.2687rem 0 2.2px rgba(0, 30, 255, 0.8),
+            -0.2687rem 0 2.2px rgba(255, 0, 80, 0.6),
+            0 0 0.4375rem;
+    }
+    40% {
+        text-shadow:
+            0.2562rem 0 2.1px rgba(0, 30, 255, 0.75),
+            -0.2562rem 0 2.1px rgba(255, 0, 80, 0.55),
+            0 0 0.375rem;
+    }
+    45% {
+        text-shadow:
+            2.5px 0 1.6px rgba(0, 30, 255, 0.7),
+            -2.5px 0 1.6px rgba(255, 0, 80, 0.5),
+            0 0 0.3125rem;
+    }
+    50% {
+        text-shadow:
+            0.9px 0 1.2px rgba(0, 30, 255, 0.6),
+            -0.9px 0 1.2px rgba(255, 0, 80, 0.4),
+            0 0 4px;
+    }
+    55% {
+        text-shadow:
+            2.8px 0 1.7px rgba(0, 30, 255, 0.7),
+            -2.8px 0 1.7px rgba(255, 0, 80, 0.5),
+            0 0 0.3125rem;
+    }
+    60% {
+        text-shadow:
+            2.4px 0 1.5px rgba(0, 30, 255, 0.65),
+            -2.4px 0 1.5px rgba(255, 0, 80, 0.45),
+            0 0 0.2812rem;
+    }
+    65% {
+        text-shadow:
+            3.5px 0 2px rgba(0, 30, 255, 0.75),
+            -3.5px 0 2px rgba(255, 0, 80, 0.55),
+            0 0 0.375rem;
+    }
+    70% {
+        text-shadow:
+            0.7px 0 1.2px rgba(0, 30, 255, 0.6),
+            -0.7px 0 1.2px rgba(255, 0, 80, 0.4),
+            0 0 4px;
+    }
+    75% {
+        text-shadow:
+            2.2px 0 1.5px rgba(0, 30, 255, 0.65),
+            -2.2px 0 1.5px rgba(255, 0, 80, 0.45),
+            0 0 0.2812rem;
+    }
+    80% {
+        text-shadow:
+            0.95px 0 1.2px rgba(0, 30, 255, 0.6),
+            -0.95px 0 1.2px rgba(255, 0, 80, 0.4),
+            0 0 4px;
+    }
+    85% {
+        text-shadow:
+            1.1px 0 1.3px rgba(0, 30, 255, 0.65),
+            -1.1px 0 1.3px rgba(255, 0, 80, 0.45),
+            0 0 4px;
+    }
+    90% {
+        text-shadow:
+            0.2625rem 0 2.3px rgba(0, 30, 255, 0.8),
+            -0.2625rem 0 2.3px rgba(255, 0, 80, 0.6),
+            0 0 0.4375rem;
+    }
+    95% {
+        text-shadow:
+            2.6px 0 1.6px rgba(0, 30, 255, 0.7),
+            -2.6px 0 1.6px rgba(255, 0, 80, 0.5),
+            0 0 0.3125rem;
+    }
+    100% {
+        text-shadow:
+            3px 0 1.8px rgba(0, 30, 255, 0.7),
+            -3px 0 1.8px rgba(255, 0, 80, 0.5),
+            0 0 0.375rem;
+    }
+}
+
+.crt {
+    animation:
+        textShadow 2.5s infinite,
+        fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.6;
+        filter: blur(0.5px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.doorImg {
+    border: 2px solid black;
+    height: 4.75rem;
+}
+
+/* the title at the top of each section page (built by assets/js/sectionTitle.js) */
+.sectionTitleWrap {
+    display: flex;
+    justify-content: center;
+}
+
+.sectionTitleBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 0.5rem 0;
+}
+
+.madotsukiImg {
+    height: 80px;
+}
+
+.sectionTitleText {
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-size: 3.5rem;
+    font-family: lainFont;
+}
+
+/* quiet fieldset text box. Each section sets its own colors on the element
+   (or a wrapper) so it stays readable on that section's background:
+   --fieldBoxBg (near-opaque fill), --fieldBoxBorder, --fieldBoxLegendBg, --fieldBoxLegendText */
+.fieldBox {
+    --fieldBoxBg: rgba(20, 20, 30, 0.94);
+    --fieldBoxBorder: #7a7a8c;
+    --fieldBoxLegendBg: #101018;
+    --fieldBoxLegendText: #f2f2f8;
+    --fieldBoxLegendH: 1.7rem;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 80%;
+    min-width: 0; /* fieldsets default to min-content width, which stops long rows from wrapping */
+    margin: calc(var(--fieldBoxLegendH) / 2 + 1.25rem) auto 0;
+    padding: calc(var(--fieldBoxLegendH) / 2 + 0.6rem) 1.25rem 1rem;
+    border: 1px solid var(--fieldBoxBorder);
+    border-image: none; /* drop the 98.css fieldset border */
+    border-radius: 0.375rem;
+    background: var(--fieldBoxBg);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 4px 14px rgba(0, 0, 0, 0.45);
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.95rem;
+}
+
+/* frosted glass: see-through tint plus blur, so the page background shows as soft color
+   but its detail can't fight the text. Add alongside .fieldBox: class="fieldBox glass" */
+.fieldBox.glass {
+    --fieldBoxBg: rgba(20, 20, 30, 0.55);
+    -webkit-backdrop-filter: blur(8px) saturate(1.15);
+    backdrop-filter: blur(8px) saturate(1.15);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* the legend is a solid chip pulled out of the fieldset's special legend layout (absolute),
+   centered on the top border. That keeps the box's background and blur ending at the border
+   instead of reaching up to the top of the chip. */
+.fieldBox legend {
+    position: absolute;
+    top: calc(var(--fieldBoxLegendH) / -2);
+    left: 0.9rem;
+    box-sizing: border-box;
+    height: var(--fieldBoxLegendH);
+    margin: 0;
+    padding: 0 0.7rem;
+    line-height: calc(var(--fieldBoxLegendH) - 2px);
+    white-space: nowrap;
+    background: var(--fieldBoxLegendBg);
+    border: 1px solid var(--fieldBoxBorder);
+    border-radius: 0.25rem;
+    color: var(--fieldBoxLegendText);
+}
+
+/* small shared helpers */
+.centerText {
+    text-align: center;
+}
+
+#guestbook-iframe {
+    border: none;
+}
+
+/* lain-style "currently" window */
+.lainBox {
+    box-sizing: border-box;
+    background: rgba(8, 10, 22, 0.88);
+    border: 1px solid #7f86c9;
+    color: #c9cdf2;
+    font-family: lainFont2, "Courier New", monospace;
+    position: relative;
+    overflow: hidden;
+}
+
+.lainBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0.6rem;
+    border-bottom: 1px solid #7f86c9;
+    color: #9aa1e8;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+.lainBody {
+    padding: 0.9rem 1rem 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-shadow:
+        2px 0 rgba(255, 0, 80, 0.45),
+        -2px 0 rgba(0, 200, 255, 0.45);
+}
+
+.lainBox::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.04) 0 1px,
+        transparent 1px 3px
+    );
+}
+
+/* "coming soon" placeholder screens are narrower than a full-width section */
+.fakeScreen.comingSoon {
+    width: 70%;
+}

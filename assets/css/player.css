@@ -62,7 +62,6 @@ input[type="range"]::-moz-range-track {
     white-space: nowrap;
     font-family: Pixelated MS Sans Serif;
     padding: 0.3125rem;
-    /*font-size: 12px;*/
 }
 
 /* Replaces <marquee>: the left padding (100% of the box) starts the text at the right edge,

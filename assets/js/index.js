@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function(){
         currentSection = section;
         setActiveNavLink(section);
         setSectionBackground(section);
-        updateSectionTitleBar(section);
         // replace() so the frame doesn't add its own history entries; only the URL hash should
         document.querySelector('.contentFrame').contentWindow.location.replace(`sections/${section}.html`);
     }
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const initialSection = currentSection;
     setActiveNavLink(initialSection);
     setSectionBackground(initialSection);
-    if(initialSection !== 'home') updateSectionTitleBar(initialSection);
     document.querySelector('.contentFrame').contentWindow.location.replace(`sections/${initialSection}.html`);
 
     // Back/forward buttons
@@ -246,22 +244,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     loadTrack(track_index);
-
-    function updateSectionTitleBar(section) {
-        const bar = document.querySelector(".sectionTitleBar");
-        updateSectionTitleBar.currentSection = section;
-        bar.style.opacity = "0";
-        setTimeout(function() {
-            if(updateSectionTitleBar.currentSection === section){
-                const info = getSection(section);
-                document.querySelector(".sectionTitleText").textContent = info.title;
-                document.getElementById("section-door-img").src = info.door;
-                document.getElementById("section-door-img").alt = info.title;
-                document.getElementById("section-madotsuki-img").src = info.madotsuki || "";
-                bar.style.opacity = "1";
-            }
-        }, 250);
-    }
 
     document.querySelectorAll(".mainNavbar a").forEach(function(link){
         link.addEventListener("click", function(e){

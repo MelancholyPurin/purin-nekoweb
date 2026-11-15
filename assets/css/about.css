@@ -4,7 +4,7 @@
     display: flex;
     gap: 1rem;
     margin: 1rem auto;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .abtCol {
@@ -13,59 +13,9 @@
     width: 21.5625rem;
 }
 
-.abtInterestsQuizzes {
-    align-items: stretch;
-    display: flex;
-}
-
-.abtInterestsQuizzes .abtCol {
-    display: flex;
-    flex-direction: column;
-    width: 21.875rem;
-    min-width: 0;
-    box-sizing: border-box;
-}
-
-.abtInterestsQuizzes .abtCol:last-child {
-    overflow-y: auto;
-    height: 100%;
-    min-height: 0;
-}
-
 /* more air between the quickFacts entries (also when one wraps onto two lines) */
 .quickFacts li + li {
     margin-top: 0.75rem;
-}
-
-.mcSkin {
-    border: 1px dotted white;
-    border-radius: 0.3125rem;
-    width: 9.375rem;
-    margin: 0.625rem auto;
-    display: block;
-}
-
-.funFactContainer {
-    display: flex;
-    align-items: center;
-    height: 16.875rem;
-}
-
-.funFactBox {
-    width: 18.75rem;
-    border: 2px solid gray;
-    margin: auto;
-    text-align: center;
-    background-color: lightgray;
-    border-radius: 0.3125rem;
-}
-
-.funFact {
-    font-size: 1.125rem;
-    margin: auto;
-    font-weight: bold;
-    padding: 0.625rem;
-    color: black;
 }
 
 .reiChiquita {
@@ -82,20 +32,31 @@
 }
 
 .forumBox {
-    background: #e8edf5;
-    border: 1px solid #5d7aa6;
-    color: #111;
+    /* pastel pink by default; #questionnaire below swaps in lavender */
+    --forumBg: #fff4f9;
+    --forumPanel: #ffe0ee;
+    --forumHover: #ffd0e5;
+    --forumBorder: #f08fbd;
+    --forumInk: #7a2f55;
+    --forumText: #4a2038;
+    --forumSoft: #8a5a77;
+    --forumTitleTop: #ffc2dd;
+    --forumTitleBottom: #ff9fc9;
+    --forumTitleText: #5b1e41;
+    background: var(--forumBg);
+    border: 1px solid var(--forumBorder);
+    color: var(--forumText);
     font-family: Verdana, sans-serif;
     font-size: 0.85rem;
 }
 
 .forumBox a.resourceLink {
-    color: #1c3a78;
+    color: var(--forumInk);
 }
 
 .forumTitle {
-    background: linear-gradient(#4a6fa8, #2f4d80);
-    color: white;
+    background: linear-gradient(var(--forumTitleTop), var(--forumTitleBottom));
+    color: var(--forumTitleText);
     font-weight: bold;
     padding: 0.4rem 0.8rem;
 }
@@ -103,8 +64,8 @@
 .forumDesc {
     margin: 0;
     padding: 0.6rem 0.8rem;
-    border-bottom: 1px solid #5d7aa6;
-    color: #333;
+    border-bottom: 1px solid var(--forumBorder);
+    color: var(--forumSoft);
     font-size: 0.75rem;
 }
 
@@ -117,14 +78,14 @@
     width: 7rem;
     box-sizing: border-box;
     padding: 0.75rem 0.5rem;
-    background: #c9d5e8;
-    border-right: 1px solid #5d7aa6;
+    background: var(--forumPanel);
+    border-right: 1px solid var(--forumBorder);
     text-align: center;
     font-size: 0.75rem;
 }
 
 .forumUser b {
-    color: #1c3a78;
+    color: var(--forumInk);
 }
 
 .forumUser img {
@@ -133,7 +94,7 @@
     height: 4rem;
     object-fit: cover;
     margin: 0.4rem auto;
-    border: 1px solid #5d7aa6;
+    border: 1px solid var(--forumBorder);
 }
 
 .forumBody {
@@ -148,10 +109,11 @@
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
-    border-bottom: 1px solid #5d7aa6;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--forumBorder);
     padding-bottom: 0.3rem;
     margin-bottom: 0.7rem;
-    color: #555;
+    color: var(--forumSoft);
     font-size: 0.7rem;
 }
 
@@ -165,32 +127,74 @@
     line-height: 1.5;
 }
 
-/* all: unset drops 98.css look so it matches the forum */
-.forumNext {
+/* the forum's buttons. all: unset drops the 98.css look so they match the forum */
+.forumButton {
     all: unset;
     box-sizing: border-box;
+    padding: 0.25rem 0.8rem;
+    background: linear-gradient(#ffffff, var(--forumPanel));
+    border: 1px solid var(--forumBorder);
+    border-radius: 3px;
+    color: var(--forumInk);
+    font-weight: bold;
+    cursor: url("../images/cursors/nso_point.png"), pointer;
+}
+
+.forumButton:hover {
+    background: linear-gradient(#ffffff, var(--forumHover));
+}
+
+.forumButton:active {
+    background: linear-gradient(var(--forumPanel), #ffffff);
+}
+
+.forumButton:focus,
+button.forumButton:not(:disabled):active {
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0.25rem 0.8rem;
+}
+
+.forumButton:focus-visible {
+    outline: 2px solid var(--forumInk);
+    outline-offset: 2px;
+}
+
+/* the questionnaire's lone Next button sits at the bottom right of the post */
+.forumNext {
     align-self: flex-end;
     margin-top: 0.6rem;
-    padding: 0.25rem 0.8rem;
-    background: linear-gradient(#f4f7fb, #c9d5e8);
-    border: 1px solid #5d7aa6;
-    border-radius: 3px;
-    color: #1c3a78;
-    font-weight: bold;
-    cursor: pointer;
 }
 
-.forumNext:hover {
-    background: linear-gradient(#ffffff, #dbe5f3);
+/* the questions box: a question, with previous and next buttons under it */
+.forumNav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
 }
 
-.forumNext:active {
-    background: linear-gradient(#c9d5e8, #f4f7fb);
+.forumNavMid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
-.forumNext:focus-visible {
-    outline: 2px solid #1c3a78;
-    outline-offset: 2px;
+.forumBig {
+    font-size: 1rem;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.forumAnswer.forumBig {
+    min-height: 4.5rem;
+}
+
+.forumUnanswered {
+    color: var(--forumSoft);
+    font-style: italic;
 }
 
 @media (max-width: 30rem) {
@@ -204,5 +208,353 @@
 }
 
 .aboutPage .fakeScreen {
-    background-color: #163540;
+    background-color: #5b4478;
+    background-image: radial-gradient(#8c6fae, #3f2c5a 120%);
+    border-color: #ffc2dd;
+    text-shadow: 0 0 0.3125rem #ffd0e5;
+}
+
+/* the hover border: base.css makes it yellow, but this page's border rule is later in the cascade and wins,
+   so it has to be set here too (pink instead of yellow) */
+.aboutPage .fakeScreen:hover {
+    border-color: #ff8fc0;
+}
+
+/* profile section: pastel cards on the left, polaroid + Rei on the right */
+.abtCards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 0.75rem;
+}
+
+.pastelCard {
+    position: relative;
+    box-sizing: border-box;
+    background: #ffe9f3;
+    border: 3px dashed #ff8fc0;
+    border-radius: 1.2rem;
+    padding: 1.4rem 1.2rem 1.1rem;
+    color: #7a2f55;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 0.95rem;
+    box-shadow:
+        0 0 0 5px #fff,
+        0 0 0 8px #ffc2dd;
+}
+
+.pastelTab {
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff8fc0;
+    color: white;
+    border-radius: 999px;
+    padding: 0.1rem 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.pastelCard ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    line-height: 1.5;
+}
+
+.pastelCard p {
+    margin: 0 0 0.3rem;
+}
+
+.pastelCard li::marker {
+    content: "\2726  ";
+    color: #ff8fc0;
+}
+
+.pastelCard .quickFacts li + li {
+    margin-top: 0.5rem;
+}
+
+.pastelCols {
+    display: flex;
+    gap: 1rem;
+}
+
+.pastelCols > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.idButtons {
+    margin-top: 1rem;
+}
+
+.idButtons > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.idButtons .smallIdButton {
+    width: calc((100% - 0.6rem) / 3);
+    height: auto;
+}
+
+.abtSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding-top: 0.75rem;
+}
+
+.polaroid {
+    box-sizing: border-box;
+    width: 13rem;
+    margin: 0;
+    padding: 0.8rem 0.8rem 1rem;
+    background: #fdfbf5;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+    transform: rotate(-2.5deg);
+    color: #222;
+    text-align: center;
+}
+
+.polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: contain;
+    background: #151515;
+}
+
+.polaroid figcaption {
+    margin-top: 0.7rem;
+    font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+/* Rei is a real button so keyboard users can trigger the fun facts too */
+.reiButton {
+    all: unset;
+    display: block;
+    cursor: url("../images/cursors/nso_point.png"), pointer;
+    border-radius: 0.5rem;
+}
+
+/* 98.css gives every button a dotted focus outline and a pressed look (button:focus,
+   button:not(:disabled):active), and those selectors beat a single class, so undo them here */
+.reiButton:focus,
+button.reiButton:not(:disabled):active {
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.reiButton:focus-visible {
+    outline: 2px solid #ffd84a;
+    outline-offset: 4px;
+}
+
+/* OMORI-style dialogue box (font and cursor come from the OMORI template folder) */
+@font-face {
+    font-family: omoriFont;
+    src: url("../DialogueSystem.js%20Template%20-%20OMORI/fonts/OMORI_GAME2.ttf");
+}
+
+.omoriBox {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 7rem;
+    margin-top: 0.6rem;
+    padding: 1rem 2.6rem 1rem 1.25rem;
+    background: black;
+    border: 4px solid white;
+    outline: 2px solid black;
+    color: white;
+    font-family: omoriFont, monospace;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    image-rendering: pixelated;
+}
+
+.omoriName {
+    position: absolute;
+    top: -1.2rem;
+    left: 0.9rem;
+    padding: 0 0.6rem;
+    background: black;
+    border: 3px solid white;
+    outline: 2px solid black;
+    font-size: 1rem;
+}
+
+.omoriText {
+    margin: 0;
+}
+
+/* the part of the text that hasn't been typed yet: invisible, but it holds the box's size */
+.omoriRest {
+    visibility: hidden;
+}
+
+.omoriCursor {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.6rem;
+    width: 1.6rem;
+    visibility: hidden;
+    image-rendering: pixelated;
+}
+
+.omoriCursorReady {
+    visibility: visible;
+    animation: omoriCursorBob 0.5s linear infinite alternate;
+}
+
+@keyframes omoriCursorBob {
+    from {
+        right: 0.8rem;
+    }
+
+    to {
+        right: 1.2rem;
+    }
+}
+
+/* sits at the bottom of its (stretched) tile */
+.aboutPurin {
+    display: block;
+    margin: auto auto 0;
+    padding-top: 0.9rem;
+}
+
+/* a row of small 88x31-style buttons, three per row, inside a pastel card */
+.buttonRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    margin: 0.8rem 0;
+}
+
+.buttonRow .smallLeftcolButton {
+    width: calc((100% - 0.6rem) / 3);
+    height: auto;
+}
+
+.pastelCard p + p,
+.pastelCard .buttonRow + p {
+    margin-top: 0.6rem;
+}
+
+/* the About page's rows: every row is a pair of columns; tiles stretch to the taller of the two */
+.aboutRows .splitScreen {
+    margin: 0 auto 2rem;
+}
+
+.abtCards .pastelCard {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+/* quiz results tile: one result at a time with back/next */
+.quizView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    /* tall enough for the biggest result (an image plus a caption) so the row never changes height */
+    min-height: 17.5rem;
+}
+
+.quizImg .abtQuiz {
+    display: block;
+}
+
+.quizImg .abtQuiz img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 10rem;
+    margin: 0 auto;
+    border: 2px solid #ff8fc0;
+    border-radius: 0.4rem;
+    background: #fff;
+}
+
+.quizCaption {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.quizNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.9rem;
+}
+
+.quizCount {
+    font-size: 0.85rem;
+}
+
+.pastelButton {
+    all: unset;
+    box-sizing: border-box;
+    padding: 0.25rem 0.9rem;
+    background: #fff;
+    border: 2px solid #ff8fc0;
+    border-radius: 999px;
+    color: #7a2f55;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: url("../images/cursors/nso_point.png"), pointer;
+}
+
+.pastelButton:hover {
+    background: #ffc2dd;
+}
+
+/* undo 98.css's dotted focus outline and pressed look (see .reiButton) */
+.pastelButton:focus,
+button.pastelButton:not(:disabled):active {
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0.25rem 0.9rem;
+}
+
+.pastelButton:focus-visible {
+    outline: 2px solid #7a2f55;
+    outline-offset: 2px;
+}
+
+/* the first row of tiles (quick facts, interests) is a little wider than the other rows */
+.abtCol.abtWide {
+    width: 22.5rem;
+}
+
+/* the silly questionnaire is lavender, so it reads as a different box from the pink one above it */
+#questionnaire {
+    --forumBg: #f8f4ff;
+    --forumPanel: #e9defa;
+    --forumHover: #dccdf5;
+    --forumBorder: #a98bd6;
+    --forumInk: #4f3480;
+    --forumText: #34224f;
+    --forumSoft: #6d5a8c;
+    --forumTitleTop: #dccdf5;
+    --forumTitleBottom: #bda4ec;
+    --forumTitleText: #3a2563;
 }
